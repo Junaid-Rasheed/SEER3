@@ -7,8 +7,15 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ["Space Mono", "monospace"],
+      helvetica: "HelveticaLTStd",
     },
-    extend: {},
+    extend: {
+      colors: {
+        decode3: {
+          DEFAULT: "#B1EF07",
+        },
+      },
+    },
   },
   plugins: [],
 };

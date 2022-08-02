@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'HelveticaLTStd';
+        src: url('/fonts/HelveticaLTStd-BlkCond.woff2') format('woff2');
+    }
+}
+
+@layer components {
+    .heading {
+        @apply font-helvetica text-3xl;
+    }
+}
