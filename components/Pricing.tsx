@@ -1,17 +1,27 @@
-import { Tab } from '@headlessui/react'
+import { Tab } from '@headlessui/react';
 import classNames from 'classnames';
 import Image from 'next/image';
 
-export default function Pricing() {
+export default function Pricing({
+  onBuy,
+  productId
+}: {
+  onBuy?: (productId: string) => void;
+  productId: string;
+}) {
   return (
     <div className="relative flex justify-center items-center h-[100vh]">
-      <video playsInline autoPlay muted loop className="absolute top-0 left-0 object-cover h-full w-[100vw]">
+      <video
+        playsInline
+        autoPlay
+        muted
+        loop
+        className="absolute top-0 left-0 object-cover h-full w-[100vw]"
+      >
         <source src="/assets/desktop/Horizontal.mp4" type="video/mp4" />
       </video>
       <div className="relative z-10 h-full w-[400px] flex flex-col  justify-center">
-        <h1 className="mt-10 heading uppercase text-6xl text-white">
-          PRICING
-        </h1>
+        <h1 className="mt-10 heading uppercase text-6xl text-white">PRICING</h1>
         <p className="text-white text-lg uppercase mt-5">
           Make your life easier.
           <br />
@@ -21,12 +31,22 @@ export default function Pricing() {
           <Tab.Group>
             <Tab.List className="border border-decode3 flex">
               <Tab
-                className={({ selected }) => classNames(selected ? 'bg-decode3' : 'bg-transparent text-decode3', 'py-2 px-12 uppercase font-bold text-sm')}
+                className={({ selected }) =>
+                  classNames(
+                    selected ? 'bg-decode3' : 'bg-transparent text-decode3',
+                    'py-2 px-12 uppercase font-bold text-sm'
+                  )
+                }
               >
                 Month
               </Tab>
               <Tab
-                className={({ selected }) => classNames(selected ? 'bg-decode3' : 'bg-transparent text-decode3', 'py-2 px-12 w-full uppercase font-bold text-sm')}
+                className={({ selected }) =>
+                  classNames(
+                    selected ? 'bg-decode3' : 'bg-transparent text-decode3',
+                    'py-2 px-12 w-full uppercase font-bold text-sm'
+                  )
+                }
               >
                 Year (Save 33%)
               </Tab>
@@ -49,7 +69,10 @@ export default function Pricing() {
                   <li className="mb-5">Conduct market research </li>
                   <li className="mb-5">Find investment opportunities</li>
                 </ol>
-                <button className="border border-decode3 text-decode3 font-bold py-2 px-6 mt-4 w-full">
+                <button
+                  onClick={() => onBuy?.(productId)}
+                  className="border border-decode3 text-decode3 font-bold py-2 px-6 mt-4 w-full"
+                >
                   Buy now
                 </button>
               </Tab.Panel>
@@ -59,5 +82,5 @@ export default function Pricing() {
         </div>
       </div>
     </div>
-  )
+  );
 }

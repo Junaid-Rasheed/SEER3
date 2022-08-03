@@ -2,7 +2,7 @@ import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { FirestoreAdapter } from '@next-auth/firebase-adapter';
-import { auth } from '../../../firebase/firebaseClient';
+import { auth } from '../../../utils/firebaseClient';
 import { signInWithEmailAndPassword } from '@firebase/auth';
 
 const firebaseConfig = {

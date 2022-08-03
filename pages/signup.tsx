@@ -3,7 +3,7 @@ import {
   db,
   auth,
   createUserWithEmailAndPassword
-} from '../firebase/firebaseClient';
+} from '../utils/firebaseClient';
 import { collection, doc, setDoc } from 'firebase/firestore';
 
 const SignUp = () => {

@@ -9,40 +9,55 @@ export default function Header() {
   const router = useRouter();
   return (
     <nav className="grid grid-cols-3 py-4 bg-black border-b border-b-neutral-600 relative">
-      <a href="#" className="w-[180px] h-[40px] relative ml-8">
-        <Image
-          src="/assets/desktop/DECODE Material-08 landscape.png"
-          alt="Decode3 Logo"
-          layout="fill"
-        />
-      </a>
+      <Link href="/">
+        <a className="w-[180px] h-[40px] relative ml-8 cursor-pointer">
+          <Image
+            src="/assets/desktop/DECODE Material-08 landscape.png"
+            alt="Decode3 Logo"
+            layout="fill"
+          />
+        </a>
+      </Link>
       <ul className="flex flex-row mx-auto divide-x">
         <li className="text-white uppercase py-2 px-6">
-          <Link href="/pricing"><a>Pricing</a></Link></li>
+          <Link href="/pricing">
+            <a>Pricing</a>
+          </Link>
+        </li>
         <li className="text-white uppercase py-2 px-6">
-          <Link href="/career"><a>Career</a></Link></li>
+          <Link href="/career">
+            <a>Career</a>
+          </Link>
+        </li>
         <li className="text-white uppercase py-2 px-6">
-          <Link href="/contact"><a>Contact</a></Link></li>
+          <Link href="/contact">
+            <a>Contact</a>
+          </Link>
+        </li>
       </ul>
       <div className="flex flex-row gap-9 mr-8 justify-end">
-        {!!session ?
+        {!!session ? (
           <button
             className="border border-decode3 text-decode3 font-bold py-2 px-6"
             onClick={() => signOut()}
           >
             Log out
           </button>
-          :
+        ) : (
           <button
             className="border border-decode3 text-decode3 font-bold py-2 px-6"
             onClick={() => router.push('/signin')}
           >
             Log in
           </button>
-        }
+        )}
         <GetStartedButton />
       </div>
-      {!!session && <h1 className="text-white absolute -bottom-10 right-5">{session?.user?.email}</h1>}
+      {!!session && (
+        <h1 className="text-white absolute -bottom-10 right-5">
+          {session?.user?.email}
+        </h1>
+      )}
     </nav>
   );
 }

@@ -3,9 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-    body{
-        @apply bg-black;
-    }
     @font-face {
         font-family: 'HelveticaLTStd';
         src: url('/fonts/HelveticaLTStd-BlkCond.woff2') format('woff2');
