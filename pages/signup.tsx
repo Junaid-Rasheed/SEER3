@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { db } from '../firebase/firebaseClient';
 import {
-  onSnapshot,
-  collection,
-  doc,
-  setDoc,
-  addDoc
-} from 'firebase/firestore';
+  db,
+  auth,
+  createUserWithEmailAndPassword
+} from '../firebase/firebaseClient';
+import { collection, doc, setDoc } from 'firebase/firestore';
 
 const SignUp = () => {
   const [user, setUser] = useState({
@@ -25,9 +23,20 @@ const SignUp = () => {
 
   async function handleSubmit(e: any) {
     e.preventDefault();
-    const collectionRef = collection(db, 'users');
-    const docRef = await addDoc(collectionRef, user);
-    console.log('docRef', docRef);
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        user.email,
+        user.password
+      );
+      const collectionRef = collection(db, 'users');
+      await setDoc(doc(collectionRef, userCredential.user.uid), {
+        ...user,
+        uid: userCredential.user.uid
+      });
+    } catch (err) {
+      console.log('err', err);
+    }
   }
 
   return (

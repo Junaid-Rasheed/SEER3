@@ -1,5 +1,5 @@
 import type { GetServerSidePropsContext, NextPage } from 'next';
-import { signIn, signOut, useSession, getSession } from 'next-auth/react';
+import { signOut, useSession, getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
 const Home: NextPage = () => {
@@ -35,6 +35,7 @@ const Home: NextPage = () => {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getSession(context);
+  console.log('session-home page', session);
   return {
     props: {
       session

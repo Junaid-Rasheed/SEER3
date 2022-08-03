@@ -29,10 +29,10 @@ export default function SignIn({
         <form method="post" action="/api/auth/callback/credentials">
           <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
           <div className="flex flex-col">
-            <label className="text-white">Username</label>
+            <label className="text-white">Email</label>
             <input
               className="py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"
-              name="Email"
+              name="email"
               type="email"
               required
             />
