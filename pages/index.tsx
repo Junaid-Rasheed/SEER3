@@ -1,14 +1,24 @@
-import type { NextPage } from "next";
+import type { NextPage } from 'next';
+import Layout from '../components/Layout';
+import Hero from '../components/Hero';
+import ExplainProduct from '../components/ExplainProduct';
+import Data from '../components/Data';
+import WhoWeServe from '../components/WhoWeServe';
+import Investment from '../components/Investment';
+import Features from '../components/Features';
 
 const Home: NextPage = () => {
   return (
-    <h1 className="mt-10 heading uppercase text-center text-7xl">
-      The web3
-      <br />
-      <span className="text-decode3">Fundraising</span>
-      <br />
-      Database
-    </h1>
+    <>
+      <Layout>
+        <Hero />
+        <ExplainProduct />
+        <Data />
+        <WhoWeServe />
+        <Investment />
+        <Features />
+      </Layout>
+    </>
   );
 };
 
