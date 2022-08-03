@@ -1,4 +1,11 @@
 import type { GetServerSidePropsContext, NextPage } from 'next';
+import Layout from '../components/Layout';
+import Hero from '../components/Hero';
+import ExplainProduct from '../components/ExplainProduct';
+import Data from '../components/Data';
+import WhoWeServe from '../components/WhoWeServe';
+import Investment from '../components/Investment';
+import Features from '../components/Features';
 import { signOut, useSession, getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
@@ -22,20 +29,20 @@ const Home: NextPage = () => {
 
   return (
     <>
-      Not signed in <br />
-      <button
-        className="bg-decode3 px-3 py-2 rounded text-white"
-        onClick={() => router.push('/signin')}
-      >
-        Sign in
-      </button>
+      <Layout>
+        <Hero />
+        <ExplainProduct />
+        <Data />
+        <WhoWeServe />
+        <Investment />
+        <Features />
+      </Layout>
     </>
   );
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getSession(context);
-  console.log('session-home page', session);
   return {
     props: {
       session
