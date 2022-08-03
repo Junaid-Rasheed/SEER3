@@ -9,7 +9,6 @@ import Features from '../components/Features';
 import { getSession } from 'next-auth/react';
 
 const Home: NextPage = () => {
-
   return (
     <>
       <Layout>
@@ -28,8 +27,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getSession(context);
   return {
     props: {
-      session,
-    },
+      session
+    }
   };
 }
 

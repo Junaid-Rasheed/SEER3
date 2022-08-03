@@ -2,7 +2,8 @@ import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { FirestoreAdapter } from '@next-auth/firebase-adapter';
-// import { firebaseConfig } from '../../../firebase/firebaseClient';
+import { auth } from '../../../firebase/firebaseClient';
+import { signInWithEmailAndPassword } from '@firebase/auth';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDLVo_qBmDyunTMZL7HCqTkPgE1ZZju5lY',
@@ -19,22 +20,24 @@ export default NextAuth({
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        username: { label: 'Username', type: 'text', placeholder: '' },
+        email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' }
       },
-      async authorize(credentials, req) {
-        // Add logic here to look up the user from the credentials supplied
-        console.log('credentials', credentials);
-        const user = { id: 1, name: 'chris', email: 'chris@email.com' };
+      async authorize(credentials) {
+        try {
+          const userCredential = await signInWithEmailAndPassword(
+            auth,
+            credentials?.email || '',
+            credentials?.password || ''
+          );
 
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          return user;
-        } else {
-          // If you return null then an error will be displayed advising the user to check their details.
+          return {
+            email: userCredential.user.email,
+            emailVerified: userCredential.user.emailVerified
+          };
+        } catch (err) {
+          console.log('err', err);
           return null;
-
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
       }
     }),
@@ -45,5 +48,8 @@ export default NextAuth({
   ],
   adapter: FirestoreAdapter({
     ...firebaseConfig
-  })
+  }),
+  session: {
+    strategy: 'jwt'
+  }
 });
