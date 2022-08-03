@@ -2,6 +2,7 @@ import Image from 'next/image';
 import GetStartedButton from './GetStartedButton';
 import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function Header() {
   const { data: session } = useSession();
@@ -16,9 +17,12 @@ export default function Header() {
         />
       </a>
       <ul className="flex flex-row mx-auto divide-x">
-        <li className="text-white uppercase py-2 px-6"><a href="#">Pricing</a></li>
-        <li className="text-white uppercase py-2 px-6"><a href="#">Career</a></li>
-        <li className="text-white uppercase py-2 px-6"><a href="#">Contact</a></li>
+        <li className="text-white uppercase py-2 px-6">
+          <Link href="/pricing"><a>Pricing</a></Link></li>
+        <li className="text-white uppercase py-2 px-6">
+          <Link href="/career"><a>Career</a></Link></li>
+        <li className="text-white uppercase py-2 px-6">
+          <Link href="/contact"><a>Contact</a></Link></li>
       </ul>
       <div className="flex flex-row gap-9 mr-8 justify-end">
         {!!session ?

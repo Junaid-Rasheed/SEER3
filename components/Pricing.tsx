@@ -41,13 +41,15 @@ export default function Pricing() {
                   />
                 </a>
                 <h1 className="text-decode3 heading text-5xl">$125</h1>
-                <ol className="text-white mt-8">
-                  <li className="mb-7">LOREM IPSUM</li>
-                  <li className="mb-7">LOREM IPSUM</li>
-                  <li className="mb-7">LOREM IPSUM</li>
-                  <li className="mb-7">LOREM IPSUM</li>
+                <ol className="text-white text-sm mt-8 uppercase">
+                  <li className="mb-5">Access to 7600+ active investors</li>
+                  <li className="mb-5">Discover new trends and products</li>
+                  <li className="mb-5">Save hundreds of hours in research</li>
+                  <li className="mb-5">Analyze recent investment activity</li>
+                  <li className="mb-5">Conduct market research </li>
+                  <li className="mb-5">Find investment opportunities</li>
                 </ol>
-                <button className="border border-decode3 text-decode3 font-bold py-2 px-6">
+                <button className="border border-decode3 text-decode3 font-bold py-2 px-6 mt-4 w-full">
                   Buy now
                 </button>
               </Tab.Panel>
