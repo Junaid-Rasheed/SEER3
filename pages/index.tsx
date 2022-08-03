@@ -6,27 +6,9 @@ import Data from '../components/Data';
 import WhoWeServe from '../components/WhoWeServe';
 import Investment from '../components/Investment';
 import Features from '../components/Features';
-import { signOut, useSession, getSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
+import { getSession } from 'next-auth/react';
 
 const Home: NextPage = () => {
-  const { data: session } = useSession();
-  const router = useRouter();
-
-  if (session) {
-    return (
-      <>
-        Signed in as {session?.user?.email} <br />
-        <button
-          className="bg-gray-200 rounded px-3 py-2"
-          onClick={() => signOut()}
-        >
-          Sign out
-        </button>
-      </>
-    );
-  }
-
   return (
     <>
       <Layout>
