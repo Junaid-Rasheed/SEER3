@@ -49,19 +49,16 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     switch (event.type) {
       case 'customer.subscription.created':
-        // @ts-ignore
-        const subscription = event.data.object as Stripe.Subscription;
-        await addDoc(collection(db, 'customers'), subscription);
+        const createdSubscriber = event.data.object as Stripe.Subscription;
+        await addDoc(collection(db, 'customers'), createdSubscriber);
         // Then define and call a function to handle the event customer.subscription.created
         break;
       case 'customer.subscription.deleted':
-        // @ts-ignore
-        const subscription = event.data.object;
+        // const subscription = event.data.object;
         // Then define and call a function to handle the event customer.subscription.deleted
         break;
       case 'customer.subscription.updated':
-        // @ts-ignore
-        const subscription = event.data.object;
+        // const subscription = event.data.object;
         // Then define and call a function to handle the event customer.subscription.updated
         break;
 
