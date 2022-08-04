@@ -51,7 +51,7 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       case 'customer.subscription.created':
         // @ts-ignore
         const subscription = event.data.object as Stripe.Subscription;
-        console.log(`💰 subscription status: ${subscription.status}`);
+        await addDoc(collection(db, 'customers'), subscription);
         // Then define and call a function to handle the event customer.subscription.created
         break;
       case 'customer.subscription.deleted':
@@ -65,34 +65,6 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
         // Then define and call a function to handle the event customer.subscription.updated
         break;
 
-      case 'payment_intent.succeeded':
-        // @ts-ignore
-        const paymentIntent = event.data.object as Stripe.PaymentIntent;
-        const docRef = await addDoc(collection(db, 'products'), paymentIntent);
-        // Then define and call a function to handle the event payment_intent.succeeded
-        break;
-
-      case 'payment_intent.canceled':
-        // @ts-ignore
-        const paymentIntent = event.data.object;
-        // Then define and call a function to handle the event payment_intent.canceled
-        break;
-      case 'payment_intent.created':
-        // @ts-ignore
-        const paymentIntent = event.data.object;
-        // Then define and call a function to handle the event payment_intent.created
-        break;
-      case 'payment_intent.payment_failed':
-        // @ts-ignore
-        const paymentIntent = event.data.object;
-        // Then define and call a function to handle the event payment_intent.payment_failed
-        break;
-      case 'payment_intent.processing':
-        // @ts-ignore
-        const paymentIntent = event.data.object;
-        // Then define and call a function to handle the event payment_intent.processing
-        break;
-      // ... handle other event types
       default:
         console.log(`Unhandled event type ${event.type}`);
     }
