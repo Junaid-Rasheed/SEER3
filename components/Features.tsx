@@ -23,12 +23,11 @@ const DATA = [
 
 export default function Features() {
   return (
-    <div className="relative px-[115px]">
-      <h1 className="mt-16 heading uppercase text-7xl">
-        More than a platform.
-        <span className="text-decode3"> A partner </span>
+    <div className="relative px-10 md:px-[115px]">
+      <h1 className="mt-16 heading uppercase text-4xl md:text-6xl">
+        DATA IS WHAT WE DO BEST
       </h1>
-      <ul className="flex flex-row gap-x-[100px] mt-16 mb-[200px] text-white">
+      <ul className="flex flex-col md:flex-row flex-wrap gap-[70px] md:gap-[100px] mt-16 mb-[200px] text-white">
         {DATA.map((data) => (
           <li className="max-w-[400px] bg-black px-8 py-12" key={data.id}>
             <div className="flex gap-[50px]">
@@ -45,11 +44,11 @@ export default function Features() {
           </li>
         ))}
       </ul>
-      <div className="bg-black mb-[200px] min-h-[112px] py-8 px-[55px] flex justify-between">
-        <h1 className="text-white uppercase heading text-5xl">
+      <div className="bg-black mb-[200px] min-h-[112px] py-8 px-10 md:px-[55px] flex flex-col md:flex-row justify-between gap-10 md:gap-0">
+        <h1 className="text-white uppercase heading text-3xl md:text-5xl">
           Looking for funding? List your start-up for free
         </h1>
-        <button className="uppercase bg-decode3 font-bold py-3 px-8 w-[385px]">
+        <button className="uppercase bg-decode3 font-bold py-3 px-8 w-full md:w-[385px]">
           List it now
         </button>
       </div>

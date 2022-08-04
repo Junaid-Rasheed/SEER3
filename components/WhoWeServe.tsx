@@ -26,15 +26,15 @@ const DATA = [
 
 export default function WhoWeServe() {
   return (
-    <div className="relative px-[115px]">
-      <h1 className="mt-16 heading uppercase text-7xl">
+    <div className="relative px-10 md:px-[115px]">
+      <h1 className="mt-16 heading uppercase text-4xl md:text-7xl">
         More than a platform.
         <span className="text-decode3"> A partner </span>
       </h1>
-      <ul className="flex flex-row gap-x-[100px] my-16 text-white">
+      <ul className="flex flex-col md:flex-row flex-wrap gap-10 md:gap-[100px] my-16 text-white">
         {DATA.map((data) => (
-          <li className="w-[366px] bg-black px-8 py-12" key={data.id}>
-            <div className="relative w-[300px] h-[300px]">
+          <li className="w-full md:w-[366px] bg-black px-8 py-12" key={data.id}>
+            <div className="relative w-full md:w-[300px] aspect-w-1 aspect-h-1">
               <Image src={data.img} alt={data.target} layout="fill" />
             </div>
             <h1 className="heading uppercase text-4xl mt-6">

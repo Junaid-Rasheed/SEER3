@@ -1,28 +1,51 @@
 import { Tab } from '@headlessui/react';
 import classNames from 'classnames';
 import Image from 'next/image';
+import { CheckCircleIcon } from '@heroicons/react/solid';
 
-export default function Pricing({
-  onBuy,
-  productId
-}: {
-  onBuy?: (productId: string) => void;
-  productId: string;
-}) {
+
+const pricePlans = [
+  {
+    title: 'monthly',
+    price: '$125',
+    features: [
+      'Access to 7600+ active investors',
+      'Discover new trends and products',
+      'Save hundreds of hours in research',
+      'Analyze recent investment activity',
+      'Conduct market research',
+      'Find investment opportunities',
+    ],
+  },
+  {
+    title: 'yearly',
+    price: '$999',
+    features: [
+      'Access to 7600+ active investors',
+      'Discover new trends and products',
+      'Save hundreds of hours in research',
+      'Analyze recent investment activity',
+      'Conduct market research',
+      'Find investment opportunities',
+    ],
+  },
+]
+
+export default function Pricing({ onBuy, productId }: { onBuy?: (productId: string) => void; productId: string }) {
   return (
-    <div className="relative flex justify-center items-center h-[100vh]">
+    <div className="relative flex justify-center items-center h-screen px-10">
       <video
         playsInline
         autoPlay
         muted
         loop
-        className="absolute top-0 left-0 object-cover h-full w-[100vw]"
+        className="absolute top-0 left-0 object-cover h-full w-screen"
       >
         <source src="/assets/desktop/Horizontal.mp4" type="video/mp4" />
       </video>
       <div className="relative z-10 h-full w-[400px] flex flex-col  justify-center">
-        <h1 className="mt-10 heading uppercase text-6xl text-white">PRICING</h1>
-        <p className="text-white text-lg uppercase mt-5">
+        <h1 className="mt-10 heading uppercase text-4xl md:text-6xl text-white">PRICING</h1>
+        <p className="text-white text-sm md:text-lg uppercase mt-5">
           Make your life easier.
           <br />
           Save hundreds of hours in research.
@@ -34,7 +57,7 @@ export default function Pricing({
                 className={({ selected }) =>
                   classNames(
                     selected ? 'bg-decode3' : 'bg-transparent text-decode3',
-                    'py-2 px-12 uppercase font-bold text-sm'
+                    'py-2 basis-2/5 uppercase font-bold text-sm',
                   )
                 }
               >
@@ -44,30 +67,31 @@ export default function Pricing({
                 className={({ selected }) =>
                   classNames(
                     selected ? 'bg-decode3' : 'bg-transparent text-decode3',
-                    'py-2 px-12 w-full uppercase font-bold text-sm'
+                    'py-2 basis-3/5 uppercase font-bold text-sm',
                   )
                 }
               >
                 Year (Save 33%)
               </Tab>
             </Tab.List>
-            <Tab.Panels className="bg-white bg-opacity-25 mt-[62px] py-7 px-9">
-              <Tab.Panel>
-                <a href="#" className="w-[160px] h-[36px] relative ml-8">
+            <Tab.Panels className="bg-white bg-opacity-25 mt-[62px] py-7 px-5 md:px-9">
+              {pricePlans.map(({title, features, price}) => (
+               <Tab.Panel key={title}>
+                <div className="w-[150px] h-[33px] mb-4 relative">
                   <Image
                     src="/assets/desktop/DECODE Material-08 landscape.png"
                     alt="Decode3 Logo"
                     layout="fill"
                   />
-                </a>
-                <h1 className="text-decode3 heading text-5xl">$125</h1>
+                </div>
+                <h1 className="text-decode3 heading text-5xl">{price}</h1>
                 <ol className="text-white text-sm mt-8 uppercase">
-                  <li className="mb-5">Access to 7600+ active investors</li>
-                  <li className="mb-5">Discover new trends and products</li>
-                  <li className="mb-5">Save hundreds of hours in research</li>
-                  <li className="mb-5">Analyze recent investment activity</li>
-                  <li className="mb-5">Conduct market research </li>
-                  <li className="mb-5">Find investment opportunities</li>
+                  {features.map((feature, index) =>
+                    <li className="mb-5 flex items-center gap-2 md:gap-4" key={index}>
+                      <CheckCircleIcon className="w-4 h-4 text-decode3" />
+                      {feature}
+                    </li>,
+                  )}
                 </ol>
                 <button
                   onClick={() => onBuy?.(productId)}
@@ -76,7 +100,7 @@ export default function Pricing({
                   Buy now
                 </button>
               </Tab.Panel>
-              <Tab.Panel>Content 2</Tab.Panel>
+              ))}
             </Tab.Panels>
           </Tab.Group>
         </div>
