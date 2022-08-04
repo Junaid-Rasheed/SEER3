@@ -3,8 +3,11 @@ import GetStartedButton from './GetStartedButton';
 
 export default function ExplainProduct() {
   return (
-    <div className="relative flex flex-row justify-center items-center h-[100vh] gap-x-[145px]">
-      <div className="basis-1/2 pl-[150px]">
+    <div className="relative flex flex-row justify-center items-center h-screen md:gap-x-[145px] px-10 md:px-[150px]">
+      <div className="md:basis-1/2">
+        <div className="md:hidden">
+          <Image src="/assets/desktop/screen.png" alt="Explain Product" width={721} height={503} />
+        </div>
         <h1 className="mt-10 heading uppercase text-7xl">
           DECODING WEB3
         </h1>
@@ -17,9 +20,9 @@ export default function ExplainProduct() {
         </p>
         <br />
         <br />
-        <GetStartedButton className="w-[360px] h-[67px]"/>
+        <GetStartedButton className="w-full h-[67px] justify-center items-center"/>
       </div>
-      <div className="basis-1/2">
+      <div className="hidden md:block basis-1/2">
         <Image src="/assets/desktop/screen.png" alt="Explain Product" width={721} height={503} />
       </div>
     </div>
