@@ -1,10 +1,11 @@
 import Layout from '../components/Layout';
 import PricingComponent from '../components/Pricing';
-// import Stripe from 'stripe';
-// import { fetchPostJSON } from '../utils/api-helpers';
-// import getStripejs from '../utils/get-stripejs';
+import Stripe from 'stripe';
+import { fetchPostJSON } from '../utils/api-helpers';
+import getStripejs from '../utils/get-stripejs';
 
-const Pricing = () => {
+const Pricing = ({ prices }: { prices: Array<any> }) => {
+  console.log(prices);
   // async function handleBuy(productId: string) {
   //   const checkoutSession: Stripe.Checkout.Session = await fetchPostJSON(
   //     '/api/checkout_sessions',
@@ -29,19 +30,19 @@ const Pricing = () => {
   );
 };
 
-// export async function getServerSideProps() {
-//   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-//     apiVersion: '2022-08-01'
-//   });
-//   const prices = await stripe.prices.list({
-//     active: true,
-//     limit: 10
-//   });
-//   return {
-//     props: {
-//       prices: prices.data
-//     }
-//   };
-// }
+export async function getServerSideProps() {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: '2022-08-01'
+  });
+  const prices = await stripe.prices.list({
+    active: true,
+    limit: 10
+  });
+  return {
+    props: {
+      prices: prices.data
+    }
+  };
+}
 
 export default Pricing;

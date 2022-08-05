@@ -1,13 +1,9 @@
-import {
-  getProviders,
-  signIn,
-  getCsrfToken,
-  getSession
-} from 'next-auth/react';
+import { getProviders, getCsrfToken, getSession } from 'next-auth/react';
 import { CommonProviderOptions } from 'next-auth/providers';
 import { GetServerSidePropsContext } from 'next';
-import GoogleIcon from '../components/icons/GoogleIcon';
 import Layout from '../components/Layout';
+import Link from 'next/link';
+import GoogleSignInButton from '../components/GoogleSignInButton';
 
 export default function SignIn({
   providers,
@@ -19,43 +15,56 @@ export default function SignIn({
   return (
     <Layout>
       <div className="bg-black">
-        <div className="max-w-5xl mx-auto flex items-center justify-center">
-          <div className="py-10 grid grid-cols-1 gap-y-10">
+        <div className="max-w-sm mx-auto">
+          <div className="py-10 grid grid-cols-1 gap-y-5">
             <h2 className="heading text-white text-center">LOG IN</h2>
-            <button
-              className="border border-white px-3 py-2 text-white flex items-center space-x-2"
-              onClick={() => signIn(providers?.google.id)}
-            >
-              <GoogleIcon className="w-6 h-6" />
-              <span>Sign in with Google</span>
-            </button>
+            <GoogleSignInButton />
+            <div className="grid grid-cols-[1fr,auto,1fr] items-center gap-x-3">
+              <hr />
+              <span className="text-white">OR</span>
+              <hr />
+            </div>
             <form method="post" action="/api/auth/callback/credentials">
               <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-              <div className="flex flex-col">
+              <div className="">
                 <label className="text-white">Email</label>
                 <input
-                  className="py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"
+                  className="mt-2 py-3 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"
                   name="email"
                   type="email"
                   required
                 />
               </div>
-              <div className="flex flex-col mt-2">
+              <div className="mt-5">
                 <label className="text-white">Password</label>
                 <input
                   required
-                  className="py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"
+                  className="mt-2 py-3 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"
                   name="password"
                   type="password"
                 />
               </div>
+              <div className="text-white mt-5">
+                <p className="text-sm">
+                  FORGOT PASSWORD?{' '}
+                  <Link href="/reset-password">
+                    <a className="underline hover:text-decode3">RESET IT</a>
+                  </Link>
+                </p>
+              </div>
               <button
-                className="mt-5 bg-decode3 w-full py-2 px-3"
+                className="mt-8 bg-decode3 w-full py-3 px-3"
                 type="submit"
               >
                 Log in
               </button>
             </form>
+            <p className="text-white text-center text-sm">
+              DON&apos;T HAVE AN ACCOUNT?{' '}
+              <Link href="/signup">
+                <a className="underline hover:text-decode3">REGISTER</a>
+              </Link>
+            </p>
           </div>
         </div>
       </div>
