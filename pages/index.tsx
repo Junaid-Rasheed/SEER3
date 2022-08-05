@@ -7,11 +7,12 @@ import WhoWeServe from '../components/WhoWeServe';
 import Investment from '../components/Investment';
 import Features from '../components/Features';
 import { getSession } from 'next-auth/react';
+import Banner from '../components/Banner';
 
 const Home: NextPage = () => {
   return (
     <>
-      <Layout>
+      <Layout banner={<Banner />}>
         <Hero />
         <ExplainProduct />
         <Data />

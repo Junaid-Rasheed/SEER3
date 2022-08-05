@@ -24,12 +24,12 @@ export default function Header() {
       <MobileNav className="md:hidden" />
       <NavLinks className="hidden md:flex divide-x" />
       <div className="hidden md:flex flex-row gap-9 mr-8 justify-end">
-        <GetStartedButton className="text-sm md:text-md py-1" />
         {!!session ? (
-            <AuthBadge className="border-2 border-decode3 border h-10 p-3 flex items-center rounded-full focus:outline-2" />
-          ) :
+          <AuthBadge className="flex items-center" />
+        ) : (
           <AuthButton />
-        }
+        )}
+        <GetStartedButton className="text-sm md:text-md" />
       </div>
     </nav>
   );

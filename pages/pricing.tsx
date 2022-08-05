@@ -1,30 +1,32 @@
+// import { GetServerSidePropsContext } from 'next';
+import Stripe from 'stripe';
+// import { getSession } from 'next-auth/react';
 import Layout from '../components/Layout';
 import PricingComponent from '../components/Pricing';
-import Stripe from 'stripe';
-import { fetchPostJSON } from '../utils/api-helpers';
-import getStripejs from '../utils/get-stripejs';
+// import { fetchPostJSON } from '../utils/api-helpers';
+// import getStripejs from '../utils/get-stripejs';
 
 const Pricing = ({ prices }: { prices: Array<any> }) => {
-  async function handleBuy(productId: string) {
-    const checkoutSession: Stripe.Checkout.Session = await fetchPostJSON(
-      '/api/checkout_sessions',
-      { amount: 1, productId }
-    );
-
-    if ((checkoutSession as any).statusCode === 500) {
-      console.error((checkoutSession as any).message);
-      return;
-    }
-
-    const stripe = await getStripejs();
-    const { error } = await stripe!.redirectToCheckout({
-      sessionId: checkoutSession.id
-    });
-    console.warn(error.message);
-  }
+  // async function handleBuy(productId: string) {
+  //   const checkoutSession: Stripe.Checkout.Session = await fetchPostJSON(
+  //     '/api/checkout_sessions',
+  //     { amount: 1, productId }
+  //   );
+  //
+  //   if ((checkoutSession as any).statusCode === 500) {
+  //     console.error((checkoutSession as any).message);
+  //     return;
+  //   }
+  //
+  //   const stripe = await getStripejs();
+  //   const { error } = await stripe!.redirectToCheckout({
+  //     sessionId: checkoutSession.id
+  //   });
+  //   console.warn(error.message);
+  // }
   return (
     <Layout>
-      <PricingComponent onBuy={handleBuy} productId={prices[0].id} />
+      <PricingComponent />
     </Layout>
   );
 };

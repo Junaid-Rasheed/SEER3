@@ -10,7 +10,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'POST') {
-    console.log('req.query', req);
     try {
       const params: Stripe.Checkout.SessionCreateParams = {
         mode: 'payment',

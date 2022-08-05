@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+    html, body {
+        @apply w-full h-full;
+    }
+    #__next{
+        @apply h-full;
+    }
     @font-face {
         font-family: 'HelveticaLTStd';
         src: url('/fonts/HelveticaLTStd-BlkCond.woff2') format('woff2');
