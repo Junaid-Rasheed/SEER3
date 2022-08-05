@@ -1,15 +1,14 @@
-// import { getProviders, getCsrfToken, getSession } from 'next-auth/react';
+import { getSession } from 'next-auth/react';
 import { CommonProviderOptions } from 'next-auth/providers';
-// import { GetServerSidePropsContext } from 'next';
+import { GetServerSidePropsContext } from 'next';
 import Layout from '../components/Layout';
-import Link from 'next/link';
+// import Link from 'next/link';
 import GoogleSignInButton from '../components/GoogleSignInButton';
 // import Divider from '../components/Divider';
 
-export default function SignIn({
-  providers,
-  csrfToken
-}: {
+export default function SignIn({}: // providers,
+// csrfToken
+{
   providers: Record<'google' | 'credentials', CommonProviderOptions>;
   csrfToken: string;
 }) {
@@ -87,24 +86,24 @@ export default function SignIn({
   );
 }
 
-// export async function getServerSideProps(context: GetServerSidePropsContext) {
-//   const session = await getSession(context);
-//   const providers = await getProviders();
-//   if (session && context.res) {
-//     context.res.statusCode = 302;
-//     context.res.setHeader('Location', '/');
-//
-//     return {
-//       props: { session, providers }
-//     };
-//   }
-//
-//   const csrfToken = await getCsrfToken(context);
-//
-//   return {
-//     props: {
-//       providers,
-//       csrfToken
-//     }
-//   };
-// }
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getSession(context);
+  // const providers = await getProviders();
+  if (session && context.res) {
+    context.res.statusCode = 302;
+    context.res.setHeader('Location', '/');
+
+    return {
+      props: { session }
+    };
+  }
+
+  // const csrfToken = await getCsrfToken(context);
+
+  return {
+    props: {
+      // providers,
+      // csrfToken
+    }
+  };
+}
