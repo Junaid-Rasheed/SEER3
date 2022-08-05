@@ -8,7 +8,7 @@ export default function AuthButton({ className }: { className?: string }) {
   const router = useRouter();
   return (
     <button
-      className={classNames('border border-decode3 text-decode3 font-bold py-2 px-6', className)}
+      className={classNames('border border-decode3 text-decode3 font-bold py-2 px-6 uppercase', className)}
       onClick={() => !!session ? signOut() : router.push('/signin')}
     >
       {

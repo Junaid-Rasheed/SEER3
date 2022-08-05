@@ -16,12 +16,17 @@ module.exports = {
         },
       },
       backgroundImage: {
-        'data': "url('/assets/desktop/Desktop Background-01.png')",
-        'data-mobile': "url('/assets/mobile/Mobile Background-01.png')",
-        'investment': "url('/assets/desktop/Desktop Background-02.png')",
-        'investment-mobile': "url('/assets/mobile/Mobile Background-02.png')",
+        'data': "url('/assets/desktop/Desktop Transparent-01.png')",
+        'data-mobile': "url('/assets/mobile/Mobile Transparent-01.png')",
+        'contact': "url('/assets/desktop/Desktop Transparent-03.png')",
+        'data-contact': "url('/assets/mobile/Mobile Transparent-03.png')",
       }
     },
   },
-  plugins: [],
+  corePlugins: {
+    aspectRatio: false,
+  },
+  plugins: [
+   require('@tailwindcss/aspect-ratio'),
+  ],
 };

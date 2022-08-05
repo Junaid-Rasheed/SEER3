@@ -10,7 +10,8 @@ import AuthBadge from './AuthBadge';
 export default function Header() {
   const { data: session } = useSession();
   return (
-    <nav className="flex justify-between items-center px-4 md:grid md:grid-cols-3 py-4 bg-black border-b border-b-neutral-600 relative">
+    <nav
+      className="flex justify-between items-center px-4 md:grid md:grid-cols-3 py-2 bg-black border-b border-b-neutral-600 relative">
       <Link href="/">
         <a className="w-[180px] h-[40px] relative ml-2 md:ml-8">
           <Image
