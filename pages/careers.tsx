@@ -1,8 +1,8 @@
 import React from 'react';
 import Layout from '../components/Layout';
 
-const Career = () => {
+const Careers = () => {
   return <Layout>Career</Layout>;
 };
 
-export default Career;
+export default Careers;

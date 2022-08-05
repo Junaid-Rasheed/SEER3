@@ -7,8 +7,8 @@ const navLinks = [
     href: '/pricing',
   },
   {
-    title: 'Career',
-    href: '/career',
+    title: 'Careers',
+    href: '/careers',
   },
   {
     title: 'Contact',
@@ -20,7 +20,7 @@ export const NavLinks = ({ className }: { className?: string }) => {
   return (
     <ul className={classNames('flex flex-row mx-auto text-white', className)}>
       {navLinks.map(({ href, title }) => (
-        <li className="uppercase py-2 px-6" key={href + title}>
+        <li className="uppercase py-1 px-6" key={href + title}>
           <Link href={href}>
             <a>{title}</a>
           </Link>

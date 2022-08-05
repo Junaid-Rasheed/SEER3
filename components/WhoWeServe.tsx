@@ -31,10 +31,10 @@ export default function WhoWeServe() {
         More than a platform.
         <span className="text-decode3"> A partner </span>
       </h1>
-      <ul className="flex flex-col md:flex-row flex-wrap gap-10 md:gap-[100px] my-16 text-white">
+      <ul className="flex flex-col justify-between md:flex-row gap-10 my-16 text-white">
         {DATA.map((data) => (
-          <li className="w-full md:w-[366px] bg-black px-8 py-12" key={data.id}>
-            <div className="relative w-full md:w-[300px] aspect-w-1 aspect-h-1">
+          <li className="w-full md:max-w-[366px] bg-black px-8 py-12" key={data.id}>
+            <div className="relative w-full aspect-h-1 aspect-w-1">
               <Image src={data.img} alt={data.target} layout="fill" />
             </div>
             <h1 className="heading uppercase text-4xl mt-6">

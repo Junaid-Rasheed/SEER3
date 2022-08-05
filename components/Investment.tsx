@@ -4,15 +4,15 @@ import DataCounting from './DataCounting';
 export default function Investment() {
   return (
     <section className="relative bg-black py-[100px] md:py-[200px]">
-      <div className="relative z-10 px-10 md:px-[115px] text-white w-full md:max-w-[765px]">
-        <h1 className="heading uppercase text-4xl md:text-6xl leading-tight ">
+      <div className="relative z-10 px-10 md:px-[115px] text-white w-full md:max-w-[920px]">
+        <h1 className="heading uppercase text-4xl md:text-7xl leading-tight ">
           Indispensable data & insights,
           <span className="text-decode3"> at scale </span>
         </h1>
         <div className="flex items-center">
           <h1 className="heading text-7xl md:text-9xl my-8">$</h1>
           <DataCounting value={71} className="heading text-7xl md:text-9xl my-8" />
-          <h1 className="heading text-7xl md:text-9xl my-8 text-center">+</h1>
+          <h1 className="heading text-7xl md:text-9xl my-8 text-center">B+</h1>
         </div>
         <p className="uppercase max-w-[564px] my-8">
           invested in web3 start-ups. There is ample investment flowing into the crypto industry but it’s not always
@@ -20,7 +20,7 @@ export default function Investment() {
         </p>
         <GetStartedButton className="text-black w-full md:w-[362px] h-[67px] mt-8 justify-center items-center" />
       </div>
-      <div className="mx-auto pointer-events-none absolute inset-x-0 bottom-0 max-w-[1440px]">
+      <div className="mx-auto pointer-events-none absolute inset-x-0 bottom-0">
         <SvgBackground />
       </div>
     </section>
