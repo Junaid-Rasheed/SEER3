@@ -7,7 +7,6 @@ import PricingComponent from '../components/Pricing';
 // import getStripejs from '../utils/get-stripejs';
 
 const Pricing = ({ prices }: { prices: Array<any> }) => {
-  console.log(prices);
   // async function handleBuy(productId: string) {
   //   const checkoutSession: Stripe.Checkout.Session = await fetchPostJSON(
   //     '/api/checkout_sessions',

@@ -23,12 +23,12 @@ export default function Header() {
       <MobileNav className="md:hidden" />
       <NavLinks className="hidden md:flex divide-x" />
       <div className="hidden md:flex flex-row gap-9 mr-8 justify-end">
-        <GetStartedButton className="text-sm md:text-md" />
         {!!session ? (
           <AuthBadge className="flex items-center" />
         ) : (
           <AuthButton />
         )}
+        <GetStartedButton className="text-sm md:text-md" />
       </div>
     </nav>
   );
