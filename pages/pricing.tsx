@@ -1,8 +1,10 @@
+// import { GetServerSidePropsContext } from 'next';
+import Stripe from 'stripe';
+// import { getSession } from 'next-auth/react';
 import Layout from '../components/Layout';
 import PricingComponent from '../components/Pricing';
-import Stripe from 'stripe';
-import { fetchPostJSON } from '../utils/api-helpers';
-import getStripejs from '../utils/get-stripejs';
+// import { fetchPostJSON } from '../utils/api-helpers';
+// import getStripejs from '../utils/get-stripejs';
 
 const Pricing = ({ prices }: { prices: Array<any> }) => {
   console.log(prices);
