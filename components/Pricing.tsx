@@ -34,7 +34,7 @@ const pricePlans = [
 
 export default function Pricing() {
   return (
-    <div className="relative flex justify-center items-center h-screen px-10">
+    <div className="relative flex justify-center items-center px-10">
       <video
         playsInline
         autoPlay
@@ -53,7 +53,7 @@ export default function Pricing() {
           <br />
           Save hundreds of hours in research.
         </p>
-        <div className="mt-11">
+        <div className="my-11">
           <Tab.Group>
             <Tab.List className="border border-decode3 flex">
               <Tab
