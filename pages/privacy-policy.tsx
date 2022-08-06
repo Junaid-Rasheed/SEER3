@@ -5,8 +5,8 @@ const PrivacyPolicy = () => {
   return (
     <Layout>
       <div className="px-[15vw] uppercase py-[100px]">
-        <h1 className="text-6xl heading pb-[90px]">Privacy Policy</h1>
-        <div className="text-sm">
+        <h1 className="text-4xl md:text-6xl heading pb-[90px]">Privacy Policy</h1>
+        <div className="text-xs md:text-sm">
           <div>
             <p className="font-bold text-xl">1. Introduction</p>
             <p><br /></p>
