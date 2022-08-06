@@ -6,13 +6,14 @@ import ContactForm from '../components/ContactForm';
 const Contact = () => {
   return (
     <Layout>
-      <div className="relative">
+      <div className="relative bg-black">
         <Image
           src="/assets/desktop/Desktop Transparent-03.png"
           alt="contact"
           layout="responsive"
+          objectFit="cover"
           width={1440}
-          height={580}
+          height={300}
         />
         <div className="flex flex-col md:flex-row bg-black px-10 md:px-[86px] py-[50px] gap-10">
           <div className="text-white flex-1 my-auto">
