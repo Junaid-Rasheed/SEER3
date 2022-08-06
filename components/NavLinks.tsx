@@ -10,6 +10,7 @@ const navLinks = [
   {
     title: 'Careers',
     href: '/careers',
+    newTab: true,
   },
   {
     title: 'Contact',
@@ -30,7 +31,7 @@ export const NavLinks = ({ className }: { className?: string }) => {
           )}
         >
           <Link href={href}>
-            <a>{title}</a>
+            <a target="_parent">{title}</a>
           </Link>
         </li>
       ))}
