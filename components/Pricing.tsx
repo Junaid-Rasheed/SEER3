@@ -34,16 +34,7 @@ const pricePlans = [
 
 export default function Pricing() {
   return (
-    <div className="relative flex justify-center items-center px-10">
-      <video
-        playsInline
-        autoPlay
-        muted
-        loop
-        className="absolute top-0 left-0 object-cover h-full w-screen"
-      >
-        <source src="/assets/desktop/Horizontal.mp4" type="video/mp4" />
-      </video>
+    <div className="relative flex justify-center items-center px-10 bg-black">
       <div className="relative z-10 h-full w-[400px] flex flex-col  justify-center">
         <h1 className="mt-10 heading uppercase text-4xl md:text-6xl text-white">
           PRICING

@@ -8,7 +8,7 @@ export default function GetStartedButton({
   className?: string;
 }) {
   return (
-    <Link href="/pricing">
+    <Link href="/signup">
       <button
         className={classNames(
           'bg-decode3 px-6 py-2 font-bold text-center flex items-center',
