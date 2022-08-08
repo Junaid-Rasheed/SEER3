@@ -28,7 +28,7 @@ export default function MobileNav({ className }: { className?: string }) {
               leaveTo="opacity-0 translate-y-1"
             >
               <Popover.Panel
-                className="mt-8 w-[calc(100vw-40px)] bg-decode3">
+                className="absolute top-0 right-0 mt-16 w-[calc(100vw-40px)] bg-decode3">
                 <div className="overflow-hidden relative p-7">
                   <NavLinks className="flex-col divide-y divide-black gap-2 text-black font-bold" />
                   <div className="flex gap-x-[20px] mt-[50px]">
