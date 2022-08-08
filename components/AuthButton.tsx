@@ -13,7 +13,7 @@ export default function AuthButton({ className }: { className?: string }) {
     >
       {
         !session
-          ? <p className="flex">
+          ? <p className="flex items-center">
             Log in&nbsp;
             <ArrowSmRightIcon className="w-6 h-6" />
           </p>
