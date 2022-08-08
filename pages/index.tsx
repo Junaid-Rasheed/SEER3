@@ -28,8 +28,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getSession(context);
   return {
     props: {
-      session
-    }
+      session,
+    },
   };
 }
 
