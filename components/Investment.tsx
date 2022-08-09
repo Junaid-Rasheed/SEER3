@@ -3,9 +3,9 @@ import DataCounting from './DataCounting';
 
 export default function Investment() {
   return (
-    <section className="relative bg-black py-[100px] md:py-[200px]">
+    <section className="relative bg-black pb-[100px] md:pb-[200px]">
       <div className="relative z-10 px-10 md:px-[115px] text-white w-full md:max-w-[920px]">
-        <h1 className="heading uppercase text-4xl md:text-7xl leading-tight ">
+        <h1 className="mt-20 heading uppercase text-4xl md:text-7xl leading-tight ">
           Indispensable data & insights,
           <span className="text-decode3"> at scale </span>
         </h1>

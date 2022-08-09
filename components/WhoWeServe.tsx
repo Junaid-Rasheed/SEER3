@@ -10,7 +10,8 @@ const DATA = [
   },
   {
     id: 1,
-    img: '/assets/desktop/DECODE Material-11.png',
+    // img: '/assets/desktop/Grupo 43.svg',
+    img: '/assets/desktop/Grupo 43.svg',
     title: 'For web3',
     target: 'INVESTORS',
     content: 'Analyze recent investment activity, discover early stage start-ups, find investment opportunities and conduct market research. Screen the universe of web3 funds / VCs and access the latest fundraising news and trends.',
@@ -20,7 +21,7 @@ const DATA = [
     img: '/assets/desktop/DECODE Material-12.png',
     title: 'For web3',
     target: 'FUND MANAGERS',
-    content: 'Access competitive intelligence, industry benchmarking, and improve investor relations outreach. An instant look at the competitive landscape including the ability to sort funds by location, investment strategy, and portfolio holdings.',
+    content: 'Access competitive intelligence, industry benchmarking and improve investor relations outreach. An instant look at the competitive landscape including the ability to sort funds by location, investment strategy and portfolio holdings.',
   },
 ]
 

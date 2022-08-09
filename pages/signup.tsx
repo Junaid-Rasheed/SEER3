@@ -84,7 +84,7 @@ const SignUp = () => {
             <span className="text-white">OR</span>
             <hr />
           </div>
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-y-5">
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-y-5 uppercase">
             <div className="grid grid-cols-2 grid-rows-2 gap-x-3">
               <label className="text-white">First name</label>
               <label className="text-white">Last name</label>
@@ -126,11 +126,11 @@ const SignUp = () => {
                 onChange={handleChange}
               />
             </div>
-            <button className="mt-5 bg-decode3 w-full py-2 px-3" type="submit">
+            <button className="mt-5 bg-decode3 w-full py-2 px-3 uppercase" type="submit">
               Sign up
             </button>
           </form>
-          <div className="text-white text-center">
+          <div className="text-white text-center text-sm">
             HAVE AN ACCOUNT?{' '}
             <Link href="/signin">
               <a className="underline hover:text-decode3">LOG IN</a>

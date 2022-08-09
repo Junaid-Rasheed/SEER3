@@ -23,9 +23,9 @@ const Contact = () => {
             <p className="uppercase mt-6 md:mt-10 text-sm">
               University Ave, Toronto, ON M5J 2P1
             </p>
-            <p className="uppercase mt-2 text-sm">
+            <a href="mailto:webmaster@example.com" className="uppercase mt-2 text-sm hover:text-gray-200">
               hello@decode3.xyz
-            </p>
+            </a>
           </div>
           <div className="flex-1">
             <ContactForm />

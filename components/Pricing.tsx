@@ -1,9 +1,9 @@
+import { Tab } from '@headlessui/react';
+import classNames from 'classnames';
 import { useMemo } from 'react';
 import Image from 'next/image';
 import { Stripe } from 'stripe';
 import { CheckCircleIcon } from '@heroicons/react/solid';
-import { Tab } from '@headlessui/react';
-import classNames from 'classnames';
 import { getPrice, getSavedPercent } from '../utils/payment';
 
 const featuresDescription = [
@@ -72,6 +72,12 @@ export default function Pricing({
                   <h1 className="text-decode3 heading text-5xl">
                     ${getPrice(unit_amount)}
                   </h1>
+                  <button
+                    onClick={() => onClickBuyBtn(id)}
+                    className="py-2 text-center w-full uppercase bg-decode3 font-bold text-sm"
+                  >
+                    Buy now
+                  </button>
                   <ol className="text-white text-sm mt-8 uppercase">
                     {featuresDescription.map((feature, index) => (
                       <li
@@ -83,12 +89,6 @@ export default function Pricing({
                       </li>
                     ))}
                   </ol>
-                  <button
-                    onClick={() => onClickBuyBtn(id)}
-                    className="border border-decode3 text-decode3 font-bold py-2 px-6 mt-4 w-full"
-                  >
-                    Buy now
-                  </button>
                 </Tab.Panel>
               ))}
             </Tab.Panels>
