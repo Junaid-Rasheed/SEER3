@@ -10,6 +10,8 @@ import GoogleSignInButton from '../components/GoogleSignInButton';
 import Link from 'next/link';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
+import { GetServerSidePropsContext } from 'next';
+import { getSession } from 'next-auth/react';
 
 const SignUp = () => {
   const router = useRouter();
@@ -140,5 +142,22 @@ const SignUp = () => {
     </Layout>
   );
 };
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getSession(context);
+  if (session && context.res) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/'
+      },
+      props: { session }
+    };
+  }
+
+  return {
+    props: {}
+  };
+}
 
 export default SignUp;
