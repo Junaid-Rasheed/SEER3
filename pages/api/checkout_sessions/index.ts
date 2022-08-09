@@ -3,6 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
 import { addDoc, collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../utils/firebaseClient';
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2022-08-01'
 });
@@ -15,7 +16,6 @@ export default async function handler(
     try {
       const params: Stripe.Checkout.SessionCreateParams = {
         mode: 'subscription',
-        payment_method_types: ['card'],
         line_items: [
           {
             price: req.body.productId,
@@ -25,10 +25,13 @@ export default async function handler(
         success_url: `${req.headers.origin}/result?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}/result?session_id={CHECKOUT_SESSION_ID}`
       };
-
       const checkoutSessionRef = await addDoc(
-        collection(db, `users/${req.body.uid}/checkout_sessions`),
-        params
+        collection(db, 'users', req.body.uid, 'checkout_sessions'),
+        {
+          price: req.body.productId,
+          success_url: req.headers.origin,
+          cancel_url: req.headers.origin
+        }
       );
 
       onSnapshot(checkoutSessionRef, async (snap: any) => {

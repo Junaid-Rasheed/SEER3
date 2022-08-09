@@ -1,19 +1,21 @@
-// import { GetServerSidePropsContext } from 'next';
+import { GetServerSidePropsContext } from 'next';
 import Stripe from 'stripe';
 import { getSession, useSession } from 'next-auth/react';
-// import { getSession } from 'next-auth/react';
 import Layout from '../components/Layout';
 import PricingComponent from '../components/Pricing';
 import { fetchPostJSON } from '../utils/api-helpers';
 import getStripejs from '../utils/get-stripejs';
-import { GetServerSidePropsContext } from 'next';
 
 const Pricing = ({ prices }: { prices: Array<Stripe.Price> }) => {
   const { data: session } = useSession();
   async function handleBuying(productId: string) {
+    if (!session) {
+      return;
+    }
+
     const checkoutSession: Stripe.Checkout.Session = await fetchPostJSON(
       '/api/checkout_sessions',
-      { productId, uid: session?.user?.uid }
+      { productId, uid: session.user?.uid }
     );
 
     if ((checkoutSession as any).statusCode === 500) {
@@ -39,6 +41,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     apiVersion: '2022-08-01'
   });
   const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/signin'
+      }
+    };
+  }
 
   const prices = await stripe.prices.list({
     active: true,
