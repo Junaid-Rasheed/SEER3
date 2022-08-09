@@ -12,19 +12,18 @@ export default function Hero() {
              className="absolute md:hidden top-0 left-0 object-cover h-full w-screen">
         <source src="/assets/mobile/Vertical.mp4" type="video/mp4" />
       </video>
-      <div className="relative z-10 h-full flex flex-col items-center justify-center">
+      <div className="relative w-full z-10 h-full flex flex-col items-center justify-center">
         <h1 className="mt-10 heading uppercase text-center text-5xl md:text-7xl text-white">
           The web3
           <br />
           <AnimatedText
             texts={['Fundraising', 'Investor', 'Startup']}
             className="text-decode3 text-6xl md:text-8xl"
-            timeEachLetter={50}
           />
           <br />
           Database
         </h1>
-        <GetStartedButton className="w-full md:w-[360px] min-h-15 mt-[140px] py-5 justify-center" />
+        <GetStartedButton className="w-4/5 md:w-[360px] min-h-15 mt-[140px] py-5 justify-center" />
       </div>
     </div>
   )

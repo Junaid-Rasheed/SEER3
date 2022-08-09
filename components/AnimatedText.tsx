@@ -11,7 +11,7 @@ export default function AnimatedText(
   useEffect(() => {
     let i = 0;
     const loop = setInterval(() => {
-      if (i > texts.length) clearInterval(loop);
+      if (i > texts.length + 1) clearInterval(loop);
       ++i;
       randomText(texts[i % texts.length], setState, timeEachLetter)
     }, 2000);
