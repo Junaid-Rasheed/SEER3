@@ -52,11 +52,19 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   const prices = await stripe.prices.list({
     active: true,
-    limit: 10
+    limit: 10,
+    type: 'recurring'
   });
   return {
     props: {
-      prices: prices.data,
+      prices: prices.data.map((vl) => ({
+        recurring: vl.recurring,
+        active: vl.active,
+        id: vl.id,
+        product: vl.product,
+        unit_amount: vl.unit_amount,
+        currency: vl.currency
+      })),
       session
     }
   };
