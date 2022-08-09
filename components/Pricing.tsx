@@ -1,22 +1,10 @@
 import { Tab } from '@headlessui/react';
 import classNames from 'classnames';
-import Image from 'next/image';
 import { CheckCircleIcon } from '@heroicons/react/solid';
+import Link from 'next/link';
+import { HeaderLogo } from './icons/Logos';
 
 const pricePlans = [
-  {
-    title: 'monthly',
-    price: '$125',
-    href: 'https://buy.stripe.com/test_9AQ8zo7rRdHBcusaEE',
-    features: [
-      'Access to 7600+ active investors',
-      'Discover new trends and products',
-      'Save hundreds of hours in research',
-      'Analyze recent investment activity',
-      'Conduct market research',
-      'Find investment opportunities'
-    ]
-  },
   {
     title: 'yearly',
     price: '$999',
@@ -27,9 +15,22 @@ const pricePlans = [
       'Save hundreds of hours in research',
       'Analyze recent investment activity',
       'Conduct market research',
-      'Find investment opportunities'
-    ]
-  }
+      'Find investment opportunities',
+    ],
+  },
+  {
+    title: 'monthly',
+    price: '$125',
+    href: 'https://buy.stripe.com/test_9AQ8zo7rRdHBcusaEE',
+    features: [
+      'Access to 7600+ active investors',
+      'Discover new trends and products',
+      'Save hundreds of hours in research',
+      'Analyze recent investment activity',
+      'Conduct market research',
+      'Find investment opportunities',
+    ],
+  },
 ];
 
 export default function Pricing() {
@@ -51,34 +52,35 @@ export default function Pricing() {
                 className={({ selected }) =>
                   classNames(
                     selected ? 'bg-decode3' : 'bg-transparent text-decode3',
-                    'py-2 basis-2/5 uppercase font-bold text-sm'
-                  )
-                }
-              >
-                Month
-              </Tab>
-              <Tab
-                className={({ selected }) =>
-                  classNames(
-                    selected ? 'bg-decode3' : 'bg-transparent text-decode3',
-                    'py-2 basis-3/5 uppercase font-bold text-sm'
+                    'py-2 basis-3/5 uppercase font-bold text-sm',
                   )
                 }
               >
                 Year (Save 33%)
               </Tab>
+              <Tab
+                className={({ selected }) =>
+                  classNames(
+                    selected ? 'bg-decode3' : 'bg-transparent text-decode3',
+                    'py-2 basis-2/5 uppercase font-bold text-sm',
+                  )
+                }
+              >
+                Month
+              </Tab>
             </Tab.List>
             <Tab.Panels className="bg-white bg-opacity-25 mt-[62px] py-7 px-5 md:px-9">
               {pricePlans.map(({ title, features, price }) => (
-                <Tab.Panel key={title}>
-                  <div className="w-[150px] h-[33px] mb-4 relative">
-                    <Image
-                      src="/assets/desktop/DECODE Material-08 landscape.png"
-                      alt="Decode3 Logo"
-                      layout="fill"
-                    />
-                  </div>
-                  <h1 className="text-decode3 heading text-5xl">{price}</h1>
+                <Tab.Panel className="w-full" key={title}>
+                  <HeaderLogo className="w-[159px] h-[35px] mb-4" />
+                  <h1 className="text-decode3 heading text-5xl mb-5">{price}</h1>
+                  <Link href="https://buy.stripe.com/test_9AQ8zo7rRdHBcusaEE">
+                    <a>
+                      <p className="py-2 text-center w-full uppercase bg-decode3 font-bold text-sm">
+                        Buy now
+                      </p>
+                    </a>
+                  </Link>
                   <ol className="text-white text-sm mt-8 uppercase">
                     {features.map((feature, index) => (
                       <li
@@ -90,12 +92,6 @@ export default function Pricing() {
                       </li>
                     ))}
                   </ol>
-                  <a
-                    href="https://buy.stripe.com/test_9AQ8zo7rRdHBcusaEE"
-                    className="border border-decode3 text-decode3 font-bold py-2 px-6 mt-4 w-full"
-                  >
-                    Buy now
-                  </a>
                 </Tab.Panel>
               ))}
             </Tab.Panels>
