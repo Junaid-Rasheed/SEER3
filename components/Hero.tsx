@@ -16,7 +16,11 @@ export default function Hero() {
         <h1 className="mt-10 heading uppercase text-center text-5xl md:text-7xl text-white">
           The web3
           <br />
-          <AnimatedText text="Fundraising" className="text-decode3 text-6xl md:text-8xl" timeEachLetter={50} />
+          <AnimatedText
+            texts={['Fundraising', 'Investor', 'Startup']}
+            className="text-decode3 text-6xl md:text-8xl"
+            timeEachLetter={50}
+          />
           <br />
           Database
         </h1>

@@ -11,7 +11,7 @@ export default function GetStartedButton({
     <Link href="/signup">
       <button
         className={classNames(
-          'bg-decode3 px-6 py-2 font-bold text-center flex items-center',
+          'bg-decode3 px-6 py-2 font-bold text-center flex items-center uppercase',
           className
         )}
       >

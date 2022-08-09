@@ -14,6 +14,7 @@ export default function Header() {
       className="flex justify-between items-center px-4 lg:grid lg:grid-cols-3 py-2 bg-black border-b border-b-neutral-600 relative">
       <Link href="/">
         <a className="w-[180px] h-[40px] relative ml-2 md:ml-8">
+          <HeaderLogo className="w-[180px] h-[40px]" />
         </a>
       </Link>
       <MobileNav className="lg:hidden" />
@@ -22,9 +23,9 @@ export default function Header() {
         {!!session ? (
           <AuthBadge className="flex items-center" />
         ) : (
-          <AuthButton />
+          <AuthButton className="text-sm" />
         )}
-        <GetStartedButton className="text-sm md:text-md" />
+        <GetStartedButton className="text-sm" />
       </div>
     </nav>
   );

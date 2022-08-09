@@ -21,7 +21,7 @@ const navLinks = [
 export const NavLinks = ({ className }: { className?: string }) => {
   const { pathname } = useRouter();
   return (
-    <ul className={classNames('flex flex-row mx-auto text-white', className)}>
+    <ul className={classNames('flex flex-row mx-auto text-sm text-white', className)}>
       {navLinks.map(({ href, title }) => (
         <li
           key={href + title}
