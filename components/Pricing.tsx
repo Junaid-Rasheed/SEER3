@@ -2,6 +2,7 @@ import { Tab } from '@headlessui/react';
 import classNames from 'classnames';
 import Image from 'next/image';
 import { CheckCircleIcon } from '@heroicons/react/solid';
+import { Stripe } from 'stripe';
 
 const pricePlans = [
   {
@@ -32,7 +33,13 @@ const pricePlans = [
   }
 ];
 
-export default function Pricing() {
+export default function Pricing({
+  prices,
+  onClickBuyBtn
+}: {
+  prices: Array<Stripe.Price>;
+  onClickBuyBtn: (productId: string) => void;
+}) {
   return (
     <div className="relative flex justify-center items-center px-10 bg-black">
       <div className="relative z-10 h-full w-[400px] flex flex-col  justify-center">
@@ -69,7 +76,7 @@ export default function Pricing() {
               </Tab>
             </Tab.List>
             <Tab.Panels className="bg-white bg-opacity-25 mt-[62px] py-7 px-5 md:px-9">
-              {pricePlans.map(({ title, features, price }) => (
+              {pricePlans.map(({ title, features, price }, index) => (
                 <Tab.Panel key={title}>
                   <div className="w-[150px] h-[33px] mb-4 relative">
                     <Image
@@ -90,12 +97,12 @@ export default function Pricing() {
                       </li>
                     ))}
                   </ol>
-                  <a
-                    href="https://buy.stripe.com/test_9AQ8zo7rRdHBcusaEE"
+                  <button
+                    onClick={() => onClickBuyBtn(prices[index].id)}
                     className="border border-decode3 text-decode3 font-bold py-2 px-6 mt-4 w-full"
                   >
                     Buy now
-                  </a>
+                  </button>
                 </Tab.Panel>
               ))}
             </Tab.Panels>

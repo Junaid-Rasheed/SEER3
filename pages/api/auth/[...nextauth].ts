@@ -60,5 +60,20 @@ export default NextAuth({
   }),
   session: {
     strategy: 'database'
+  },
+  callbacks: {
+    // async signIn({ user, account, profile, email, credentials }) {
+    //   return true;
+    // },
+    // async jwt({ token, account, user }) {
+    //   return token;
+    // },
+    async session({ session, token, user }) {
+      if (user) {
+        // @ts-ignore
+        session.user.uid = user.id;
+      }
+      return session;
+    }
   }
 });
