@@ -77,7 +77,7 @@ export default function Pricing({
                   </h1>
                   <Button
                     isLoading={isLoading}
-                    className="mt-3 py-2 text-center w-full"
+                    className="mt-4 py-4 text-center w-full font-bold"
                     onClick={() => onClickBuyBtn(id)}
                   >
                     Buy now

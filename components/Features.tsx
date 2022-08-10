@@ -23,11 +23,11 @@ const DATA = [
 
 export default function Features() {
   return (
-    <div className="relative px-10 md:px-[115px]">
-      <h1 className="mt-16 heading uppercase text-4xl md:text-7xl">
+    <div className="relative px-5 md:px-[115px]">
+      <h1 className="mt-10 md:mt-16 heading uppercase text-3xl md:text-7xl whitespace-nowrap">
         DATA IS WHAT WE DO BEST
       </h1>
-      <ul className="flex flex-col md:flex-row md:justify-between gap-[70px] mt-16 mb-[200px] text-white">
+      <ul className="flex flex-col md:flex-row md:justify-between gap-[70px] mt-10 md:mt-16 mb-[100px] md:mb-[200px] text-white">
         {DATA.map((data) => (
           <li className="max-w-[400px] w-full bg-black px-8 py-12" key={data.id}>
             <div className="flex justify-between gap-5">
@@ -46,9 +46,9 @@ export default function Features() {
           </li>
         ))}
       </ul>
-      <div className="bg-black mb-[200px] min-h-[112px] py-8 px-10 md:px-[55px] flex flex-col md:flex-row justify-between items-center gap-10 md:gap-2">
-        <h1 className="text-white uppercase heading text-3xl md:text-[2vw]">
-          Looking for funding? List your start-up for free
+      <div className="bg-black mb-[100px] md:mb-[200px] min-h-[112px] p-4 md:py-8 md:px-10 md:px-[55px] flex flex-col md:flex-row justify-between items-center gap-4">
+        <h1 className="text-white uppercase heading text-2xl md:text-[2vw]">
+          Looking for funding? <br className="md:hidden"/> List your start-up for free
         </h1>
         <button className="uppercase bg-decode3 font-bold py-3 px-8 w-full md:w-[20vw] md:min-w-[182px]">
           List it now

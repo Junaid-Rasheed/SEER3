@@ -2,19 +2,19 @@ import Link from 'next/link';
 
 const footer = [
   {
-    title: 'Terms of service',
-    url: '/terms-of-service',
+    title: 'Twitter',
+    url: 'https://twitter.com/decode3_xyz',
   },
   {
     title: 'Privacy Policy',
     url: '/privacy-policy',
   },
   {
-    title: 'Twitter',
-    url: 'https://twitter.com/decode3_xyz',
+    title: 'Terms of service',
+    url: '/terms-of-service',
   },
   {
-    title: 'Made in Toronto with 🧠',
+    title: 'Made in Toronto with ❤️',
     url: '#',
   },
 ]

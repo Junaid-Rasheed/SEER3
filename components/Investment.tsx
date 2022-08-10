@@ -5,16 +5,16 @@ export default function Investment() {
   return (
     <section className="relative bg-black pb-[100px] md:pb-[200px]">
       <div className="relative z-10 px-10 md:px-[115px] text-white w-full md:max-w-[920px]">
-        <h1 className="mt-20 heading uppercase text-4xl md:text-7xl leading-tight ">
+        <h1 className="mt-10 md:mt-20 heading uppercase text-3xl md:text-7xl leading-tight ">
           Indispensable data & insights,
           <span className="text-decode3"> at scale </span>
         </h1>
         <div className="flex items-center">
-          <h1 className="heading text-7xl md:text-9xl my-8">$</h1>
+          <h1 className="heading text-6xl md:text-9xl my-8">$</h1>
           <DataCounting value={71} className="heading text-7xl md:text-9xl my-8" />
-          <h1 className="heading text-7xl md:text-9xl my-8 text-center">B+</h1>
+          <h1 className="heading text-6xl md:text-9xl my-8 text-center">B+</h1>
         </div>
-        <p className="uppercase max-w-[564px] my-8">
+        <p className="uppercase max-w-[564px] my-5 md:my-8">
           invested in web3 start-ups. There is ample investment flowing into the crypto industry but it’s not always
           easy to find the right funding sources for web3 start-ups.
         </p>

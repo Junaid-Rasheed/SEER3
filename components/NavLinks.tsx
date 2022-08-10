@@ -5,17 +5,21 @@ import { useRouter } from 'next/router';
 const navLinks = [
   {
     title: 'Pricing',
-    href: '/pricing'
+    href: '/pricing',
   },
   {
     title: 'Careers',
     href: '/careers',
-    newTab: true
+    parent: true,
   },
   {
     title: 'Contact',
-    href: '/contact'
-  }
+    href: '/contact',
+  },
+  {
+    title: 'Twitter',
+    href: 'https://twitter.com/decode3_xyz',
+  },
 ];
 
 export const NavLinks = ({ className }: { className?: string }) => {
@@ -23,18 +27,18 @@ export const NavLinks = ({ className }: { className?: string }) => {
   return (
     <ul
       className={classNames(
-        'flex flex-row mx-auto text-sm text-white',
+        'flex flex-row md:text-sm text-white',
         className
       )}
     >
-      {navLinks.map(({ href, title, newTab }) => (
+      {navLinks.map(({ href, title, parent }) => (
         <li
           key={href + title}
-          className={classNames('uppercase py-1 px-6', {
+          className={classNames('uppercase py-2 md:py-1 md:px-6', {
             'font-bold': href === `/${pathname.split('/')[1]}`
           })}
         >
-          {newTab ? (
+          {parent ? (
             <a href={href} target="_parent" className="hover:text-decode3">
               {title}
             </a>
@@ -46,5 +50,5 @@ export const NavLinks = ({ className }: { className?: string }) => {
         </li>
       ))}
     </ul>
-  );
-};
+  )
+}

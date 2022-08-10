@@ -9,7 +9,7 @@ import Button from '../components/Button';
 export default function SignIn({ csrfToken }: { csrfToken: string }) {
   return (
     <Layout>
-      <div className="bg-black">
+      <div className="bg-black px-10">
         <div className="max-w-sm mx-auto">
           <div className="py-10 grid grid-cols-1 gap-y-5">
             <h2 className="heading text-white text-center">LOG IN</h2>
