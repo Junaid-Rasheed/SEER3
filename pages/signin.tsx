@@ -4,6 +4,7 @@ import Layout from '../components/Layout';
 import Link from 'next/link';
 import GoogleSignInButton from '../components/GoogleSignInButton';
 import Divider from '../components/Divider';
+import Button from '../components/Button';
 
 export default function SignIn({ csrfToken }: { csrfToken: string }) {
   return (
@@ -60,12 +61,9 @@ export default function SignIn({ csrfToken }: { csrfToken: string }) {
                   </Link>
                 </p>
               </div>
-              <button
-                className="mt-8 bg-decode3 w-full py-3 px-3"
-                type="submit"
-              >
+              <Button type="submit" className="mt-8 w-full uppercase">
                 Log in
-              </button>
+              </Button>
             </form>
             <p className="text-white text-center text-sm">
               DON&apos;T HAVE AN ACCOUNT?{' '}
@@ -97,7 +95,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   return {
     props: {
-      csrfToken
+      csrfToken,
+      session
     }
   };
 }

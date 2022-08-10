@@ -19,4 +19,7 @@
     .heading {
         @apply font-helvetica text-3xl;
     }
+    .btn{
+        @apply bg-decode3 py-3 px-3 uppercase hover:bg-lime-500 transition duration-300 relative disabled:bg-lime-700
+    }
 }

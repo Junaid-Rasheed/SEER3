@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Stripe } from 'stripe';
 import { CheckCircleIcon } from '@heroicons/react/solid';
 import { getPrice, getSavedPercent } from '../utils/payment';
-import Spinner from './Spinner';
+import Button from './Button';
 
 const featuresDescription = [
   'Access to 7600+ active investors',
@@ -75,16 +75,13 @@ export default function Pricing({
                   <h1 className="text-decode3 heading text-5xl">
                     ${getPrice(unit_amount)}
                   </h1>
-                  <button
+                  <Button
+                    isLoading={isLoading}
+                    className="mt-3 py-2 text-center w-full"
                     onClick={() => onClickBuyBtn(id)}
-                    disabled={isLoading}
-                    className="py-2 text-center w-full uppercase bg-decode3 font-bold text-sm relative disabled:bg-lime-700"
                   >
-                    {isLoading && (
-                      <Spinner className="absolute right-0 text-white" />
-                    )}
                     Buy now
-                  </button>
+                  </Button>
                   <ol className="text-white text-sm mt-8 uppercase">
                     {featuresDescription.map((feature, index) => (
                       <li

@@ -1,20 +1,21 @@
 import { GetServerSidePropsContext } from 'next';
 import Stripe from 'stripe';
-import { getSession, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import Layout from '../components/Layout';
 import PricingComponent from '../components/Pricing';
-// import { fetchPostJSON } from '../utils/api-helpers';
-// import getStripejs from '../utils/get-stripejs';
 import { addDoc, collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../utils/firebaseClient';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';
 
 const Pricing = ({ prices }: { prices: Array<Stripe.Price> }) => {
   const { data: session } = useSession();
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   async function handleBuying(productId: string) {
     if (!session) {
+      await router.push('/signin');
       return;
     }
 
@@ -59,15 +60,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: '2022-08-01'
   });
-  const session = await getSession(context);
-  if (!session) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/signin'
-      }
-    };
-  }
 
   const prices = await stripe.prices.list({
     active: true,
@@ -79,8 +71,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const month = prices.data.find((p) => p.recurring?.interval === 'month');
   return {
     props: {
-      prices: [year, month],
-      session
+      prices: [year, month]
     }
   };
 }
