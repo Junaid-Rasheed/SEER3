@@ -1,37 +1,40 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-// import CredentialsProvider from 'next-auth/providers/credentials';
+import CredentialsProvider from 'next-auth/providers/credentials';
 // import EmailProvider from 'next-auth/providers/email';
 import { FirestoreAdapter } from '@next-auth/firebase-adapter';
-import { firebaseConfig } from '../../../utils/firebaseClient';
-// import { signInWithEmailAndPassword } from '@firebase/auth';
+import { auth, db, firebaseConfig } from '../../../utils/firebaseClient';
+import { signInWithEmailAndPassword } from '@firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
 
 export default NextAuth({
   providers: [
-    // CredentialsProvider({
-    //   name: 'Credentials',
-    //   credentials: {
-    //     email: { label: 'Email', type: 'email' },
-    //     password: { label: 'Password', type: 'password' }
-    //   },
-    //   async authorize(credentials) {
-    //     try {
-    //       const userCredential = await signInWithEmailAndPassword(
-    //         auth,
-    //         credentials?.email || '',
-    //         credentials?.password || ''
-    //       );
-    //
-    //       return {
-    //         email: userCredential.user.email,
-    //         emailVerified: userCredential.user.emailVerified
-    //       };
-    //     } catch (err) {
-    //       console.log('err', err);
-    //       return null;
-    //     }
-    //   }
-    // }),
+    CredentialsProvider({
+      name: 'Credentials',
+      credentials: {
+        email: { label: 'Email', type: 'email' },
+        password: { label: 'Password', type: 'password' }
+      },
+      async authorize(credentials) {
+        try {
+          const userCredential = await signInWithEmailAndPassword(
+            auth,
+            credentials?.email || '',
+            credentials?.password || ''
+          );
+
+          const userSnap = await getDoc(
+            doc(db, 'users', userCredential.user.uid)
+          );
+
+          return {
+            ...userSnap.data()
+          };
+        } catch (err) {
+          return null;
+        }
+      }
+    }),
     // EmailProvider({
     //   server: {
     //     host: process.env.EMAIL_SERVER_HOST,
@@ -59,19 +62,25 @@ export default NextAuth({
     ...firebaseConfig
   }),
   session: {
-    strategy: 'database'
+    strategy: 'jwt'
   },
   callbacks: {
-    // async signIn({ user, account, profile, email, credentials }) {
-    //   return true;
-    // },
-    // async jwt({ token, account, user }) {
-    //   return token;
-    // },
-    async session({ session, token, user }) {
+    async jwt({ token, user }) {
       if (user) {
-        // @ts-ignore
-        session.user.uid = user.id;
+        token.uid = user.uid;
+      }
+      return token;
+    },
+    // @ts-ignore
+    async session({ session, token }) {
+      if (token) {
+        return {
+          ...session,
+          user: {
+            ...session.user,
+            uid: token.uid
+          }
+        };
       }
       return session;
     }

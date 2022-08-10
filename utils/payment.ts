@@ -6,10 +6,13 @@ export function getPrice(price: number | null) {
 }
 
 export function getSavedPercent(prices: Stripe.Price[]) {
-  const yearPlan =
-    prices.find((pr) => pr.recurring?.interval === 'year')?.unit_amount || 0;
-  const monthPlan =
-    prices.find((pr) => pr.recurring?.interval === 'month')?.unit_amount || 0;
+  const yearPlan = prices[0].unit_amount || 0;
+  const monthPlan = prices[1].unit_amount || 0;
 
-  return Math.round((100 * (monthPlan * 12 - yearPlan)) / (monthPlan * 12));
+  const gap = monthPlan * 12 - yearPlan;
+
+  if (gap <= 0) {
+    return 0;
+  }
+  return Math.floor((100 * (monthPlan * 12 - yearPlan)) / (monthPlan * 12));
 }

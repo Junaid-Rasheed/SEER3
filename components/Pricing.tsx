@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Stripe } from 'stripe';
 import { CheckCircleIcon } from '@heroicons/react/solid';
 import { getPrice, getSavedPercent } from '../utils/payment';
+import Spinner from './Spinner';
 
 const featuresDescription = [
   'Access to 7600+ active investors',
@@ -17,10 +18,12 @@ const featuresDescription = [
 
 export default function Pricing({
   prices,
-  onClickBuyBtn
+  onClickBuyBtn,
+  isLoading
 }: {
   prices: Array<Stripe.Price>;
   onClickBuyBtn: (productId: string) => void;
+  isLoading?: boolean;
 }) {
   const percent = useMemo(() => {
     return getSavedPercent(prices);
@@ -53,7 +56,7 @@ export default function Pricing({
                   }
                 >
                   {price.recurring?.interval}{' '}
-                  {price.recurring?.interval === 'year'
+                  {price.recurring?.interval === 'year' && !!percent
                     ? `(Save ${percent}%)`
                     : ''}
                 </Tab>
@@ -74,8 +77,12 @@ export default function Pricing({
                   </h1>
                   <button
                     onClick={() => onClickBuyBtn(id)}
-                    className="py-2 text-center w-full uppercase bg-decode3 font-bold text-sm"
+                    disabled={isLoading}
+                    className="py-2 text-center w-full uppercase bg-decode3 font-bold text-sm relative disabled:bg-lime-700"
                   >
+                    {isLoading && (
+                      <Spinner className="absolute right-0 text-white" />
+                    )}
                     Buy now
                   </button>
                   <ol className="text-white text-sm mt-8 uppercase">
