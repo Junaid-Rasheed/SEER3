@@ -14,24 +14,24 @@ export default function SignIn({ csrfToken }: { csrfToken: string }) {
             <h2 className="heading text-white text-center">LOG IN</h2>
             <GoogleSignInButton />
             <Divider />
-            <form method="post" action="/api/auth/signin/email">
-              <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-              <div>
-                <label className="text-white">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="mt-2 py-3 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"
-                />
-              </div>
-              <button
-                type="submit"
-                className="mt-3 bg-decode3 w-full py-3 px-3"
-              >
-                Magic link
-              </button>
-            </form>
+            {/*<form method="post" action="/api/auth/signin/email">*/}
+            {/*  <input name="csrfToken" type="hidden" defaultValue={csrfToken} />*/}
+            {/*  <div>*/}
+            {/*    <label className="text-white">Email</label>*/}
+            {/*    <input*/}
+            {/*      type="email"*/}
+            {/*      id="email"*/}
+            {/*      name="email"*/}
+            {/*      className="mt-2 py-3 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"*/}
+            {/*    />*/}
+            {/*  </div>*/}
+            {/*  <button*/}
+            {/*    type="submit"*/}
+            {/*    className="mt-3 bg-decode3 w-full py-3 px-3"*/}
+            {/*  >*/}
+            {/*    Magic link*/}
+            {/*  </button>*/}
+            {/*</form>*/}
             <form method="post" action="/api/auth/callback/credentials">
               <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
               <div className="">
