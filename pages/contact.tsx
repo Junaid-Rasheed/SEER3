@@ -7,14 +7,26 @@ const Contact = () => {
   return (
     <Layout>
       <div className="relative bg-black">
-        <Image
-          src="/assets/desktop/Desktop Transparent-03.png"
-          alt="contact"
-          layout="responsive"
-          objectFit="cover"
-          width={1440}
-          height={300}
-        />
+        <div className="hidden md:block">
+          <Image
+            src="/assets/desktop/Desktop Transparent-03.png"
+            alt="contact"
+            layout="responsive"
+            objectFit="cover"
+            width={1440}
+            height={561}
+          />
+        </div>
+        <div className="md:hidden">
+          <Image
+            src="/assets/mobile/Mobile Transparent-03.png"
+            alt="contact"
+            layout="responsive"
+            objectFit="cover"
+            width={768}
+            height={598}
+          />
+        </div>
         <div className="flex flex-col md:flex-row bg-black px-10 md:px-[86px] py-[50px] gap-10">
           <div className="text-white flex-1 my-auto">
             <h1 className="mt-2 md:mt-10 heading uppercase text-4xl md:text-7xl">

@@ -3,7 +3,7 @@ import AnimatedText from './AnimatedText';
 
 export default function Hero() {
   return (
-    <div className="relative flex justify-center items-center h-screen">
+    <div className="relative flex justify-center items-center py-20 md:py-[200px]">
       <video poster="/assets/desktop/desktop_thumbs.png" playsInline autoPlay muted loop
              className="absolute hidden md:block top-0 left-0 object-cover h-full w-screen">
         <source src="/assets/desktop/Horizontal.mp4" type="video/mp4" />
@@ -23,7 +23,7 @@ export default function Hero() {
           <br />
           Database
         </h1>
-        <GetStartedButton className="w-4/5 md:w-[360px] min-h-15 mt-[140px] py-5 justify-center" />
+        <GetStartedButton className="w-4/5 md:w-[360px] min-h-15 mt-[15vh] py-5 justify-center" />
       </div>
     </div>
   )
