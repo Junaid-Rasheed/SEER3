@@ -88,7 +88,7 @@ export default function SignIn() {
               <div className="text-white mt-5">
                 <p className="text-sm">
                   FORGOT PASSWORD?{' '}
-                  <Link href="/reset-password">
+                  <Link href="/forgot-password">
                     <a className="underline hover:text-decode3">RESET IT</a>
                   </Link>
                 </p>
