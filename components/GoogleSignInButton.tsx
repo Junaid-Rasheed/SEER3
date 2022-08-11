@@ -38,7 +38,7 @@ const GoogleSignInButton = () => {
       onClick={handleSignin}
     >
       <GoogleIcon className="w-6 h-6" />
-      <span>Sign in with Google</span>
+      <span className="uppercase">Sign in with Google</span>
     </button>
   );
 };
