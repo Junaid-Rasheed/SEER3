@@ -1,9 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { db, auth } from '../utils/firebaseClient';
-import {
-  sendEmailVerification,
-  createUserWithEmailAndPassword
-} from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import Layout from '../components/Layout';
 import GoogleSignInButton from '../components/GoogleSignInButton';
@@ -40,13 +37,13 @@ const SignUp = () => {
         user.email,
         user.password
       );
-      await sendEmailVerification(userCredential.user);
+
+      // await sendEmailVerification(userCredential.user);
 
       const collectionRef = collection(db, 'users');
       await setDoc(doc(collectionRef, userCredential.user.uid), {
         ...user,
-        uid: userCredential.user.uid,
-        emailVerified: false
+        uid: userCredential.user.uid
       });
 
       toast.success('Successfully created!');
@@ -59,9 +56,8 @@ const SignUp = () => {
       });
       await waitFor(1500);
       await router.push('/');
-    } catch (err) {
-      console.log('err', err);
-      toast.error('Can not create new account');
+    } catch (err: any) {
+      toast.error(err?.message);
     } finally {
       setLoading(false);
     }

@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import { auth } from '../utils/firebaseClient';
+import { confirmPasswordReset } from 'firebase/auth';
 import Button from './Button';
+import toast from 'react-hot-toast';
+import { waitFor } from '../utils/common';
+import { useRouter } from 'next/router';
 
-const ResetPassword = ({
-  onSubmit,
-  loading
-}: {
-  onSubmit?: (data?: any) => void;
-  loading?: boolean;
-}) => {
+const ResetPassword = ({ oobCode }: { oobCode: string }) => {
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   function handleChange(e: any) {
     setPassword(e.target.value);
@@ -16,10 +17,23 @@ const ResetPassword = ({
 
   async function handleSubmit(e: any) {
     e.preventDefault();
-    if (password) {
-      onSubmit?.(password);
+
+    if (password && oobCode) {
+      setLoading(true);
+      try {
+        await confirmPasswordReset(auth, oobCode, password);
+        toast.success('Password has been changed, you can login now');
+
+        await waitFor(1500);
+        await router.push('/signin');
+      } catch (err: any) {
+        toast.error(err?.message || 'Error');
+      } finally {
+        setLoading(false);
+      }
     }
   }
+
   return (
     <>
       <h2 className="heading text-white uppercase text-center">
