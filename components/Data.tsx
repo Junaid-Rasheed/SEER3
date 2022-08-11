@@ -18,7 +18,7 @@ const statistic = [
 export default function Data() {
   return (
     <div className="relative pb-[100px] md:pb-[200px]">
-      <div className="relative z-10 px-10 md:px-[115px] w-full">
+      <div className="relative z-10 px-7 md:px-[115px] w-full">
         <h1 className="mt-10 md:mt-20 heading uppercase text-3xl md:text-7xl leading-tight text-white">
           The latest web3 fundraising rounds and the
           <span className="text-decode3"> hottest trends </span>

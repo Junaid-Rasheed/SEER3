@@ -16,6 +16,18 @@ export const HeaderLogo = ({ className }: { className?: string }) => (
   </svg>
 );
 
+export const NineBlocksGrid = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+    width={69}
+    height={69}
+    fill="#fff"
+  >
+    <path d="M0 0h17v17H0zM26 0h17v17H26zM52 0h17v17H52zM0 26h17v17H0zM26 26h17v17H26zM52 26h17v17H52zM0 52h17v17H0zM26 52h17v17H26zM52 52h17v17H52z" />
+  </svg>
+)
+
 export const LoadingLogo = ({ className }: { className?: string }) => (
   <svg
     className={className}

@@ -12,10 +12,11 @@ export default function MobileNav({ className }: { className?: string }) {
         {({ open }) => (
           <>
             <Popover.Button className="mt-1">
+              {/*<NineBlocksGrid className="w-8 h-8"/>*/}
               <div className="w-8 h-8 relative invert">
                 {open ?
-                  <Image src="/assets/mobile/5_blocks.png" alt="9 blocks" layout="fill" /> :
-                  <Image src="/assets/mobile/9_blocks.png" alt="5 blocks" layout="fill" />
+                  <Image src="/assets/desktop/GridButton.svg" alt="9 blocks" layout="fill" /> :
+                  <Image src="/assets/desktop/GridButton.svg" alt="5 blocks" layout="fill" />
                 }
               </div>
             </Popover.Button>
@@ -30,7 +31,7 @@ export default function MobileNav({ className }: { className?: string }) {
             >
               <Popover.Panel
                 className="absolute top-0 right-0 mt-16 w-[calc(100vw-40px)] bg-decode3">
-                <div className="overflow-hidden relative p-7">
+                <div className="overflow-hidden relative p-7 min-h-[70vh] flex-col">
                   <NavLinks
                     className="flex-col items-start divide-y-2 divide-black gap-2 text-black text-xl font-bold w-[100px]" />
                   <div className="flex gap-x-[20px] mt-[50px] whitespace-nowrap">

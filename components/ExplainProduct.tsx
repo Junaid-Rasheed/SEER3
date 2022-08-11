@@ -3,7 +3,7 @@ import GetStartedButton from './GetStartedButton';
 
 export default function ExplainProduct() {
   return (
-    <div className="relative md:flex flex-row justify-center items-center md:h-screen md:gap-x-[145px] px-10 md:px-[150px] py-20">
+    <div className="relative md:flex flex-row justify-center items-center md:h-screen md:gap-x-[145px] px-5 md:px-[150px] py-20">
       <div className="md:basis-1/2">
         <div className="md:hidden">
           <Image src="/assets/desktop/screen.png" alt="Explain Product" width={721} height={503} />

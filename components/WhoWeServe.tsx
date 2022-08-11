@@ -26,8 +26,8 @@ const DATA = [
 
 export default function WhoWeServe() {
   return (
-    <div className="relative px-7 md:px-[115px]">
-      <h1 className="mt-20 heading uppercase text-3xl md:text-7xl whitespace-nowrap">
+    <div className="relative px-5 md:px-[115px]">
+      <h1 className="mt-10 md:mt-20 heading uppercase text-3xl md:text-7xl whitespace-nowrap">
         More than a platform
         <br />
         <span className="text-decode3"> A partner </span>

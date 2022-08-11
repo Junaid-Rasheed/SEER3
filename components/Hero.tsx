@@ -1,5 +1,6 @@
 import GetStartedButton from './GetStartedButton';
 import AnimatedText from './AnimatedText';
+import { NineBlocksGrid } from './icons/Logos';
 
 export default function Hero() {
   return (
@@ -23,6 +24,7 @@ export default function Hero() {
           <br />
           Database
         </h1>
+        <NineBlocksGrid />
         <GetStartedButton className="w-4/5 md:w-[360px] min-h-15 mt-[15vh] py-5 justify-center" />
       </div>
     </div>
