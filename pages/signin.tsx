@@ -1,12 +1,41 @@
-import { getCsrfToken, getSession } from 'next-auth/react';
-import { GetServerSidePropsContext } from 'next';
 import Layout from '../components/Layout';
 import Link from 'next/link';
 import GoogleSignInButton from '../components/GoogleSignInButton';
 import Divider from '../components/Divider';
 import Button from '../components/Button';
+import { useEffect, useState } from 'react';
+import { useAuth } from '../components/context/Authentication';
+import { useRouter } from 'next/router';
+import { ICredentials } from '../model/auth';
 
-export default function SignIn({ csrfToken }: { csrfToken: string }) {
+export default function SignIn() {
+  const { user, login } = useAuth();
+  const router = useRouter();
+  const [credentials, setCredentials] = useState<ICredentials>({
+    email: '',
+    password: ''
+  });
+
+  function handleChange(e: any) {
+    setCredentials((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }));
+  }
+
+  useEffect(() => {
+    if (user) {
+      router.push('/dashboard');
+    }
+  }, [user]);
+
+  function handleLogin(e: any) {
+    e.preventDefault();
+    if (credentials.email && credentials.password) {
+      login?.(credentials);
+    }
+  }
+
   return (
     <Layout>
       <div className="bg-black">
@@ -33,14 +62,15 @@ export default function SignIn({ csrfToken }: { csrfToken: string }) {
             {/*    Magic link*/}
             {/*  </button>*/}
             {/*</form>*/}
-            <form method="post" action="/api/auth/callback/credentials">
-              <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+            <form onSubmit={handleLogin}>
               <div className="">
                 <label className="text-white">Email</label>
                 <input
                   className="mt-2 py-3 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"
                   name="email"
                   type="email"
+                  onChange={handleChange}
+                  value={credentials.email}
                   required
                 />
               </div>
@@ -51,6 +81,8 @@ export default function SignIn({ csrfToken }: { csrfToken: string }) {
                   className="mt-2 py-3 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"
                   name="password"
                   type="password"
+                  value={credentials.password}
+                  onChange={handleChange}
                 />
               </div>
               <div className="text-white mt-5">
@@ -76,27 +108,4 @@ export default function SignIn({ csrfToken }: { csrfToken: string }) {
       </div>
     </Layout>
   );
-}
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const session = await getSession(context);
-
-  if (session && context.res) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/'
-      },
-      props: { session }
-    };
-  }
-
-  const csrfToken = await getCsrfToken(context);
-
-  return {
-    props: {
-      csrfToken,
-      session
-    }
-  };
 }
