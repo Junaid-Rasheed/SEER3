@@ -60,7 +60,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
     await signOut(auth);
   };
-
   return (
     <AuthContext.Provider
       value={{

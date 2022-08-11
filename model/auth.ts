@@ -14,3 +14,8 @@ export interface IUser {
   photoURL: string | null;
   emailVerified?: boolean;
 }
+
+export enum ActionMode {
+  PASSWORD_RESET = 'resetPassword',
+  VERIFY_EMAIL = 'verifyEmail'
+}
