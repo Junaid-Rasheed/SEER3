@@ -66,7 +66,7 @@ export default function SignIn() {
               <div className="">
                 <label className="text-white">Email</label>
                 <input
-                  className="mt-2 py-3 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"
+                  className="input"
                   name="email"
                   type="email"
                   onChange={handleChange}
@@ -78,7 +78,7 @@ export default function SignIn() {
                 <label className="text-white">Password</label>
                 <input
                   required
-                  className="mt-2 py-3 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"
+                  className="input"
                   name="password"
                   type="password"
                   value={credentials.password}

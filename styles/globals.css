@@ -22,4 +22,7 @@
     .btn{
         @apply bg-decode3 py-3 px-3 uppercase hover:bg-lime-500 transition duration-300 relative disabled:bg-lime-700
     }
+    .input{
+        @apply mt-2 py-3 px-3 focus:outline-decode3 focus:outline-none rounded-none focus:border-decode3 block w-full sm:text-sm
+    }
 }

@@ -89,7 +89,7 @@ const SignUp = () => {
               <label className="text-white">First name</label>
               <label className="text-white">Last name</label>
               <input
-                className="py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"
+                className="input"
                 name="firstName"
                 type="First name"
                 value={user.firstName}
@@ -97,7 +97,7 @@ const SignUp = () => {
                 onChange={handleChange}
               />
               <input
-                className="py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"
+                className="input"
                 name="lastName"
                 value={user.lastName}
                 type="Last name"
@@ -107,7 +107,7 @@ const SignUp = () => {
             <div className="">
               <label className="text-white">Email</label>
               <input
-                className="mt-2 py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"
+                className="input"
                 name="email"
                 value={user.email}
                 type="email"
@@ -120,7 +120,7 @@ const SignUp = () => {
               <input
                 required
                 value={user.password}
-                className="mt-2 py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"
+                className="input"
                 name="password"
                 type="password"
                 onChange={handleChange}
