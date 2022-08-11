@@ -68,9 +68,9 @@ const SignUp = () => {
 
   return (
     <Layout>
-      <section className="bg-black">
+      <section className="bg-black px-10">
         <div className="mx-auto max-w-sm pb-10 grid grid-cols-1 gap-y-8">
-          <h3 className="text-white heading text-center pt-14">
+          <h3 className="text-white heading text-center pt-10">
             WELCOME TO DECODE 3
           </h3>
           <div>

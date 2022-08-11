@@ -9,7 +9,7 @@ const markdown = `
 const ListYourStartup = () => {
   return (
     <Layout>
-      <div className="bg-black flex items-center" dangerouslySetInnerHTML={{ __html: markdown }} />
+      <div className="py-20 bg-black flex items-center" dangerouslySetInnerHTML={{ __html: markdown }} />
     </Layout>
   );
 };

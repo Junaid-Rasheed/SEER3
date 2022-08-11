@@ -10,7 +10,6 @@ const DATA = [
   },
   {
     id: 1,
-    // img: '/assets/desktop/Grupo 43.svg',
     img: '/assets/desktop/Grupo 43.svg',
     title: 'For web3',
     target: 'INVESTORS',
@@ -27,9 +26,10 @@ const DATA = [
 
 export default function WhoWeServe() {
   return (
-    <div className="relative px-10 md:px-[115px]">
-      <h1 className="mt-20 heading uppercase text-4xl md:text-7xl">
-        More than a platform.
+    <div className="relative px-7 md:px-[115px]">
+      <h1 className="mt-20 heading uppercase text-3xl md:text-7xl whitespace-nowrap">
+        More than a platform
+        <br />
         <span className="text-decode3"> A partner </span>
       </h1>
       <ul className="flex flex-col justify-around md:flex-row gap-10 my-16 text-white">
