@@ -1,12 +1,50 @@
-import { getCsrfToken, getSession } from 'next-auth/react';
-import { GetServerSidePropsContext } from 'next';
 import Layout from '../components/Layout';
 import Link from 'next/link';
 import GoogleSignInButton from '../components/GoogleSignInButton';
 import Divider from '../components/Divider';
 import Button from '../components/Button';
+import { useEffect, useState } from 'react';
+import { useAuth } from '../components/context/Authentication';
+import { useRouter } from 'next/router';
+import { ICredentials } from '../model/auth';
+import toast, { Toaster } from 'react-hot-toast';
 
-export default function SignIn({ csrfToken }: { csrfToken: string }) {
+export default function SignIn() {
+  const { user, login } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const [credentials, setCredentials] = useState<ICredentials>({
+    email: '',
+    password: ''
+  });
+
+  function handleChange(e: any) {
+    setCredentials((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }));
+  }
+
+  useEffect(() => {
+    if (user) {
+      router.push('/dashboard');
+    }
+  }, [user]);
+
+  async function handleLogin(e: any) {
+    e.preventDefault();
+    if (credentials.email && credentials.password) {
+      setLoading(true);
+      try {
+        await login?.(credentials);
+      } catch (err: any) {
+        toast.error(err?.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+  }
+
   return (
     <Layout>
       <div className="bg-black px-10">
@@ -33,38 +71,47 @@ export default function SignIn({ csrfToken }: { csrfToken: string }) {
             {/*    Magic link*/}
             {/*  </button>*/}
             {/*</form>*/}
-            <form method="post" action="/api/auth/callback/credentials">
-              <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-              <div className="">
-                <label className="text-white">Email</label>
-                <input
-                  className="mt-2 py-3 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"
-                  name="email"
-                  type="email"
-                  required
-                />
-              </div>
-              <div className="mt-5">
-                <label className="text-white">Password</label>
-                <input
-                  required
-                  className="mt-2 py-3 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"
-                  name="password"
-                  type="password"
-                />
-              </div>
-              <div className="text-white mt-5">
-                <p className="text-sm">
-                  FORGOT PASSWORD?{' '}
-                  <Link href="/reset-password">
-                    <a className="underline hover:text-decode3">RESET IT</a>
-                  </Link>
-                </p>
-              </div>
-              <Button type="submit" className="mt-8 w-full uppercase">
-                Log in
-              </Button>
-            </form>
+            <fieldset disabled={loading}>
+              <form onSubmit={handleLogin}>
+                <div className="">
+                  <label className="text-white">Email</label>
+                  <input
+                    className="input"
+                    name="email"
+                    type="email"
+                    onChange={handleChange}
+                    value={credentials.email}
+                    required
+                  />
+                </div>
+                <div className="mt-5">
+                  <label className="text-white">Password</label>
+                  <input
+                    required
+                    className="input"
+                    name="password"
+                    type="password"
+                    value={credentials.password}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="text-white mt-5">
+                  <p className="text-sm">
+                    FORGOT PASSWORD?{' '}
+                    <Link href="/forgot-password">
+                      <a className="underline hover:text-decode3">RESET IT</a>
+                    </Link>
+                  </p>
+                </div>
+                <Button
+                  type="submit"
+                  className="mt-8 w-full uppercase"
+                  isLoading={loading}
+                >
+                  Log in
+                </Button>
+              </form>
+            </fieldset>
             <p className="text-white text-center text-sm">
               DON&apos;T HAVE AN ACCOUNT?{' '}
               <Link href="/signup">
@@ -74,29 +121,7 @@ export default function SignIn({ csrfToken }: { csrfToken: string }) {
           </div>
         </div>
       </div>
+      <Toaster />
     </Layout>
   );
-}
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const session = await getSession(context);
-
-  if (session && context.res) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/'
-      },
-      props: { session }
-    };
-  }
-
-  const csrfToken = await getCsrfToken(context);
-
-  return {
-    props: {
-      csrfToken,
-      session
-    }
-  };
 }

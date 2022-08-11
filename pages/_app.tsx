@@ -1,15 +1,27 @@
 import '../styles/globals.css';
 import '../public/nprogress.css';
 import type { AppProps } from 'next/app';
-import { SessionProvider } from 'next-auth/react';
-// import useRoutingProgressBar from '../hooks/useRoutingProgressBar';
+import useRoutingProgressBar from '../hooks/useRoutingProgressBar';
+import { AuthProvider } from '../components/context/Authentication';
+import ProtectedRoute from '../components/ProtectedRoute';
+import { useRouter } from 'next/router';
+
+const protectedRoutes = ['/dashboard'];
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
-  // useRoutingProgressBar();
+  useRoutingProgressBar();
+  const router = useRouter();
+
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
-    </SessionProvider>
+    <AuthProvider>
+      {protectedRoutes.includes(router.pathname) ? (
+        <ProtectedRoute>
+          <Component {...pageProps} />
+        </ProtectedRoute>
+      ) : (
+        <Component {...pageProps} />
+      )}
+    </AuthProvider>
   );
 }
 

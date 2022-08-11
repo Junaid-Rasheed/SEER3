@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import NProgress from 'nprogress';
 import { useRouter } from 'next/router';
 
-NProgress.configure({ easing: 'ease', speed: 800 });
+NProgress.configure({ easing: 'ease', speed: 800, showSpinner: false });
 
 export default function useRoutingProgressBar() {
   const router = useRouter();

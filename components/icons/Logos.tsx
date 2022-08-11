@@ -20,11 +20,22 @@ export const NineBlocksGrid = ({ className }: { className?: string }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
-    width={69}
-    height={69}
     fill="#fff"
+    viewBox="0 0 69 69"
   >
-    <path d="M0 0h17v17H0zM26 0h17v17H26zM52 0h17v17H52zM0 26h17v17H0zM26 26h17v17H26zM52 26h17v17H52zM0 52h17v17H0zM26 52h17v17H26zM52 52h17v17H52z" />
+    <path
+      d="M0 0h17v17H0zM26 0h17v17H26zM52 0h17v17H52zM0 26h17v17H0zM26 26h17v17H26zM52 26h17v17H52zM0 52h17v17H0zM26 52h17v17H26zM52 52h17v17H52z" />
+  </svg>
+);
+
+export const FiveBlocksGrid = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+    fill="#fff"
+    viewBox="0 0 69 69"
+  >
+    <path d="M0 0h17v17H0zM52 0h17v17H52zM26 26h17v17H26zM0 52h17v17H0zM52 52h17v17H52z" />
   </svg>
 )
 

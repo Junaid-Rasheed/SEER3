@@ -1,6 +1,4 @@
-import { GetServerSidePropsContext } from 'next';
 import Stripe from 'stripe';
-import { useSession } from 'next-auth/react';
 import Layout from '../components/Layout';
 import PricingComponent from '../components/Pricing';
 import { addDoc, collection, onSnapshot } from 'firebase/firestore';
@@ -8,13 +6,15 @@ import { db } from '../utils/firebaseClient';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
+import { useAuth } from '../components/context/Authentication';
 
 const Pricing = ({ prices }: { prices: Array<Stripe.Price> }) => {
-  const { data: session } = useSession();
+  const { user } = useAuth();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+
   async function handleBuying(productId: string) {
-    if (!session) {
+    if (!user) {
       await router.push('/signin');
       return;
     }
@@ -22,7 +22,7 @@ const Pricing = ({ prices }: { prices: Array<Stripe.Price> }) => {
     setLoading(true);
 
     const docRef = await addDoc(
-      collection(db, `users/${session.user?.uid}/checkout_sessions`),
+      collection(db, `users/${user.uid}/checkout_sessions`),
       {
         price: productId,
         success_url: window.location.origin,
@@ -56,7 +56,7 @@ const Pricing = ({ prices }: { prices: Array<Stripe.Price> }) => {
   );
 };
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getServerSideProps() {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: '2022-08-01'
   });
