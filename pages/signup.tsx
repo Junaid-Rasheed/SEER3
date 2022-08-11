@@ -10,8 +10,6 @@ import GoogleSignInButton from '../components/GoogleSignInButton';
 import Link from 'next/link';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
-import { GetServerSidePropsContext } from 'next';
-import { getSession } from 'next-auth/react';
 import Button from '../components/Button';
 
 const SignUp = () => {
@@ -52,9 +50,7 @@ const SignUp = () => {
         lastName: ''
       });
 
-      timeoutId.current = setTimeout(() => {
-        router.push('/signin');
-      }, 1000);
+      await router.push('/dashboard');
     } catch (err) {
       console.log('err', err);
       toast.error('Can not create new account');
@@ -146,22 +142,5 @@ const SignUp = () => {
     </Layout>
   );
 };
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const session = await getSession(context);
-  if (session && context.res) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/'
-      },
-      props: { session }
-    };
-  }
-
-  return {
-    props: {}
-  };
-}
 
 export default SignUp;
