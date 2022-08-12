@@ -74,7 +74,7 @@ const SignUp = () => {
 
   return (
     <Layout>
-      <section className="bg-black px-10">
+      <section className="bg-black px-4 lg:px-10">
         <div className="mx-auto max-w-sm pb-10 grid grid-cols-1 gap-y-8">
           <h3 className="text-white heading text-center pt-10">
             WELCOME TO DECODE 3
@@ -92,7 +92,7 @@ const SignUp = () => {
               onSubmit={handleSubmit}
               className="grid grid-cols-1 gap-y-5 uppercase"
             >
-              <div className="grid grid-cols-2 grid-rows-2 gap-x-3">
+              <div className="grid grid-cols-2 lg:grid-rows-2 gap-x-3">
                 <label className="text-white">First name</label>
                 <label className="text-white">Last name</label>
                 <input
@@ -100,12 +100,14 @@ const SignUp = () => {
                   name="firstName"
                   type="First name"
                   value={user.firstName}
+                  placeholder="First name"
                   required
                   onChange={handleChange}
                 />
                 <input
                   className="input"
                   name="lastName"
+                  placeholder="Last name"
                   value={user.lastName}
                   type="Last name"
                   onChange={handleChange}
@@ -116,6 +118,7 @@ const SignUp = () => {
                 <input
                   className="input"
                   name="email"
+                  placeholder="Email"
                   value={user.email}
                   type="email"
                   required
@@ -128,13 +131,14 @@ const SignUp = () => {
                   required
                   value={user.password}
                   className="input"
+                  placeholder="Password"
                   name="password"
                   type="password"
                   onChange={handleChange}
                 />
               </div>
               <Button
-                className="mt-5 w-full py-2 px-3"
+                className="mt-5 w-full py-3 px-3"
                 type="submit"
                 isLoading={loading}
               >
