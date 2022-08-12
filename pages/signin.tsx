@@ -47,37 +47,20 @@ export default function SignIn() {
 
   return (
     <Layout>
-      <div className="bg-black px-10">
+      <div className="bg-black px4 lg:px-10">
         <div className="max-w-sm mx-auto">
           <div className="py-10 grid grid-cols-1 gap-y-5">
             <h2 className="heading text-white text-center">LOG IN</h2>
             <GoogleSignInButton />
             <Divider />
-            {/*<form method="post" action="/api/auth/signin/email">*/}
-            {/*  <input name="csrfToken" type="hidden" defaultValue={csrfToken} />*/}
-            {/*  <div>*/}
-            {/*    <label className="text-white">Email</label>*/}
-            {/*    <input*/}
-            {/*      type="email"*/}
-            {/*      id="email"*/}
-            {/*      name="email"*/}
-            {/*      className="mt-2 py-3 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300"*/}
-            {/*    />*/}
-            {/*  </div>*/}
-            {/*  <button*/}
-            {/*    type="submit"*/}
-            {/*    className="mt-3 bg-decode3 w-full py-3 px-3"*/}
-            {/*  >*/}
-            {/*    Magic link*/}
-            {/*  </button>*/}
-            {/*</form>*/}
             <fieldset disabled={loading}>
               <form onSubmit={handleLogin}>
                 <div className="">
-                  <label className="text-white">Email</label>
+                  <label className="text-white uppercase">Email</label>
                   <input
                     className="input"
                     name="email"
+                    placeholder="Email"
                     type="email"
                     onChange={handleChange}
                     value={credentials.email}
@@ -85,11 +68,12 @@ export default function SignIn() {
                   />
                 </div>
                 <div className="mt-5">
-                  <label className="text-white">Password</label>
+                  <label className="text-white uppercase">Password</label>
                   <input
                     required
                     className="input"
                     name="password"
+                    placeholder="Password"
                     type="password"
                     value={credentials.password}
                     onChange={handleChange}
