@@ -3,6 +3,7 @@ import { ArrowSmRightIcon } from '@heroicons/react/outline';
 import { useAuth } from './context/Authentication';
 import Button from './Button';
 import { useRouter } from 'next/router';
+import useSubscription from '../hooks/useSubscription';
 
 export default function GetStartedButton({
   className
@@ -11,11 +12,18 @@ export default function GetStartedButton({
 }) {
   const { user } = useAuth();
   const router = useRouter();
+  const { isSubscribed } = useSubscription(user?.uid);
 
   async function handleNavigation() {
-    if (!user) {
-      await router.push('/signup');
+    let url;
+    if (isSubscribed && !!user) {
+      url = '/dashboard';
+    } else if (user) {
+      url = '/pricing';
+    } else {
+      url = '/signup';
     }
+    await router.push(url);
   }
 
   return (
