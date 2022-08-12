@@ -18,13 +18,13 @@ const SignUp = () => {
     email: '',
     password: '',
     firstName: '',
-    lastName: ''
+    lastName: '',
   });
 
   function handleChange(e: any) {
     setUser({
       ...user,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   }
 
@@ -35,7 +35,7 @@ const SignUp = () => {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         user.email,
-        user.password
+        user.password,
       );
 
       // await sendEmailVerification(userCredential.user);
@@ -43,7 +43,7 @@ const SignUp = () => {
       const collectionRef = collection(db, 'users');
       await setDoc(doc(collectionRef, userCredential.user.uid), {
         ...user,
-        uid: userCredential.user.uid
+        uid: userCredential.user.uid,
       });
 
       toast.success('Successfully created!');
@@ -52,7 +52,7 @@ const SignUp = () => {
         email: '',
         password: '',
         firstName: '',
-        lastName: ''
+        lastName: '',
       });
       await waitFor(1500);
       await router.push('/');
@@ -92,29 +92,33 @@ const SignUp = () => {
               onSubmit={handleSubmit}
               className="grid grid-cols-1 gap-y-5 uppercase"
             >
-              <div className="grid grid-cols-2 lg:grid-rows-2 gap-x-3">
-                <label className="text-white">First name</label>
-                <label className="text-white">Last name</label>
-                <input
-                  className="input"
-                  name="firstName"
-                  type="First name"
-                  value={user.firstName}
-                  placeholder="First name"
-                  required
-                  onChange={handleChange}
-                />
-                <input
-                  className="input"
-                  name="lastName"
-                  placeholder="Last name"
-                  value={user.lastName}
-                  type="Last name"
-                  onChange={handleChange}
-                />
+              <div className="grid grid-cols-2 gap-x-3">
+                <div>
+                  <label className="text-sm text-white">First name</label>
+                  <input
+                    className="input"
+                    name="firstName"
+                    type="First name"
+                    value={user.firstName}
+                    placeholder="First name"
+                    required
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label className="text-white text-sm">Last name</label>
+                  <input
+                    className="input"
+                    name="lastName"
+                    placeholder="Last name"
+                    value={user.lastName}
+                    type="Last name"
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
               <div className="">
-                <label className="text-white">Email</label>
+                <label className="text-sm text-white">Email</label>
                 <input
                   className="input"
                   name="email"
@@ -126,7 +130,7 @@ const SignUp = () => {
                 />
               </div>
               <div className="">
-                <label className="text-white">Password</label>
+                <label className="text-sm text-white">Password</label>
                 <input
                   required
                   value={user.password}
@@ -138,7 +142,7 @@ const SignUp = () => {
                 />
               </div>
               <Button
-                className="mt-5 w-full py-3 px-3"
+                className="mt-5 w-full py-3 px-3 font-bold"
                 type="submit"
                 isLoading={loading}
               >
@@ -152,6 +156,16 @@ const SignUp = () => {
               <a className="underline hover:text-decode3">LOG IN</a>
             </Link>
           </div>
+          <p className="uppercase text-sm text-white text-center">
+              by singing up, you agree to the {' '}
+              <Link href="/terms-of-service">
+                <a className="underline hover:text-decode3">terms of service</a>
+              </Link>
+              and the {' '}
+              <Link href="/privacy-policy">
+                <a className="underline hover:text-decode3">privacy policy</a>
+              </Link>
+          </p>
         </div>
       </section>
       <Toaster />
