@@ -12,14 +12,21 @@ const getStripe = () => {
 
 export default getStripe;
 
-export function goToBillingPortal<T>() {
+export function goToBillingPortal() {
   const instance = getFunctions(app, 'us-central1');
-  const functionRef = httpsCallable<{ returnUrl: string }, T>(
+  const functionRef = httpsCallable(
     instance,
     'ext-firestore-stripe-payments-createPortalLink'
   );
 
-  return functionRef({
+  functionRef({
     returnUrl: `${window.location.origin}/dashboard`
-  });
+  })
+    .then(({ data }) => {
+      // @ts-ignore
+      window.location.assign(data?.url);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
