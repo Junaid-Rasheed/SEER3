@@ -7,8 +7,9 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import { useAuth } from '../components/context/Authentication';
+import { IPlan } from '../model/payment';
 
-const Pricing = ({ prices }: { prices: Array<Stripe.Price> }) => {
+const Pricing = ({ plans }: { plans: Array<IPlan> }) => {
   const { user } = useAuth();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -48,7 +49,7 @@ const Pricing = ({ prices }: { prices: Array<Stripe.Price> }) => {
   return (
     <Layout>
       <PricingComponent
-        prices={prices}
+        plans={plans}
         onClickBuyBtn={handleBuying}
         isLoading={loading}
       />
@@ -56,22 +57,33 @@ const Pricing = ({ prices }: { prices: Array<Stripe.Price> }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: '2022-08-01'
   });
 
-  const prices = await stripe.prices.list({
+  const { data: prices } = await stripe.prices.list({
     active: true,
     limit: 10,
     type: 'recurring'
   });
 
-  const year = prices.data.find((p) => p.recurring?.interval === 'year');
-  const month = prices.data.find((p) => p.recurring?.interval === 'month');
+  const plans = await Promise.all(
+    prices.map(async (price) => {
+      const product = await stripe.products.retrieve(price.product as string);
+      return {
+        id: price.id,
+        name: product.name,
+        price: price.unit_amount,
+        interval: price.recurring?.interval,
+        currency: price.currency
+      };
+    })
+  );
+
   return {
     props: {
-      prices: [year, month]
+      plans
     }
   };
 }
