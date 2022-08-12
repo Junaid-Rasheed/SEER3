@@ -4,6 +4,8 @@ import { useMemo } from 'react';
 import { getSavedPercent } from '../utils/payment';
 import { IPlan } from '../model/payment';
 import Plan from './Plan';
+import { useAuth } from './context/Authentication';
+import useSubscription from '../hooks/useSubscription';
 
 export default function Pricing({
   plans,
@@ -14,6 +16,9 @@ export default function Pricing({
   onClickBuyBtn: (productId: string) => void;
   isLoading?: boolean;
 }) {
+  const { user } = useAuth();
+  const subscription = useSubscription(user?.uid);
+
   const percent = useMemo(() => {
     return getSavedPercent(plans);
   }, [plans]);
@@ -55,6 +60,7 @@ export default function Pricing({
               {plans.map(({ id, price }) => (
                 <Tab.Panel key={id}>
                   <Plan
+                    isSubscribed={!!subscription.length}
                     isLoading={isLoading}
                     price={price}
                     onClick={() => onClickBuyBtn(id)}

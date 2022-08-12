@@ -13,9 +13,7 @@ export default function GetStartedButton({
   const router = useRouter();
 
   async function handleNavigation() {
-    if (!user) {
-      await router.push('/signup');
-    }
+    await router.push(user ? '/dashboard' : '/signup');
   }
 
   return (
