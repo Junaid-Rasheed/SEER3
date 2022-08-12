@@ -21,7 +21,7 @@ export default function AuthButton({ className }: { className?: string }) {
         className={classNames(
           user
             ? 'border border-decode3 text-decode3 font-bold py-2 px-6 uppercase hover:bg-black hover:text-white hover:opacity-80'
-            : 'bg-black border border-decode3 text-decode3 font-bold py-2 px-6 uppercase hover:text-black',
+            : 'lg:bg-black border border-decode3 text-decode3 font-bold py-2 px-6 uppercase lg:hover:text-black',
           className
         )}
         onClick={handleAuth}
