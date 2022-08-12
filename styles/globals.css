@@ -13,6 +13,9 @@
         font-family: 'HelveticaLTStd';
         src: url('/fonts/HelveticaLTStd-BlkCond.woff2') format('woff2');
     }
+    ::placeholder { /* Recent browsers */
+        text-transform: uppercase;
+    }
 }
 
 @layer components {
