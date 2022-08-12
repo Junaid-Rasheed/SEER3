@@ -6,9 +6,10 @@ import { NavLinks } from './NavLinks';
 import AuthBadge from './AuthBadge';
 import { HeaderLogo } from './icons/Logos';
 import { useAuth } from './context/Authentication';
+import Spinner from './Spinner';
 
 export default function Header() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   return (
     <nav className="flex justify-between items-center pr-2 lg:grid lg:grid-cols-3 py-2 bg-black border-b border-b-neutral-600 relative">
       <Link href="/">
@@ -21,8 +22,10 @@ export default function Header() {
         <MobileNav />
       </div>
       <NavLinks className="hidden lg:flex divide-x mx-auto" />
-      <div className="hidden lg:flex flex-row gap-9 mr-8 justify-end">
-        {user ? (
+      <div className="hidden lg:flex flex-row gap-9 mr-8 justify-end items-center">
+        {loading ? (
+          <Spinner className="w-5 h-5 text-decode3" />
+        ) : user ? (
           <AuthBadge className="flex items-center" user={user} />
         ) : (
           <AuthButton className="text-sm" />
