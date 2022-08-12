@@ -3,7 +3,6 @@ import { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import AuthButton from './AuthButton';
 import { IUser } from '../model/auth';
-import Link from 'next/link';
 
 export default function AuthBadge({
   className,
@@ -41,7 +40,6 @@ export default function AuthBadge({
             <Popover.Panel className="absolute top-14 -right-5 min-w-40">
               <div className="relative bg-decode3 flex flex-col gap-4 px-2 py-4 w-80">
                 <strong> {user?.email} </strong>
-                <Link href="/account">Account</Link>
                 <AuthButton className="bg-black" />
               </div>
             </Popover.Panel>

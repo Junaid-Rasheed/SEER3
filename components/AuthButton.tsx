@@ -2,6 +2,7 @@ import { ArrowSmRightIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
 import classNames from 'classnames';
 import { useAuth } from './context/Authentication';
+import Button from './Button';
 
 export default function AuthButton({ className }: { className?: string }) {
   const { logout, user } = useAuth();
@@ -16,9 +17,11 @@ export default function AuthButton({ className }: { className?: string }) {
 
   return (
     <>
-      <button
+      <Button
         className={classNames(
-          'border border-decode3 text-decode3 font-bold py-2 px-6 uppercase',
+          user
+            ? 'border border-decode3 text-decode3 font-bold py-2 px-6 uppercase hover:bg-black hover:text-white hover:opacity-80'
+            : 'bg-black border border-decode3 text-decode3 font-bold py-2 px-6 uppercase hover:text-black',
           className
         )}
         onClick={handleAuth}
@@ -31,7 +34,7 @@ export default function AuthButton({ className }: { className?: string }) {
         ) : (
           'Log out'
         )}
-      </button>
+      </Button>
     </>
   );
 }
