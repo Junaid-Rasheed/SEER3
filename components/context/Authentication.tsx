@@ -19,6 +19,7 @@ export type AuthType = {
   login?: (credentials: ICredentials) => Promise<any>;
   signup?: (credentials: ICredentials) => Promise<any>;
   logout?: () => void;
+  loading?: boolean;
 };
 
 const AuthContext = createContext<AuthType>({ user: null });
@@ -66,10 +67,11 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         user,
         login,
         signup,
-        logout
+        logout,
+        loading
       }}
     >
-      {loading ? null : children}
+      {children}
     </AuthContext.Provider>
   );
 };

@@ -3,9 +3,9 @@ import Link from 'next/link';
 
 export default function Banner() {
   return (
-    <div className="bg-cyan-400 p-1 px-1 flex items-center justify-center uppercase">
+    <div className="bg-cyan-400 p-1 px-1 flex items-center justify-center uppercase group">
       <Link href="/list-your-startup">
-        <a target="_parent" className="text-xs md:text-sm flex items-center">
+        <a className="text-xs md:text-sm flex items-center group-hover:underline">
           Looking for funding? List your startup for free
         </a>
       </Link>

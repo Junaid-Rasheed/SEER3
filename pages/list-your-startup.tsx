@@ -5,7 +5,9 @@ import Layout from '../components/Layout';
 const ListYourStartup = () => {
   return (
     <Layout>
-      <Widget id="EFcNPa5H" style={{ width: '100%', height: '100%' }} />
+      <div className="bg-black">
+        <Widget id="EFcNPa5H" style={{ width: '100%', height: '100%' }} />
+      </div>
     </Layout>
   );
 };
