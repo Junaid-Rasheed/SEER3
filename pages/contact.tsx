@@ -9,12 +9,12 @@ const Contact = () => {
       <div className="relative bg-black">
         <div className="hidden md:block">
           <Image
-            src="/assets/desktop/Desktop Transparent-03.png"
+            src="/assets/desktop/Desktop Transparent-03-high.png"
             alt="contact"
             layout="responsive"
             objectFit="cover"
             width={1440}
-            height={561}
+            height={422}
           />
         </div>
         <div className="md:hidden">

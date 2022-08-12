@@ -16,8 +16,8 @@ module.exports = {
         },
       },
       backgroundImage: {
-        'data': "url('/assets/desktop/Desktop Transparent-01.png')",
-        'data-mobile': "url('/assets/mobile/Mobile Transparent-01.png')",
+        'data': "url('/assets/desktop/Desktop Transparent-01-crop.png')",
+        'data-mobile': "url('/assets/mobile/Mobile Transparent-01-crop.png')",
         'contact': "url('/assets/desktop/Desktop Transparent-03.png')",
         'data-contact': "url('/assets/mobile/Mobile Transparent-03.png')",
       }

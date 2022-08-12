@@ -89,7 +89,7 @@ export default function SignIn() {
                 </div>
                 <Button
                   type="submit"
-                  className="mt-8 w-full uppercase"
+                  className="mt-8 w-full uppercase font-bold"
                   isLoading={loading}
                 >
                   Log in
