@@ -10,7 +10,8 @@ const StripePortalButton = () => {
   const loadPortal = async () => {
     setLoading(true);
     try {
-      await goToBillingPortal();
+      const { data } = await goToBillingPortal<{ url: string }>();
+      window.location.assign(data.url);
     } catch (err: any) {
       toast.error(err?.message);
     } finally {
