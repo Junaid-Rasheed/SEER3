@@ -13,9 +13,7 @@ export interface IUser {
   displayName: string | null;
   photoURL: string | null;
   emailVerified?: boolean;
-  getUserToken?: Function;
-  getIdTokenResult?: Function;
-  reload?: Function;
+  stripeId?: string;
 }
 
 export enum ActionMode {
