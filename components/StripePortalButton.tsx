@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { CheckIcon } from '@heroicons/react/outline';
 import Button from './Button';
 import toast, { Toaster } from 'react-hot-toast';
 import { fetchPostJSON } from '../utils/api-helpers';
 import { auth } from '../lib/firebaseClient';
 import { useRouter } from 'next/router';
+import useSubscription from '../hooks/useSubscription';
+import { useAuth } from './context/Authentication';
 
 const StripePortalButton = () => {
   const router = useRouter();
+  const { user } = useAuth();
+  const { subscription } = useSubscription(user?.uid);
   const [loading, setLoading] = useState(false);
 
   const loadPortal = async () => {
@@ -32,10 +35,10 @@ const StripePortalButton = () => {
   };
 
   return (
-    <div className="flex items-center justify-between gap-x-5 mt-10">
-      <div className="flex items-center gap-x-1 justify-center">
-        <CheckIcon className="w-5 h-5" />
-        <span className="uppercase">Subscribed</span>
+    <div className="flex items-center justify-center gap-x-5">
+      <div className="flex items-center gap-x-1 justify-center text-white">
+        Plan: ${(subscription?.items?.[0]?.plan.amount || 0) / 100}/
+        {subscription?.items?.[0]?.plan.interval}
       </div>
       <Button isLoading={loading} onClick={loadPortal} className="px-4 py-2">
         Change plan

@@ -4,6 +4,15 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ['lh3.googleusercontent.com']
+  },
+  async redirects() {
+    return [
+      {
+        source: '/dashboard',
+        destination: '/dashboard/fundraising-rounds',
+        permanent: true
+      }
+    ];
   }
 };
 
