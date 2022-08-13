@@ -1,6 +1,6 @@
 import React, { FormEvent } from 'react';
 import { Stripe } from 'stripe';
-import getStripejs from '../utils/stripe';
+import getStripejs from '../lib/stripe';
 import { fetchPostJSON } from '../utils/api-helpers';
 
 const CheckoutForm = () => {

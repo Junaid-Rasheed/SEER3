@@ -2,14 +2,15 @@ import Stripe from 'stripe';
 import Layout from '../components/Layout';
 import PricingComponent from '../components/Pricing';
 import { addDoc, collection, onSnapshot } from 'firebase/firestore';
-import { db } from '../utils/firebaseClient';
-import { useState } from 'react';
+import { db } from '../lib/firebaseClient';
+import React, { ReactElement, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import { useAuth } from '../components/context/Authentication';
 import { IPlan } from '../model/payment';
+import { NextPageWithLayout } from '../model/layout-types';
 
-const Pricing = ({ plans }: { plans: Array<IPlan> }) => {
+const Pricing: NextPageWithLayout<{ plans: Array<IPlan> }> = ({ plans }) => {
   const { user } = useAuth();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -47,13 +48,11 @@ const Pricing = ({ plans }: { plans: Array<IPlan> }) => {
     });
   }
   return (
-    <Layout>
-      <PricingComponent
-        plans={plans}
-        onClickBuyBtn={handleBuying}
-        isLoading={loading}
-      />
-    </Layout>
+    <PricingComponent
+      plans={plans}
+      onClickBuyBtn={handleBuying}
+      isLoading={loading}
+    />
   );
 };
 
@@ -87,5 +86,9 @@ export async function getStaticProps() {
     }
   };
 }
+
+Pricing.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
+};
 
 export default Pricing;

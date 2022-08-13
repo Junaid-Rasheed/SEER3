@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
-import { db } from '../utils/firebaseClient';
+import { auth, db } from '../lib/firebaseClient';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { ISubscription } from '../model/payment';
 
-export default function useSubscription(uid?: string) {
+export default function useSubscription() {
   const [loading, setLoading] = useState(true);
   const [subscription, setSubscription] = useState<ISubscription | null>(null);
   useEffect(() => {
-    if (!uid) {
+    if (!auth?.currentUser?.uid) {
       setLoading(false);
       return;
     }
     const subscriptionsCollection = collection(
       db,
-      `users/${uid}/subscriptions`
+      `users/${auth.currentUser.uid}/subscriptions`
     );
     const unsubscribe = onSnapshot(subscriptionsCollection, (snap) => {
       let subs: Array<any> = [];
@@ -27,7 +27,7 @@ export default function useSubscription(uid?: string) {
     return () => {
       unsubscribe();
     };
-  }, [uid]);
+  }, []);
 
   return {
     isSubscribed: !!subscription,

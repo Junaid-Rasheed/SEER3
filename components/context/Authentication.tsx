@@ -11,7 +11,7 @@ import {
   signInWithEmailAndPassword,
   signOut
 } from '@firebase/auth';
-import { auth } from '../../utils/firebaseClient';
+import { auth } from '../../lib/firebaseClient';
 import { ICredentials, IUser } from '../../model/auth';
 
 export type AuthType = {

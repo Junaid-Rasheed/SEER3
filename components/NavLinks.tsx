@@ -1,11 +1,12 @@
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import CustomLink from './CustomLink';
-import useSubscription from '../hooks/useSubscription';
-import { useMemo } from 'react';
-import { useAuth } from './context/Authentication';
 
-const commonLink = [
+const navLinks = [
+  {
+    title: 'Pricing',
+    href: '/pricing'
+  },
   {
     title: 'Careers',
     href: '/careers',
@@ -22,33 +23,8 @@ const commonLink = [
   }
 ];
 
-const premiumLinks = [
-  {
-    title: 'Dashboard',
-    href: '/dashboard'
-  },
-  ...commonLink
-];
-
-const regularLinks = [
-  {
-    title: 'Pricing',
-    href: '/pricing'
-  },
-  ...commonLink
-];
-
 export const NavLinks = ({ className }: { className?: string }) => {
-  const { user } = useAuth();
-  const { isSubscribed } = useSubscription(user?.uid);
   const { pathname } = useRouter();
-
-  const navLinks = useMemo(() => {
-    if (isSubscribed && !!user) {
-      return premiumLinks;
-    }
-    return regularLinks;
-  }, [isSubscribed, user]);
 
   return (
     <ul

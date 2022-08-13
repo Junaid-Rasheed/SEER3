@@ -1,5 +1,5 @@
-import React from 'react';
-import { auth } from '../utils/firebaseClient';
+import React, { ReactElement } from 'react';
+import { auth } from '../lib/firebaseClient';
 import Layout from '../components/Layout';
 import { GetServerSidePropsContext } from 'next';
 import { Toaster } from 'react-hot-toast';
@@ -7,30 +7,24 @@ import ResetPassword from '../components/ResetPassword';
 import { ActionMode } from '../model/auth';
 import VerifiedEmail from '../components/VerifiedEmail';
 import { applyActionCode } from 'firebase/auth';
+import { NextPageWithLayout } from '../model/layout-types';
 
-const Verification = ({
-  mode,
-  oobCode,
-  verifiedEmail
-}: {
+const Verification: NextPageWithLayout<{
   mode: ActionMode;
   oobCode: string;
   verifiedEmail?: boolean;
-}) => {
+}> = ({ mode, oobCode, verifiedEmail }) => {
   return (
-    <Layout>
-      <div className="bg-black flex items-center justify-center">
-        <div className="w-auto lg:w-96">
-          {mode === ActionMode.PASSWORD_RESET && (
-            <ResetPassword oobCode={oobCode} />
-          )}
-          {mode === ActionMode.VERIFY_EMAIL && (
-            <VerifiedEmail verifiedEmail={verifiedEmail} />
-          )}
-        </div>
+    <div className="bg-black flex items-center justify-center">
+      <div className="w-auto lg:w-96">
+        {mode === ActionMode.PASSWORD_RESET && (
+          <ResetPassword oobCode={oobCode} />
+        )}
+        {mode === ActionMode.VERIFY_EMAIL && (
+          <VerifiedEmail verifiedEmail={verifiedEmail} />
+        )}
       </div>
-      <Toaster />
-    </Layout>
+    </div>
   );
 };
 
@@ -70,6 +64,15 @@ export const getServerSideProps = async ({
       oobCode: query.oobCode
     }
   };
+};
+
+Verification.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      {page}
+      <Toaster />
+    </Layout>
+  );
 };
 
 export default Verification;

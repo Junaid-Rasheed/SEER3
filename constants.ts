@@ -6,3 +6,6 @@ export const featuresDescription = [
   'Conduct market research',
   'Find investment opportunities'
 ];
+
+export const GOOGLE_APPLICATION_CREDENTIALS =
+  '/home/user/Downloads/service-account-file.json';

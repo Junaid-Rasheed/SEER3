@@ -3,13 +3,13 @@ import Link from 'next/link';
 import GoogleSignInButton from '../components/GoogleSignInButton';
 import Divider from '../components/Divider';
 import Button from '../components/Button';
-import { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useAuth } from '../components/context/Authentication';
 import { useRouter } from 'next/router';
 import { ICredentials } from '../model/auth';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function SignIn() {
+function SignIn() {
   const { user, login } = useAuth();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -46,66 +46,73 @@ export default function SignIn() {
   }
 
   return (
-    <Layout>
-      <div className="bg-black px4 lg:px-10">
-        <div className="max-w-sm mx-auto">
-          <div className="py-10 grid grid-cols-1 gap-y-5">
-            <h2 className="heading text-white text-center">LOG IN</h2>
-            <GoogleSignInButton />
-            <Divider />
-            <fieldset disabled={loading}>
-              <form onSubmit={handleLogin}>
-                <div className="">
-                  <label className="text-white uppercase">Email</label>
-                  <input
-                    className="input"
-                    name="email"
-                    placeholder="Email"
-                    type="email"
-                    onChange={handleChange}
-                    value={credentials.email}
-                    required
-                  />
-                </div>
-                <div className="mt-5">
-                  <label className="text-white uppercase">Password</label>
-                  <input
-                    required
-                    className="input"
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                    value={credentials.password}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="text-white mt-5">
-                  <p className="text-sm">
-                    FORGOT PASSWORD?{' '}
-                    <Link href="/forgot-password">
-                      <a className="underline hover:text-decode3">RESET IT</a>
-                    </Link>
-                  </p>
-                </div>
-                <Button
-                  type="submit"
-                  className="mt-8 w-full uppercase font-bold"
-                  isLoading={loading}
-                >
-                  Log in
-                </Button>
-              </form>
-            </fieldset>
-            <p className="text-white text-center text-sm">
-              DON&apos;T HAVE AN ACCOUNT?{' '}
-              <Link href="/signup">
-                <a className="underline hover:text-decode3">REGISTER</a>
-              </Link>
-            </p>
-          </div>
+    <div className="bg-black px4 lg:px-10">
+      <div className="max-w-sm mx-auto">
+        <div className="py-10 grid grid-cols-1 gap-y-5">
+          <h2 className="heading text-white text-center">LOG IN</h2>
+          <GoogleSignInButton />
+          <Divider />
+          <fieldset disabled={loading}>
+            <form onSubmit={handleLogin}>
+              <div className="">
+                <label className="text-white uppercase">Email</label>
+                <input
+                  className="input"
+                  name="email"
+                  placeholder="Email"
+                  type="email"
+                  onChange={handleChange}
+                  value={credentials.email}
+                  required
+                />
+              </div>
+              <div className="mt-5">
+                <label className="text-white uppercase">Password</label>
+                <input
+                  required
+                  className="input"
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                  value={credentials.password}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="text-white mt-5">
+                <p className="text-sm">
+                  FORGOT PASSWORD?{' '}
+                  <Link href="/forgot-password">
+                    <a className="underline hover:text-decode3">RESET IT</a>
+                  </Link>
+                </p>
+              </div>
+              <Button
+                type="submit"
+                className="mt-8 w-full uppercase font-bold"
+                isLoading={loading}
+              >
+                Log in
+              </Button>
+            </form>
+          </fieldset>
+          <p className="text-white text-center text-sm">
+            DON&apos;T HAVE AN ACCOUNT?{' '}
+            <Link href="/signup">
+              <a className="underline hover:text-decode3">REGISTER</a>
+            </Link>
+          </p>
         </div>
       </div>
-      <Toaster />
-    </Layout>
+    </div>
   );
 }
+
+SignIn.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      {page} <Toaster />
+    </Layout>
+  );
+};
+
+export default SignIn;

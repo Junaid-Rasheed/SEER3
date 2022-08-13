@@ -1,7 +1,7 @@
 import React from 'react';
 import GoogleIcon from './icons/GoogleIcon';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { auth } from '../utils/firebaseClient';
+import { auth } from '../lib/firebaseClient';
 import Button from './Button';
 import { addUserByGoogleSignIn } from '../lib/firestore';
 

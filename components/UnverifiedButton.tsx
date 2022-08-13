@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { sendEmailVerification } from 'firebase/auth';
-import { auth } from '../utils/firebaseClient';
+import { auth } from '../lib/firebaseClient';
 import toast, { Toaster } from 'react-hot-toast';
 import Button from './Button';
 

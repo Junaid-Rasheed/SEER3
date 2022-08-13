@@ -1,24 +1,22 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import Layout from '../components/Layout';
 import { GetServerSidePropsContext } from 'next';
 import Stripe from 'stripe';
+import { NextPageWithLayout } from '../model/layout-types';
 
-const Result = ({ customer }: { customer: any }) => {
-  console.log(customer);
+const Result: NextPageWithLayout<{ customer: any }> = ({ customer }) => {
   return (
-    <Layout>
-      <div className="py-10">
-        <h2 className="text-center">Purchased succeeded!</h2>
-        <div className="h-96 max-w-xl mx-auto mt-8">
-          <p>
-            Customer name: <span className="font-bold"> {customer?.name}</span>
-          </p>
-          <p>
-            Email: <span className="font-bold"> {customer?.email}</span>
-          </p>
-        </div>
+    <div className="py-10">
+      <h2 className="text-center">Purchased succeeded!</h2>
+      <div className="h-96 max-w-xl mx-auto mt-8">
+        <p>
+          Customer name: <span className="font-bold"> {customer?.name}</span>
+        </p>
+        <p>
+          Email: <span className="font-bold"> {customer?.email}</span>
+        </p>
       </div>
-    </Layout>
+    </div>
   );
 };
 
@@ -48,6 +46,10 @@ export const getServerSideProps = async ({
       }
     };
   }
+};
+
+Result.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
 };
 
 export default Result;

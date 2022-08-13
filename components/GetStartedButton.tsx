@@ -12,7 +12,7 @@ export default function GetStartedButton({
 }) {
   const { user } = useAuth();
   const router = useRouter();
-  const { isSubscribed } = useSubscription(user?.uid);
+  const { isSubscribed } = useSubscription();
 
   async function handleNavigation() {
     let url;

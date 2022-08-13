@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { db, auth } from '../utils/firebaseClient';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import { db, auth } from '../lib/firebaseClient';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import Layout from '../components/Layout';
@@ -18,13 +18,13 @@ const SignUp = () => {
     email: '',
     password: '',
     firstName: '',
-    lastName: '',
+    lastName: ''
   });
 
   function handleChange(e: any) {
     setUser({
       ...user,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   }
 
@@ -35,7 +35,7 @@ const SignUp = () => {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         user.email,
-        user.password,
+        user.password
       );
 
       // await sendEmailVerification(userCredential.user);
@@ -43,7 +43,7 @@ const SignUp = () => {
       const collectionRef = collection(db, 'users');
       await setDoc(doc(collectionRef, userCredential.user.uid), {
         ...user,
-        uid: userCredential.user.uid,
+        uid: userCredential.user.uid
       });
 
       toast.success('Successfully created!');
@@ -52,7 +52,7 @@ const SignUp = () => {
         email: '',
         password: '',
         firstName: '',
-        lastName: '',
+        lastName: ''
       });
       await waitFor(1500);
       await router.push('/');
@@ -73,102 +73,107 @@ const SignUp = () => {
   }, []);
 
   return (
-    <Layout>
-      <section className="bg-black px-4 lg:px-10">
-        <div className="mx-auto max-w-sm pb-10 grid grid-cols-1 gap-y-8">
-          <h3 className="text-white heading text-center pt-10">
-            WELCOME TO DECODE 3
-          </h3>
-          <div>
-            <GoogleSignInButton />
-          </div>
-          <div className="grid grid-cols-[1fr,auto,1fr] items-center gap-x-3">
-            <hr />
-            <span className="text-white">OR</span>
-            <hr />
-          </div>
-          <fieldset disabled={loading}>
-            <form
-              onSubmit={handleSubmit}
-              className="grid grid-cols-1 gap-y-5 uppercase"
-            >
-              <div className="grid grid-cols-2 gap-x-3">
-                <div>
-                  <label className="text-sm text-white">First name</label>
-                  <input
-                    className="input"
-                    name="firstName"
-                    type="First name"
-                    value={user.firstName}
-                    placeholder="First name"
-                    required
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label className="text-white text-sm">Last name</label>
-                  <input
-                    className="input"
-                    name="lastName"
-                    placeholder="Last name"
-                    value={user.lastName}
-                    type="Last name"
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              <div className="">
-                <label className="text-sm text-white">Email</label>
-                <input
-                  className="input"
-                  name="email"
-                  placeholder="Email"
-                  value={user.email}
-                  type="email"
-                  required
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="">
-                <label className="text-sm text-white">Password</label>
-                <input
-                  required
-                  value={user.password}
-                  className="input"
-                  placeholder="Password"
-                  name="password"
-                  type="password"
-                  onChange={handleChange}
-                />
-              </div>
-              <Button
-                className="mt-5 w-full py-3 px-3 font-bold"
-                type="submit"
-                isLoading={loading}
-              >
-                Sign up
-              </Button>
-            </form>
-          </fieldset>
-          <div className="text-white text-center text-sm">
-            HAVE AN ACCOUNT?{' '}
-            <Link href="/signin">
-              <a className="underline hover:text-decode3">LOG IN</a>
-            </Link>
-          </div>
-          <p className="uppercase text-sm text-white text-center">
-              by singing up, you agree to the {' '}
-              <Link href="/terms-of-service">
-                <a className="underline hover:text-decode3">terms of service</a>
-              </Link>
-              and the {' '}
-              <Link href="/privacy-policy">
-                <a className="underline hover:text-decode3">privacy policy</a>
-              </Link>
-          </p>
+    <section className="bg-black px-4 lg:px-10">
+      <div className="mx-auto max-w-sm pb-10 grid grid-cols-1 gap-y-8">
+        <h3 className="text-white heading text-center pt-10">
+          WELCOME TO DECODE 3
+        </h3>
+        <div>
+          <GoogleSignInButton />
         </div>
-      </section>
-      <Toaster />
+        <div className="grid grid-cols-[1fr,auto,1fr] items-center gap-x-3">
+          <hr />
+          <span className="text-white">OR</span>
+          <hr />
+        </div>
+        <fieldset disabled={loading}>
+          <form
+            onSubmit={handleSubmit}
+            className="grid grid-cols-1 gap-y-5 uppercase"
+          >
+            <div className="grid grid-cols-2 gap-x-3">
+              <div>
+                <label className="text-sm text-white">First name</label>
+                <input
+                  className="input"
+                  name="firstName"
+                  type="First name"
+                  value={user.firstName}
+                  placeholder="First name"
+                  required
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label className="text-white text-sm">Last name</label>
+                <input
+                  className="input"
+                  name="lastName"
+                  placeholder="Last name"
+                  value={user.lastName}
+                  type="Last name"
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div className="">
+              <label className="text-sm text-white">Email</label>
+              <input
+                className="input"
+                name="email"
+                placeholder="Email"
+                value={user.email}
+                type="email"
+                required
+                onChange={handleChange}
+              />
+            </div>
+            <div className="">
+              <label className="text-sm text-white">Password</label>
+              <input
+                required
+                value={user.password}
+                className="input"
+                placeholder="Password"
+                name="password"
+                type="password"
+                onChange={handleChange}
+              />
+            </div>
+            <Button
+              className="mt-5 w-full py-3 px-3 font-bold"
+              type="submit"
+              isLoading={loading}
+            >
+              Sign up
+            </Button>
+          </form>
+        </fieldset>
+        <div className="text-white text-center text-sm">
+          HAVE AN ACCOUNT?{' '}
+          <Link href="/signin">
+            <a className="underline hover:text-decode3">LOG IN</a>
+          </Link>
+        </div>
+        <p className="uppercase text-sm text-white text-center">
+          by singing up, you agree to the{' '}
+          <Link href="/terms-of-service">
+            <a className="underline hover:text-decode3">terms of service</a>
+          </Link>
+          and the{' '}
+          <Link href="/privacy-policy">
+            <a className="underline hover:text-decode3">privacy policy</a>
+          </Link>
+        </p>
+      </div>
+    </section>
+  );
+};
+
+SignUp.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      {page} <Toaster />
     </Layout>
   );
 };

@@ -1,5 +1,5 @@
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '../utils/firebaseClient';
+import { db } from './firebaseClient';
 import { IUser } from '../model/auth';
 import { Collections } from './collections';
 
