@@ -12,3 +12,11 @@ export interface ISubscription {
   current_period_end?: Timestamp;
   current_period_start?: Timestamp;
 }
+
+export interface IPlan {
+  id: string;
+  name: string;
+  price: number;
+  interval: IntervalType;
+  currency?: string;
+}
