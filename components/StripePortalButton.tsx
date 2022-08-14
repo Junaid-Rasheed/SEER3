@@ -35,11 +35,13 @@ const StripePortalButton = () => {
   };
 
   return (
-    <div className="flex items-center justify-center gap-x-5">
-      <div className="flex items-center gap-x-1 justify-center text-white">
-        Plan: ${(subscription?.items?.[0]?.plan.amount || 0) / 100}/
-        {subscription?.items?.[0]?.plan.interval}
-      </div>
+    <div className="py-10">
+      <h3 className="text-white mb-3">
+        You already subscribed plan:{' '}
+        <span className="text-decode3 border border-decode3 px-3 uppercase font-bold">
+          {subscription?.items?.[0]?.plan.interval}
+        </span>
+      </h3>
       <Button isLoading={loading} onClick={loadPortal} className="px-4 py-2">
         Change plan
       </Button>

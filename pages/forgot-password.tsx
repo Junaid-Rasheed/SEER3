@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react';
-import Layout from '../components/Layout';
+import PublicLayout from '../components/layouts/PublicLayout';
 import Button from '../components/Button';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../lib/firebaseClient';
@@ -85,8 +85,8 @@ const ForgotPassword: NextPageWithLayout = () => {
   );
 };
 
-ForgotPassword.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
+ForgotPassword.getLayout = (page: ReactElement) => (
+  <PublicLayout>{page}</PublicLayout>
+);
 
 export default ForgotPassword;

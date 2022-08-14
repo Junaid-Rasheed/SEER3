@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import Layout from '../components/Layout';
+import PublicLayout from '../components/layouts/PublicLayout';
 import { NextPageWithLayout } from '../model/layout-types';
 
 const PrivacyPolicy: NextPageWithLayout = () => {
@@ -371,8 +371,8 @@ const PrivacyPolicy: NextPageWithLayout = () => {
   );
 };
 
-PrivacyPolicy.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
+PrivacyPolicy.getLayout = (page: ReactElement) => (
+  <PublicLayout>{page}</PublicLayout>
+);
 
 export default PrivacyPolicy;

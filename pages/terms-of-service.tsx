@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import Layout from '../components/Layout';
+import PublicLayout from '../components/layouts/PublicLayout';
 
 const TermsOfService = () => {
   return (
@@ -252,8 +252,8 @@ const TermsOfService = () => {
   );
 };
 
-TermsOfService.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
+TermsOfService.getLayout = (page: ReactElement) => (
+  <PublicLayout>{page}</PublicLayout>
+);
 
 export default TermsOfService;

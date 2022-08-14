@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import Layout from '../components/Layout';
+import PublicLayout from '../components/layouts/PublicLayout';
 import { GetServerSidePropsContext } from 'next';
 import Stripe from 'stripe';
 import { NextPageWithLayout } from '../model/layout-types';
@@ -48,8 +48,6 @@ export const getServerSideProps = async ({
   }
 };
 
-Result.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
+Result.getLayout = (page: ReactElement) => <PublicLayout>{page}</PublicLayout>;
 
 export default Result;
