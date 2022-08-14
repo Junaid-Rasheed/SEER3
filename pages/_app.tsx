@@ -14,7 +14,19 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   const getLayout = Component.getLayout ?? ((page) => page);
 
-  return <AuthProvider>{getLayout(<Component {...pageProps} />)}</AuthProvider>;
+  return (
+    <AuthProvider>
+      {getLayout(
+        protectedRoutes.includes(router.pathname) ? (
+          <ProtectedRoute>
+            <Component {...pageProps} />
+          </ProtectedRoute>
+        ) : (
+          <Component {...pageProps} />
+        )
+      )}
+    </AuthProvider>
+  );
 }
 
 export default MyApp;

@@ -25,11 +25,11 @@ function SignIn() {
     }));
   }
 
-  // useEffect(() => {
-  //   if (user) {
-  //     router.push('/dashboard');
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (user) {
+      router.push('/');
+    }
+  }, [router, user]);
 
   async function handleLogin(e: any) {
     e.preventDefault();
@@ -37,6 +37,7 @@ function SignIn() {
       setLoading(true);
       try {
         await login?.(credentials);
+        await router.push('/');
       } catch (err: any) {
         toast.error(err?.message);
       } finally {
