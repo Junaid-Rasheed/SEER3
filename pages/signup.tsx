@@ -9,9 +9,11 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import Button from '../components/Button';
 import { waitFor } from '../utils/common';
+import { useAuth } from '../components/context/Authentication';
 
 const SignUp = () => {
   const router = useRouter();
+  const { user: currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const timeoutId = useRef<any>(null);
   const [user, setUser] = useState({
@@ -71,6 +73,12 @@ const SignUp = () => {
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (currentUser) {
+      router.push('/');
+    }
+  }, [router, currentUser]);
 
   return (
     <section className="bg-black px-4 lg:px-10">
