@@ -3,20 +3,18 @@ import { ArrowSmRightIcon } from '@heroicons/react/outline';
 import { useAuth } from './context/Authentication';
 import Button from './Button';
 import { useRouter } from 'next/router';
-import useSubscription from '../hooks/useSubscription';
 
 export default function GetStartedButton({
   className
 }: {
   className?: string;
 }) {
-  const { user } = useAuth();
+  const { user, subscription } = useAuth();
   const router = useRouter();
-  const { isSubscribed } = useSubscription(user?.uid);
 
   async function handleNavigation() {
     let url;
-    if (isSubscribed && user) {
+    if (!!subscription && user) {
       url = '/dashboard';
     } else if (user) {
       url = '/pricing';

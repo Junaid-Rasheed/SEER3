@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { db } from '../lib/firebaseClient';
-import { collection, onSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { ISubscription } from '../model/payment';
 
 export default function useSubscription(uid?: string) {
@@ -10,16 +10,16 @@ export default function useSubscription(uid?: string) {
     if (!uid) {
       return;
     }
-    const subscriptionsCollection = collection(
-      db,
-      `users/${uid}/subscriptions`
+    const q = query(
+      collection(db, `users/${uid}/subscriptions`),
+      where('status', '==', 'active')
     );
-    const unsubscribe = onSnapshot(subscriptionsCollection, (snap) => {
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let subs: Array<any> = [];
-      snap.forEach((doc) => {
+      querySnapshot.forEach((doc) => {
         subs.push(doc.data());
       });
-      setSubscription(subs.filter((s) => s.status === 'active')?.[0]);
+      setSubscription(subs.length ? subs[0] : null);
       setLoading(false);
     });
 

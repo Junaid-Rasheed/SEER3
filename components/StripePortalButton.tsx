@@ -4,13 +4,9 @@ import toast, { Toaster } from 'react-hot-toast';
 import { fetchPostJSON } from '../utils/api-helpers';
 import { auth } from '../lib/firebaseClient';
 import { useRouter } from 'next/router';
-import useSubscription from '../hooks/useSubscription';
-import { useAuth } from './context/Authentication';
 
-const StripePortalButton = () => {
+const StripePortalButton = ({ className }: { className?: string }) => {
   const router = useRouter();
-  const { user } = useAuth();
-  const { subscription } = useSubscription(user?.uid);
   const [loading, setLoading] = useState(false);
 
   const loadPortal = async () => {
@@ -35,18 +31,12 @@ const StripePortalButton = () => {
   };
 
   return (
-    <div className="py-10">
-      <h3 className="text-white mb-3">
-        You already subscribed plan:{' '}
-        <span className="text-decode3 border border-decode3 px-3 uppercase font-bold">
-          {subscription?.items?.[0]?.plan.interval}
-        </span>
-      </h3>
-      <Button isLoading={loading} onClick={loadPortal} className="px-4 py-2">
-        Change plan
+    <>
+      <Button isLoading={loading} onClick={loadPortal} className={className}>
+        Open customer portal
       </Button>
       <Toaster />
-    </div>
+    </>
   );
 };
 

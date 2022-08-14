@@ -1,25 +1,17 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDoc,
+  setDoc,
+  where,
+  query,
+  getDocs
+} from 'firebase/firestore';
 import { db } from './firebaseClient';
 import { IUser } from '../model/auth';
 import { Collections } from './collections';
-
-export function getStripeCustomerIdByUserId(uid: string): Promise<string> {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const docRef = doc(db, 'users', uid);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        const user = docSnap.data();
-        resolve(user.stripeId);
-      } else {
-        // doc.data() will be undefined in this case
-        reject({ message: 'No such document!' });
-      }
-    } catch (err) {
-      reject(err);
-    }
-  });
-}
+import { Price, Subscription } from '../model/payment';
+import type { DocumentReference } from '@firebase/firestore';
 
 export function addUserByGoogleSignIn(user: IUser): Promise<boolean> {
   return new Promise(async (resolve, reject) => {
@@ -42,6 +34,43 @@ export function addUserByGoogleSignIn(user: IUser): Promise<boolean> {
       resolve(true);
     } catch (err) {
       reject(err);
+    }
+  });
+}
+
+export function getFireStoreDoc<T>(field: DocumentReference<T>) {
+  return getDoc(field).then((res) => res.data());
+}
+
+export function getSubscription(uid: string): Promise<Subscription | null> {
+  if (!uid) {
+    return Promise.resolve(null);
+  }
+  const q = query(
+    collection(db, `users/${uid}/subscriptions`),
+    where('status', '==', 'active')
+  );
+  return new Promise(async (resolve) => {
+    try {
+      const querySnapshot = await getDocs(q);
+      const rs: Array<any> = [];
+      querySnapshot.forEach((doc) => {
+        rs.push(doc.data());
+      });
+      if (rs.length) {
+        const price = await getFireStoreDoc<Price>(rs[0].price);
+        resolve({
+          id: rs[0].id,
+          status: rs[0].status,
+          current_period_start: rs[0].current_period_start,
+          current_period_end: rs[0].current_period_end,
+          price
+        });
+      } else {
+        resolve(null);
+      }
+    } catch (err) {
+      resolve(null);
     }
   });
 }
