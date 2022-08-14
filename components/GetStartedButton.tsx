@@ -9,19 +9,11 @@ export default function GetStartedButton({
 }: {
   className?: string;
 }) {
-  const { user, subscription } = useAuth();
+  const { user } = useAuth();
   const router = useRouter();
 
   async function handleNavigation() {
-    let url;
-    if (!!subscription && user) {
-      url = '/dashboard';
-    } else if (user) {
-      url = '/pricing';
-    } else {
-      url = '/signup';
-    }
-    await router.push(url);
+    await router.push(user ? '/dashboard' : '/signup');
   }
 
   return (
