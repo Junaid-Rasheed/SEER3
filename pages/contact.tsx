@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import Layout from '../components/Layout';
+import PublicLayout from '../components/layouts/PublicLayout';
 import Image from 'next/image';
 import ContactForm from '../components/ContactForm';
 
@@ -49,8 +49,6 @@ const Contact = () => {
   );
 };
 
-Contact.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
+Contact.getLayout = (page: ReactElement) => <PublicLayout>{page}</PublicLayout>;
 
 export default Contact;

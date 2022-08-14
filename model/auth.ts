@@ -10,8 +10,8 @@ export interface IUser {
   email: string | null;
   firstName?: string;
   lastName?: string;
-  displayName: string | null;
-  photoURL: string | null;
+  displayName?: string | null;
+  photoURL?: string | null;
   emailVerified?: boolean;
   stripeId?: string;
 }

@@ -8,7 +8,6 @@ export default function useSubscription(uid?: string) {
   const [subscription, setSubscription] = useState<ISubscription | null>(null);
   useEffect(() => {
     if (!uid) {
-      setLoading(false);
       return;
     }
     const subscriptionsCollection = collection(
@@ -20,8 +19,8 @@ export default function useSubscription(uid?: string) {
       snap.forEach((doc) => {
         subs.push(doc.data());
       });
-      setLoading(false);
       setSubscription(subs.filter((s) => s.status === 'active')?.[0]);
+      setLoading(false);
     });
 
     return () => {

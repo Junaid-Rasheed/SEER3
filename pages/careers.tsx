@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Widget } from '@typeform/embed-react';
-import Layout from '../components/Layout';
+import PublicLayout from '../components/layouts/PublicLayout';
 
 const Careers = () => {
   return (
@@ -10,8 +10,6 @@ const Careers = () => {
   );
 };
 
-Careers.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
+Careers.getLayout = (page: ReactElement) => <PublicLayout>{page}</PublicLayout>;
 
 export default Careers;

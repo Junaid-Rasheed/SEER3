@@ -1,4 +1,4 @@
-import Layout from '../components/Layout';
+import PublicLayout from '../components/layouts/PublicLayout';
 import Hero from '../components/Hero';
 import ExplainProduct from '../components/ExplainProduct';
 import Data from '../components/Data';
@@ -22,8 +22,8 @@ const Home: NextPageWithLayout = () => {
   );
 };
 
-Home.getLayout = function getLayout(page: ReactElement) {
-  return <Layout banner={<Banner />}>{page}</Layout>;
-};
+Home.getLayout = (page: ReactElement) => (
+  <PublicLayout banner={<Banner />}>{page}</PublicLayout>
+);
 
 export default Home;

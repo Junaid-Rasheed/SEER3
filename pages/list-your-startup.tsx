@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Widget } from '@typeform/embed-react';
-import Layout from '../components/Layout';
+import PublicLayout from '../components/layouts/PublicLayout';
 import { NextPageWithLayout } from '../model/layout-types';
 
 const ListYourStartup: NextPageWithLayout = () => {
@@ -11,8 +11,8 @@ const ListYourStartup: NextPageWithLayout = () => {
   );
 };
 
-ListYourStartup.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
+ListYourStartup.getLayout = (page: ReactElement) => (
+  <PublicLayout>{page}</PublicLayout>
+);
 
 export default ListYourStartup;

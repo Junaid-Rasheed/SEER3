@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { db, auth } from '../lib/firebaseClient';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { collection, doc, setDoc } from 'firebase/firestore';
-import Layout from '../components/Layout';
+import PublicLayout from '../components/layouts/PublicLayout';
 import GoogleSignInButton from '../components/GoogleSignInButton';
 import Link from 'next/link';
 import toast, { Toaster } from 'react-hot-toast';
@@ -170,12 +170,10 @@ const SignUp = () => {
   );
 };
 
-SignUp.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <Layout>
-      {page} <Toaster />
-    </Layout>
-  );
-};
+SignUp.getLayout = (page: ReactElement) => (
+  <PublicLayout>
+    {page} <Toaster />
+  </PublicLayout>
+);
 
 export default SignUp;

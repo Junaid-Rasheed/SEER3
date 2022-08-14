@@ -1,5 +1,5 @@
 import Stripe from 'stripe';
-import Layout from '../components/Layout';
+import PublicLayout from '../components/layouts/PublicLayout';
 import PricingComponent from '../components/Pricing';
 import { addDoc, collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../lib/firebaseClient';
@@ -9,10 +9,12 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../components/context/Authentication';
 import { IPlan } from '../model/payment';
 import { NextPageWithLayout } from '../model/layout-types';
+import useSubscription from '../hooks/useSubscription';
 
 const Pricing: NextPageWithLayout<{ plans: Array<IPlan> }> = ({ plans }) => {
   const { user } = useAuth();
   const router = useRouter();
+  const { isSubscribed } = useSubscription(user?.uid);
   const [loading, setLoading] = useState(false);
 
   async function handleBuying(productId: string) {
@@ -27,7 +29,7 @@ const Pricing: NextPageWithLayout<{ plans: Array<IPlan> }> = ({ plans }) => {
       collection(db, `users/${user.uid}/checkout_sessions`),
       {
         price: productId,
-        success_url: window.location.origin,
+        success_url: `${window.location.origin}/dashboard`,
         cancel_url: window.location.origin
       }
     );
@@ -47,9 +49,11 @@ const Pricing: NextPageWithLayout<{ plans: Array<IPlan> }> = ({ plans }) => {
       }
     });
   }
+
   return (
     <PricingComponent
       plans={plans}
+      isSubscribed={isSubscribed}
       onClickBuyBtn={handleBuying}
       isLoading={loading}
     />
@@ -87,8 +91,6 @@ export async function getStaticProps() {
   };
 }
 
-Pricing.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
+Pricing.getLayout = (page: ReactElement) => <PublicLayout>{page}</PublicLayout>;
 
 export default Pricing;
