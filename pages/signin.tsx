@@ -1,4 +1,4 @@
-import Layout from '../components/Layout';
+import PublicLayout from '../components/layouts/PublicLayout';
 import Link from 'next/link';
 import GoogleSignInButton from '../components/GoogleSignInButton';
 import Divider from '../components/Divider';
@@ -10,7 +10,7 @@ import { ICredentials } from '../model/auth';
 import toast, { Toaster } from 'react-hot-toast';
 
 function SignIn() {
-  const { user, login } = useAuth();
+  const { user, login, loading: authLoading } = useAuth();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [credentials, setCredentials] = useState<ICredentials>({
@@ -25,11 +25,11 @@ function SignIn() {
     }));
   }
 
-  useEffect(() => {
-    if (user) {
-      router.push('/dashboard');
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     router.push('/dashboard');
+  //   }
+  // }, [user]);
 
   async function handleLogin(e: any) {
     e.preventDefault();
@@ -107,12 +107,10 @@ function SignIn() {
   );
 }
 
-SignIn.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <Layout>
-      {page} <Toaster />
-    </Layout>
-  );
-};
+SignIn.getLayout = (page: ReactElement) => (
+  <PublicLayout>
+    {page} <Toaster />
+  </PublicLayout>
+);
 
 export default SignIn;

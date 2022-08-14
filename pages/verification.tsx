@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { auth } from '../lib/firebaseClient';
-import Layout from '../components/Layout';
+import PublicLayout from '../components/layouts/PublicLayout';
 import { GetServerSidePropsContext } from 'next';
 import { Toaster } from 'react-hot-toast';
 import ResetPassword from '../components/ResetPassword';
@@ -66,13 +66,11 @@ export const getServerSideProps = async ({
   };
 };
 
-Verification.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <Layout>
-      {page}
-      <Toaster />
-    </Layout>
-  );
-};
+Verification.getLayout = (page: ReactElement) => (
+  <PublicLayout>
+    {page}
+    <Toaster />
+  </PublicLayout>
+);
 
 export default Verification;

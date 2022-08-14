@@ -1,5 +1,5 @@
 import Stripe from 'stripe';
-import Layout from '../components/Layout';
+import PublicLayout from '../components/layouts/PublicLayout';
 import PricingComponent from '../components/Pricing';
 import { addDoc, collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../lib/firebaseClient';
@@ -87,8 +87,6 @@ export async function getStaticProps() {
   };
 }
 
-Pricing.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
+Pricing.getLayout = (page: ReactElement) => <PublicLayout>{page}</PublicLayout>;
 
 export default Pricing;
