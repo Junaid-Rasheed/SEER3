@@ -43,7 +43,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
           emailVerified: currentUser.emailVerified
         });
         const sub = await getSubscription(currentUser.uid);
-        console.log(sub);
         setSubscription(sub);
       } else {
         setUser(null);
