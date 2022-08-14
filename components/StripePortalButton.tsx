@@ -5,7 +5,7 @@ import { fetchPostJSON } from '../utils/api-helpers';
 import { auth } from '../lib/firebaseClient';
 import { useRouter } from 'next/router';
 
-const StripePortalButton = () => {
+const StripePortalButton = ({ className }: { className?: string }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -32,11 +32,7 @@ const StripePortalButton = () => {
 
   return (
     <>
-      <Button
-        isLoading={loading}
-        onClick={loadPortal}
-        className="px-4 py-2 text-black"
-      >
+      <Button isLoading={loading} onClick={loadPortal} className={className}>
         Open customer portal
       </Button>
       <Toaster />

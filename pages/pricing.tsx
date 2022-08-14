@@ -51,7 +51,7 @@ const Pricing: NextPageWithLayout<{ plans: Array<IPlan> }> = ({ plans }) => {
   return (
     <PricingComponent
       plans={plans}
-      isSubscribed={!!subscription}
+      subscription={subscription}
       onClickBuyBtn={handleBuying}
       isLoading={loading}
     />

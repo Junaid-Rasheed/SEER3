@@ -54,7 +54,7 @@ const Dashboard = () => {
                 <p className="pb-4 sm:pb-0">
                   Manage your subscription on Stripe.
                 </p>
-                <StripePortalButton />
+                <StripePortalButton className="px-4 text-black font-medium" />
               </div>
             }
           >
