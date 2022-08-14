@@ -22,7 +22,7 @@ const ProtectedRoute = ({ children }: { children?: React.ReactNode }) => {
     case user && !subscription && !loading:
       return <GetAccessToDashboard />;
 
-    case !!user && subscription:
+    case !!user && !!subscription:
       return <>{children}</>;
 
     default:
