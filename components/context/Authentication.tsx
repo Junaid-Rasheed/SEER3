@@ -13,6 +13,8 @@ import {
 } from '@firebase/auth';
 import { auth } from '../../lib/firebaseClient';
 import { ICredentials, IUser } from '../../model/auth';
+import { getSubscription } from '../../lib/firestore';
+import { Subscription } from '../../model/payment';
 
 export type AuthType = {
   user: IUser | null;
@@ -20,16 +22,18 @@ export type AuthType = {
   signup?: (credentials: ICredentials) => Promise<any>;
   logout?: () => void;
   loading?: boolean;
+  subscription: Subscription | null;
 };
 
-const AuthContext = createContext<AuthType>({ user: null });
+const AuthContext = createContext<AuthType>({ user: null, subscription: null });
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
+  const [subscription, setSubscription] = useState<Subscription | null>(null);
   const [user, setUser] = useState<IUser | null>(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         setUser({
           uid: currentUser.uid,
@@ -38,6 +42,9 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
           displayName: currentUser.displayName,
           emailVerified: currentUser.emailVerified
         });
+        const sub = await getSubscription(currentUser.uid);
+        console.log(sub);
+        setSubscription(sub);
       } else {
         setUser(null);
       }
@@ -68,7 +75,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         login,
         signup,
         logout,
-        loading
+        loading,
+        subscription
       }}
     >
       {children}

@@ -9,12 +9,10 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../components/context/Authentication';
 import { IPlan } from '../model/payment';
 import { NextPageWithLayout } from '../model/layout-types';
-import useSubscription from '../hooks/useSubscription';
 
 const Pricing: NextPageWithLayout<{ plans: Array<IPlan> }> = ({ plans }) => {
-  const { user } = useAuth();
+  const { user, subscription } = useAuth();
   const router = useRouter();
-  const { isSubscribed } = useSubscription(user?.uid);
   const [loading, setLoading] = useState(false);
 
   async function handleBuying(productId: string) {
@@ -53,7 +51,7 @@ const Pricing: NextPageWithLayout<{ plans: Array<IPlan> }> = ({ plans }) => {
   return (
     <PricingComponent
       plans={plans}
-      isSubscribed={isSubscribed}
+      isSubscribed={!!subscription}
       onClickBuyBtn={handleBuying}
       isLoading={loading}
     />

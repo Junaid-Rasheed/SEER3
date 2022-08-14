@@ -4,13 +4,11 @@ import toast, { Toaster } from 'react-hot-toast';
 import { fetchPostJSON } from '../utils/api-helpers';
 import { auth } from '../lib/firebaseClient';
 import { useRouter } from 'next/router';
-import useSubscription from '../hooks/useSubscription';
 import { useAuth } from './context/Authentication';
 
 const StripePortalButton = () => {
   const router = useRouter();
-  const { user } = useAuth();
-  const { subscription } = useSubscription(user?.uid);
+  const { subscription } = useAuth();
   const [loading, setLoading] = useState(false);
 
   const loadPortal = async () => {
