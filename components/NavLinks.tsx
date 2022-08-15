@@ -5,25 +5,32 @@ import CustomLink from './CustomLink';
 const navLinks = [
   {
     title: 'Pricing',
-    href: '/pricing'
+    href: '/pricing',
   },
   {
     title: 'Careers',
     href: '/careers',
-    parent: true
+    parent: true,
   },
   {
     title: 'Contact',
-    href: '/contact'
+    href: '/contact',
   },
   {
     title: 'Twitter',
     href: 'https://twitter.com/decode3_xyz',
-    openNewTab: true
-  }
+    openNewTab: true,
+  },
 ];
 
-export const NavLinks = ({ className }: { className?: string }) => {
+export const NavLinks = (
+  {
+    className,
+    handleClickLink,
+  }: {
+    className?: string,
+    handleClickLink?: () => void;
+  }) => {
   const { pathname } = useRouter();
 
   return (
@@ -32,9 +39,13 @@ export const NavLinks = ({ className }: { className?: string }) => {
     >
       {navLinks.map(({ href, title, openNewTab }) => (
         <li
+          onClick={() => {
+            // @ts-ignore
+            handleClickLink()
+          }}
           key={href + title}
           className={classNames('uppercase py-2 md:py-1 md:px-6', {
-            'font-bold': href === `/${pathname.split('/')[1]}`
+            'font-bold': href === `/${pathname.split('/')[1]}`,
           })}
         >
           <CustomLink

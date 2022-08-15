@@ -36,7 +36,7 @@ export default function WhoWeServe() {
         <br />
         <span className="text-decode3"> A partner </span>
       </h1>
-      <ul className="flex flex-col justify-between md:flex-row gap-5 xl:gap-20 my-16 text-white">
+      <ul className="flex flex-col justify-between md:flex-row gap-5 xl:gap-20 my-8 md:my-16 text-white">
         {DATA.map((data) => (
           <li className="w-full bg-black px-8 py-12" key={data.id}>
             <div className="relative w-full aspect-h-1 aspect-w-1">

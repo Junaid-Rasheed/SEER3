@@ -81,7 +81,7 @@ const SignUp = () => {
   }, [router, currentUser]);
 
   return (
-    <section className="bg-black px-4 lg:px-10">
+    <section className="bg-black px-10">
       <div className="mx-auto max-w-sm pb-10 grid grid-cols-1 gap-y-8">
         <h3 className="text-white heading text-center pt-10">
           WELCOME TO DECODE 3
@@ -164,11 +164,11 @@ const SignUp = () => {
           </Link>
         </div>
         <p className="uppercase text-sm text-white text-center">
-          by singing up, you agree to the{' '}
+          by signing up, you agree to the{' '}
           <Link href="/terms-of-service">
             <a className="underline hover:text-decode3">terms of service</a>
           </Link>
-          and the{' '}
+          {' '}and the{' '}
           <Link href="/privacy-policy">
             <a className="underline hover:text-decode3">privacy policy</a>
           </Link>

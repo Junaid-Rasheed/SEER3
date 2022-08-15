@@ -21,7 +21,7 @@ export default function Pricing({
   }, [plans]);
 
   return (
-    <div className="relative flex justify-center items-center px-10 bg-black">
+    <div className="relative flex justify-center items-center px-8 bg-black">
       <div className="relative z-10 h-full w-[400px] flex flex-col  justify-center">
         <h1 className="mt-10 heading uppercase text-4xl md:text-6xl text-white">
           PRICING

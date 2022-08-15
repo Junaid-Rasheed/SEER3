@@ -31,7 +31,7 @@ const Contact = () => {
           <h1 className="mt-2 md:mt-10 heading uppercase text-4xl md:text-7xl">
             GET IN TOUCH
           </h1>
-          <p className="uppercase mt-6 md:mt-10 text-sm">
+          <p className="uppercase mt-6 md:mt-10 text-sm whitespace-nowrap">
             University Ave, Toronto, ON M5J 2P1
           </p>
           <a
