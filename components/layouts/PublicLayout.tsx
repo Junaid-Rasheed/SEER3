@@ -10,7 +10,7 @@ export default function PublicLayout({
   banner?: ReactNode;
 }) {
   return (
-    <main className="min-h-full grid grid-cols-[100%] grid-rows-[auto,1fr,auto]">
+    <main className="min-h-full grid grid-cols-[100%] grid-rows-[auto,1fr,auto] relative">
       <div className="sticky top-0 z-20">
         {banner}
         <Header />
