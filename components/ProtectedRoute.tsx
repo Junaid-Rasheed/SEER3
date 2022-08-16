@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useAuth } from './context/Authentication';
 import Spinner from './Spinner';
+import UpgradeVip from './UpgradeVip';
 
 const ProtectedRoute = ({ children }: { children?: React.ReactNode }) => {
   const { user, loading, subscription } = useAuth();
@@ -19,10 +20,9 @@ const ProtectedRoute = ({ children }: { children?: React.ReactNode }) => {
       return null;
 
     case user && !subscription && !loading:
-      router.push('/upgrade-vip');
-      return null;
+      return <UpgradeVip />;
 
-    case !!user && !!subscription:
+    case !!user && !!subscription && !loading:
       return <>{children}</>;
 
     default:

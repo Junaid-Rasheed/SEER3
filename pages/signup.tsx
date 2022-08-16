@@ -76,7 +76,7 @@ const SignUp = () => {
 
   useEffect(() => {
     if (currentUser) {
-      router.push('/');
+      router.push('/dashboard');
     }
   }, [router, currentUser]);
 
@@ -167,8 +167,8 @@ const SignUp = () => {
           by signing up, you agree to the{' '}
           <Link href="/terms-of-service">
             <a className="underline hover:text-decode3">terms of service</a>
-          </Link>
-          {' '}and the{' '}
+          </Link>{' '}
+          and the{' '}
           <Link href="/privacy-policy">
             <a className="underline hover:text-decode3">privacy policy</a>
           </Link>

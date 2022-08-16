@@ -10,7 +10,7 @@ import { ICredentials } from '../model/auth';
 import toast, { Toaster } from 'react-hot-toast';
 
 function SignIn() {
-  const { user, login, loading: authLoading } = useAuth();
+  const { user, login } = useAuth();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [credentials, setCredentials] = useState<ICredentials>({
@@ -27,7 +27,7 @@ function SignIn() {
 
   useEffect(() => {
     if (user) {
-      router.push('/');
+      router.push('/dashboard');
     }
   }, [router, user]);
 

@@ -1,5 +1,3 @@
-import React, { ReactElement } from 'react';
-import { HeaderLogo } from '../components/icons/Logos';
 import Button from '../components/Button';
 import { ArrowSmRightIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
@@ -35,14 +33,5 @@ const UpgradeVip = () => {
     </div>
   );
 };
-
-UpgradeVip.getLayout = (page: ReactElement) => (
-  <main className="min-h-full grid grid-cols-[100%] grid-rows-[auto,1fr] bg-black">
-    <div className="p-5">
-      <HeaderLogo className="h-10" />
-    </div>
-    <div className="text-white h-full">{page}</div>
-  </main>
-);
 
 export default UpgradeVip;
