@@ -32,7 +32,7 @@ export default function MobileNav({ className }: { className?: string }) {
                   <NavLinks
                     handleClickLink={close}
                     className="flex-col items-start divide-y-2 divide-black gap-2 text-black text-xl font-bold w-[100px]" />
-                  <div className="flex gap-x-[20px] mt-[100px] whitespace-nowrap">
+                  <div className="flex gap-x-[20px] mt-[100px] whitespace-nowrap" onClick={() => close()}>
                     <AuthButton className="border-black !text-black text-xs w-full px-4 py-1" />
                     <GetStartedButton className="!bg-black text-decode3 text-xs w-full !px-4" />
                   </div>

@@ -32,7 +32,7 @@ export default function ContactForm() {
             Name
           </label>
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            className="block w-full bg-gray-200 text-gray-700 border border-gray-200 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 rounded-none"
             name="name"
             type="text"
             placeholder="NAME"
@@ -49,7 +49,7 @@ export default function ContactForm() {
             Email
           </label>
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            className="appearance-none rounded-none block w-full bg-gray-200 text-gray-700 border border-gray-200 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             name="email"
             type="email"
             placeholder="EMAIL"
@@ -69,7 +69,7 @@ export default function ContactForm() {
             Message
           </label>
           <textarea
-            className="no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-[100px] resize-none"
+            className="no-resize rounded-none appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-[100px] resize-none"
             name="message"
             placeholder="MESSAGE"
             value={values.message}
