@@ -1,24 +1,40 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { ContactType } from '../model/common';
+import Button from './Button';
 
-export default function ContactForm() {
-  const [values, setValues] = useState({
+export default function ContactForm({
+  onSubmit,
+  loading
+}: {
+  onSubmit: (formValues: ContactType, onSuccess?: () => void) => void;
+  loading?: boolean;
+}) {
+  const [values, setValues] = useState<ContactType>({
     name: '',
     email: '',
-    message: '',
+    message: ''
   });
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     e.persist();
     const { name, value } = e.target;
     setValues({
       ...values,
-      [name]: value,
+      [name]: value
     });
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert('Success!');
+    onSubmit(values, () => {
+      setValues({
+        email: '',
+        name: '',
+        message: ''
+      });
+    });
   };
 
   return (
@@ -55,7 +71,6 @@ export default function ContactForm() {
             placeholder="EMAIL"
             value={values.email}
             onChange={handleInputChange}
-
             required
           />
         </div>
@@ -77,15 +92,13 @@ export default function ContactForm() {
           />
         </div>
       </div>
-      <div className="w-full">
-        <button
-          className="w-full shadow bg-decode3 focus:shadow-outline focus:outline-none text-sm md:text-md font-bold py-4 px-4"
-          type="submit"
-        >
-          SUBMIT
-        </button>
-      </div>
+      <Button
+        isLoading={loading}
+        className="w-full shadow bg-decode3 focus:shadow-outline focus:outline-none text-sm md:text-md font-bold py-4 px-4"
+        type="submit"
+      >
+        SUBMIT
+      </Button>
     </form>
   );
 }
-
