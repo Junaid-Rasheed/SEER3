@@ -8,7 +8,6 @@ import Link from 'next/link';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import Button from '../components/Button';
-import { waitFor } from '../utils/common';
 import { useAuth } from '../components/context/Authentication';
 
 const SignUp = () => {
@@ -56,8 +55,6 @@ const SignUp = () => {
         firstName: '',
         lastName: ''
       });
-      await waitFor(1500);
-      await router.push('/');
     } catch (err: any) {
       toast.error(err?.message);
     } finally {
