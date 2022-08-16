@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Spinner from './Spinner';
+// import Spinner from './Spinner';
 
 type Props = {
   className?: string;
@@ -22,7 +22,6 @@ const Button: FC<Props> = ({
       type={type || 'button'}
       disabled={isLoading}
     >
-      {isLoading && <Spinner className="absolute right-0 text-white" />}
       {children}
     </button>
   );
