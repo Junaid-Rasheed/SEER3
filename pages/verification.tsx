@@ -16,7 +16,7 @@ const Verification: NextPageWithLayout<{
 }> = ({ mode, oobCode, verifiedEmail }) => {
   return (
     <div className="bg-black flex items-center justify-center">
-      <div className="w-auto lg:w-96">
+      <div className="w-full px-6 md:w-96 md:px-0">
         {mode === ActionMode.PASSWORD_RESET && (
           <ResetPassword oobCode={oobCode} />
         )}

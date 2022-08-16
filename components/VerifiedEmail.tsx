@@ -4,8 +4,9 @@ const VerifiedEmail = ({ verifiedEmail }: { verifiedEmail?: boolean }) => {
   if (!verifiedEmail) {
     return (
       <div>
-        <h3 className="text-red-400">Verify email failed</h3>
-        <p className="text-white">Please try again!</p>
+        <h3 className="text-red-400">
+          Verify email failed or email have been verified already
+        </h3>
       </div>
     );
   }

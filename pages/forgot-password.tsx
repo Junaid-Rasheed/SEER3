@@ -34,7 +34,7 @@ const ForgotPassword: NextPageWithLayout = () => {
   }
   return (
     <div className="bg-black h-full flex items-center justify-center">
-      <div className="px-10 w-96">
+      <div className="px-4 lg:px-0 w-96">
         <h2 className="text-white heading text-3xl uppercase text-center">
           Forgot password
         </h2>
@@ -45,8 +45,8 @@ const ForgotPassword: NextPageWithLayout = () => {
                 Send email success!
               </span>
               <p className="text-white mt-1">
-                Check your email (or in spam) including the link to create new
-                password
+                Check your email (or spam folder) and click the link to create
+                new password
               </p>
             </div>
           </div>
@@ -75,7 +75,11 @@ const ForgotPassword: NextPageWithLayout = () => {
                 again.
               </p>
             )}
-            <Button type="submit" className="w-full mt-10 font-bold" isLoading={loading}>
+            <Button
+              type="submit"
+              className="w-full mt-10 font-bold"
+              isLoading={loading}
+            >
               RESET PASSWORD
             </Button>
           </form>
