@@ -2,39 +2,35 @@ import CustomLink from './CustomLink';
 
 const footer = [
   {
-    title: 'Twitter',
-    url: 'https://twitter.com/decode3_xyz',
-    openNewTab: true
-  },
-  {
     title: 'Privacy Policy',
     url: '/privacy-policy'
   },
   {
     title: 'Terms of service',
     url: '/terms-of-service'
-  },
-  {
-    title: 'Made in Toronto with ❤️',
-    url: ''
   }
 ];
 
 export default function Footer() {
   return (
     <footer className="bg-black p-4 border-t border-t-neutral-600">
-      <ul className="flex flex-wrap flex-col md:flex-row items-center justify-center gap-6 md:gap-[95px] mt-3 text-sm text-white">
-        {footer.map(({ title, url, openNewTab }, index) => (
-          <li key={index} className="uppercase">
-            <CustomLink
-              className={url ? 'hover:underline' : ''}
-              href={url}
-              openNewTab={openNewTab}
-            >
+      <ul className="flex flex-wrap gap-y-2 lg:gap-y-0 justify-center uppercase gap-x-8 lg:gap-x-20 text-xs lg:text-sm text-white">
+        <CustomLink
+          key="twitter"
+          className="hover:underline hidden lg:block"
+          href={process.env.NEXT_PUBLIC_TWITTER_URL}
+          openNewTab={true}
+        >
+          Twitter
+        </CustomLink>
+        {footer.map(({ title, url }, index) => (
+          <li key={index} className="">
+            <CustomLink className="hover:underline" href={url}>
               {title}
             </CustomLink>
           </li>
         ))}
+        <span className="text-white text-center">Made in Toronto with ❤️</span>
       </ul>
     </footer>
   );
