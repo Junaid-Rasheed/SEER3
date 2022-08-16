@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-// import Spinner from './Spinner';
+import Spinner from './Spinner';
 
 type Props = {
   className?: string;
@@ -18,10 +18,11 @@ const Button: FC<Props> = ({
   return (
     <button
       onClick={onClick}
-      className={`btn ${className}`}
+      className={`btn flex items-center justify-center ${className}`}
       type={type || 'button'}
       disabled={isLoading}
     >
+      {isLoading && <Spinner className="" />}
       {children}
     </button>
   );
