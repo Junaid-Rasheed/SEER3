@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useAuth } from './context/Authentication';
 import Spinner from './Spinner';
-import GetAccessToDashboard from './dashboard/GetAccessToDashboard';
 
 const ProtectedRoute = ({ children }: { children?: React.ReactNode }) => {
   const { user, loading, subscription } = useAuth();
@@ -20,7 +19,8 @@ const ProtectedRoute = ({ children }: { children?: React.ReactNode }) => {
       return null;
 
     case user && !subscription && !loading:
-      return <GetAccessToDashboard />;
+      router.push('/upgrade-to-vip');
+      return null;
 
     case !!user && !!subscription:
       return <>{children}</>;
