@@ -15,8 +15,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const [isVisible] = useShowLoadingScreen(3700);
   const router = useRouter();
 
-  const getLayout = Component.getLayout ?? ((page) => page);
   if (isVisible) return <Loading />;
+
+  const getLayout = Component.getLayout ?? ((page) => page);
   return (
     <AuthProvider>
       {getLayout(
@@ -26,7 +27,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           </ProtectedRoute>
         ) : (
           <Component {...pageProps} />
-        ),
+        )
       )}
     </AuthProvider>
   );
