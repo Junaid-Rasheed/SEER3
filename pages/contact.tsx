@@ -1,9 +1,25 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import PublicLayout from '../components/layouts/PublicLayout';
 import Image from 'next/image';
 import ContactForm from '../components/ContactForm';
+import { fetchPostJSON } from '../utils/api-helpers';
+import { ContactType } from '../model/common';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Contact = () => {
+  const [loading, setLoading] = useState(false);
+  async function handleSendEmail(value: ContactType, onSuccess?: () => void) {
+    try {
+      setLoading(true);
+      await fetchPostJSON<{ success: boolean }>('/api/contact', value);
+      toast.success('Send email success');
+      onSuccess?.();
+    } catch (err: any) {
+      toast.error(err?.message);
+    } finally {
+      setLoading(false);
+    }
+  }
   return (
     <div className="relative bg-black">
       <div className="hidden md:block">
@@ -42,13 +58,18 @@ const Contact = () => {
           </a>
         </div>
         <div className="flex-1">
-          <ContactForm />
+          <ContactForm onSubmit={handleSendEmail} loading={loading} />
         </div>
       </div>
     </div>
   );
 };
 
-Contact.getLayout = (page: ReactElement) => <PublicLayout>{page}</PublicLayout>;
+Contact.getLayout = (page: ReactElement) => (
+  <PublicLayout>
+    {page}
+    <Toaster />
+  </PublicLayout>
+);
 
 export default Contact;
