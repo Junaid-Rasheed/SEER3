@@ -22,6 +22,7 @@ export type AuthType = {
   signup?: (credentials: ICredentials) => Promise<any>;
   logout?: () => void;
   loading?: boolean;
+  loadingSubscription?: boolean;
   subscription: Subscription | null;
 };
 
@@ -29,6 +30,7 @@ const AuthContext = createContext<AuthType>({ user: null, subscription: null });
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
+  const [loadingSubscription, setLoadingSubscription] = useState(false);
   const [subscription, setSubscription] = useState<Subscription | null>(null);
   const [user, setUser] = useState<IUser | null>(null);
 
@@ -42,8 +44,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
           displayName: currentUser.displayName,
           emailVerified: currentUser.emailVerified
         });
-        const sub = await getSubscription(currentUser.uid);
-        setSubscription(sub);
       } else {
         setUser(null);
       }
@@ -54,6 +54,19 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       unsubscribe();
     };
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      setLoadingSubscription(true);
+      getSubscription(user?.uid)
+        .then((sub) => {
+          setSubscription(sub);
+        })
+        .finally(() => {
+          setLoadingSubscription(false);
+        });
+    }
+  }, [user]);
 
   const signup = ({ email, password }: ICredentials) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -75,7 +88,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         signup,
         logout,
         loading,
-        subscription
+        subscription,
+        loadingSubscription
       }}
     >
       {children}
