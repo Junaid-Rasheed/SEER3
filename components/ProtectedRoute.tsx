@@ -19,7 +19,7 @@ const ProtectedRoute = ({ children }: { children?: React.ReactNode }) => {
       return null;
 
     case user && !subscription && !loading:
-      router.push('/upgrade-to-vip');
+      router.push('/upgrade-vip');
       return null;
 
     case !!user && !!subscription:
