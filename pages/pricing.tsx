@@ -28,7 +28,7 @@ const Pricing: NextPageWithLayout<{ plans: Array<IPlan> }> = ({ plans }) => {
       {
         price: productId,
         success_url: `${window.location.origin}/dashboard`,
-        cancel_url: window.location.origin
+        cancel_url: `${window.location.origin}/dashboard`
       }
     );
 

@@ -12,7 +12,7 @@ import { useAuth } from '../components/context/Authentication';
 
 const SignUp = () => {
   const router = useRouter();
-  const { user: currentUser } = useAuth();
+  const { user: currentUser, subscription } = useAuth();
   const [loading, setLoading] = useState(false);
   const timeoutId = useRef<any>(null);
   const [user, setUser] = useState({
@@ -55,8 +55,6 @@ const SignUp = () => {
         firstName: '',
         lastName: ''
       });
-
-      await router.push('/pricing');
     } catch (err: any) {
       toast.error(err?.message);
     } finally {
@@ -74,10 +72,12 @@ const SignUp = () => {
   }, []);
 
   useEffect(() => {
-    if (currentUser) {
-      router.push('/dashboard');
+    if (!currentUser) {
+      return;
     }
-  }, []);
+
+    router.push(subscription ? '/dashboard' : '/pricing');
+  }, [currentUser, router, subscription]);
 
   return (
     <section className="bg-black px-10">

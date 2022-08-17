@@ -24,7 +24,7 @@ const UpgradeVip = () => {
               onClick={() => router.push('/pricing')}
               className="bg-decode3 px-6 py-2 font-bold text-center flex items-center uppercase text-black"
             >
-              Upgrade VIP
+              Buy now
               <ArrowSmRightIcon className="h-6 w-6 -rotate-45" />
             </Button>
           </div>
