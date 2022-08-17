@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { db, auth } from '../lib/firebaseClient';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import PublicLayout from '../components/layouts/PublicLayout';
 import GoogleSignInButton from '../components/GoogleSignInButton';
@@ -42,6 +42,13 @@ const SignUp = () => {
       // await sendEmailVerification(userCredential.user);
 
       const collectionRef = collection(db, 'users');
+
+      if (auth.currentUser) {
+        await updateProfile(auth.currentUser, {
+          displayName: `${user.firstName} ${user.lastName}`
+        });
+      }
+
       await setDoc(doc(collectionRef, userCredential.user.uid), {
         ...user,
         uid: userCredential.user.uid

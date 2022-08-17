@@ -22,7 +22,7 @@ export default function Header() {
         <MobileNav />
       </div>
       <NavLinks className="hidden lg:flex divide-x mx-auto" />
-      <div className="hidden lg:flex flex-row gap-9 mr-8 justify-end items-center">
+      <div className="hidden lg:flex flex-row gap-3 mr-8 justify-end items-center">
         {loading ? (
           <Spinner className="w-5 h-5 text-decode3" />
         ) : user ? (

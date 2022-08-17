@@ -2,7 +2,6 @@ import React from 'react';
 import { HeaderLogo } from '../icons/Logos';
 import AuthBadge from '../AuthBadge';
 import Link from 'next/link';
-// import StripePortalButton from '../StripePortalButton';
 import { useAuth } from '../context/Authentication';
 
 const TopBar = () => {
@@ -16,7 +15,6 @@ const TopBar = () => {
       </Link>
       <div className="flex items-center gap-x-5">
         {user && <AuthBadge user={user} />}
-        {/*<StripePortalButton />*/}
       </div>
     </div>
   );
