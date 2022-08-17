@@ -55,6 +55,8 @@ const SignUp = () => {
         firstName: '',
         lastName: ''
       });
+
+      await router.push('/pricing');
     } catch (err: any) {
       toast.error(err?.message);
     } finally {
@@ -75,7 +77,7 @@ const SignUp = () => {
     if (currentUser) {
       router.push('/dashboard');
     }
-  }, [router, currentUser]);
+  }, []);
 
   return (
     <section className="bg-black px-10">

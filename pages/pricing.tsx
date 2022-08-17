@@ -17,7 +17,7 @@ const Pricing: NextPageWithLayout<{ plans: Array<IPlan> }> = ({ plans }) => {
 
   async function handleBuying(productId: string) {
     if (!user) {
-      await router.push('/signin');
+      await router.push('/signup');
       return;
     }
 

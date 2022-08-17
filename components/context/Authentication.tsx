@@ -78,6 +78,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = async () => {
     setUser(null);
+    setSubscription(null);
     await signOut(auth);
   };
   return (

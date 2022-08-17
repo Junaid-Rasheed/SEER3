@@ -29,7 +29,7 @@ function SignIn() {
     if (user) {
       router.push('/dashboard');
     }
-  }, [router, user]);
+  }, []);
 
   async function handleLogin(e: any) {
     e.preventDefault();
@@ -37,7 +37,7 @@ function SignIn() {
       setLoading(true);
       try {
         await login?.(credentials);
-        await router.push('/');
+        await router.push('/dashboard');
       } catch (err: any) {
         toast.error(err?.message);
       } finally {
