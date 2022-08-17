@@ -62,6 +62,7 @@ const SignUp = () => {
         firstName: '',
         lastName: ''
       });
+      await router.push('/pricing');
     } catch (err: any) {
       toast.error(err?.message);
     } finally {
