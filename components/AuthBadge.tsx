@@ -35,7 +35,7 @@ export default function AuthBadge({
                 />
               </div>
             ) : (
-              <div className="rounded-full w-10 h-10 bg-[#D448FF] text-decode3 flex items-center justify-center">
+              <div className="rounded-full w-10 h-10 bg-black border-2 border-decode3 text-decode3 flex items-center justify-center">
                 {getInitialName(user?.displayName) || (
                   <UserIcon className="w-6 h-6 text-decode3" />
                 )}
