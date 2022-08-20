@@ -51,8 +51,8 @@ const Contact = () => {
             University Ave, Toronto, ON M5J 2P1
           </p>
           <a
-            href="mailto:webmaster@example.com"
-            className="uppercase mt-2 text-sm hover:text-gray-200"
+            href="mailto:hello@decode3.xyz"
+            className="uppercase mt-2 text-sm hover:text-gray-200 underline text-decode3"
           >
             hello@decode3.xyz
           </a>
