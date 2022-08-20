@@ -8,6 +8,7 @@ import { useAuth } from '../components/context/Authentication';
 import { useRouter } from 'next/router';
 import { ICredentials } from '../model/auth';
 import toast, { Toaster } from 'react-hot-toast';
+import { firebaseAuthError } from '../constants';
 
 function SignIn() {
   const { user, login } = useAuth();
@@ -38,7 +39,7 @@ function SignIn() {
       try {
         await login?.(credentials);
       } catch (err: any) {
-        toast.error(err?.message);
+        toast.error(firebaseAuthError.signInWithPopUp[err?.code]);
       } finally {
         setLoading(false);
       }

@@ -9,6 +9,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import Button from '../components/Button';
 import { useAuth } from '../components/context/Authentication';
+import { firebaseAuthError } from '../constants';
 
 const SignUp = () => {
   const router = useRouter();
@@ -64,7 +65,7 @@ const SignUp = () => {
       });
       await router.push('/pricing');
     } catch (err: any) {
-      toast.error(err?.message);
+      toast.error(firebaseAuthError.signUp[err?.code]);
     } finally {
       setLoading(false);
     }
