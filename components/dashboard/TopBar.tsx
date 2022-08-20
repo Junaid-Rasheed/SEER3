@@ -7,7 +7,7 @@ import { useAuth } from '../context/Authentication';
 const TopBar = () => {
   const { user } = useAuth();
   return (
-    <div className="flex items-center justify-between px-8 sticky top-0 h-14 border-b border-[#4B4B4B]">
+    <div className="flex items-center justify-between px-8 sticky top-0 h-14 border-b border-[#4B4B4B] z-20">
       <Link href="/dashboard">
         <a>
           <HeaderLogo className="h-10" />

@@ -3,12 +3,20 @@ import PublicLayout from '../components/layouts/PublicLayout';
 import PricingComponent from '../components/Pricing';
 import { addDoc, collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../lib/firebaseClient';
-import React, { ReactElement, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import { useAuth } from '../components/context/Authentication';
 import { IPlan } from '../model/payment';
 import { NextPageWithLayout } from '../model/layout-types';
+import DashboardLayout from '../components/layouts/DashboardLayout';
+
+function wrapperLayout(isNotSubscribedUser: boolean) {
+  if (isNotSubscribedUser) {
+    return DashboardLayout;
+  }
+  return PublicLayout;
+}
 
 const Pricing: NextPageWithLayout<{ plans: Array<IPlan> }> = ({ plans }) => {
   const { user, subscription } = useAuth();
@@ -47,14 +55,20 @@ const Pricing: NextPageWithLayout<{ plans: Array<IPlan> }> = ({ plans }) => {
       }
     });
   }
+  const WrapperLayout = useMemo(
+    () => wrapperLayout(!!user && !subscription),
+    [subscription, user]
+  );
 
   return (
-    <PricingComponent
-      plans={plans}
-      subscription={subscription}
-      onClickBuyBtn={handleBuying}
-      isLoading={loading}
-    />
+    <WrapperLayout>
+      <PricingComponent
+        plans={plans}
+        subscription={subscription}
+        onClickBuyBtn={handleBuying}
+        isLoading={loading}
+      />
+    </WrapperLayout>
   );
 };
 
@@ -89,6 +103,6 @@ export async function getStaticProps() {
   };
 }
 
-Pricing.getLayout = (page: ReactElement) => <PublicLayout>{page}</PublicLayout>;
+// Pricing.getLayout = (page: ReactElement) => <PublicLayout>{page}</PublicLayout>;
 
 export default Pricing;
