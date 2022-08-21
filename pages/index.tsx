@@ -8,6 +8,7 @@ import Features from '../components/Features';
 import Banner from '../components/Banner';
 import React, { ReactElement } from 'react';
 import { NextPageWithLayout } from '../model/layout-types';
+import HomePageSeo from '../components/seo/HomePageSeo';
 
 const Home: NextPageWithLayout = () => {
   return (
@@ -23,7 +24,10 @@ const Home: NextPageWithLayout = () => {
 };
 
 Home.getLayout = (page: ReactElement) => (
-  <PublicLayout banner={<Banner />}>{page}</PublicLayout>
+  <PublicLayout banner={<Banner />}>
+    <HomePageSeo />
+    {page}
+  </PublicLayout>
 );
 
 export default Home;
