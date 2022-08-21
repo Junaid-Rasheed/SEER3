@@ -54,7 +54,7 @@ const ForgotPassword: NextPageWithLayout = () => {
         {message !== 'success' && (
           <form className="mt-10" onSubmit={handleSubmit}>
             <div>
-              <label className="text-white">Email</label>
+              <label className="text-white uppercase">Email</label>
               <input
                 className={`input ${
                   message === 'error'

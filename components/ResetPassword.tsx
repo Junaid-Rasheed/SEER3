@@ -41,7 +41,7 @@ const ResetPassword = ({ oobCode }: { oobCode: string }) => {
       </h2>
       <form className="mt-10" onSubmit={handleSubmit}>
         <div>
-          <label className="text-white">New password</label>
+          <label className="text-white uppercase">New password</label>
           <input
             className="input"
             type="password"
