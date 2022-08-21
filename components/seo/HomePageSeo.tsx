@@ -13,15 +13,15 @@ const HomePageSeo = () => {
         title: 'Decode3',
         images: [
           {
-            width: 300,
-            height: 400,
-            url: '/favicon.svg',
+            width: 800,
+            height: 600,
+            url: '/assets/desktop/screen.png',
             alt: 'Decode3'
           },
           {
             width: 640,
-            height: 768,
-            url: '/favicon.svg',
+            height: 640,
+            url: '/assets/mobile/DECODE Material-01.png',
             alt: 'Decode3'
           }
         ]
