@@ -32,34 +32,37 @@ const TopBar = () => {
         </a>
       </Link>
       <div className="flex items-center gap-x-5">
-        <Box
-          sx={{
-            flexGrow: 0,
-            marginRight: { xs: '10px', md: '1rem' },
-            marginTop: '4px'
-          }}
-        >
-          {themeMode === 'dark' && (
-            <Image
-              src={darkMode}
-              alt="dark mode"
-              width="100px"
-              height="45px"
-              onClick={() => handleSwitchChange()}
-              style={{ cursor: 'pointer' }}
-            />
+        {typeof window !== 'undefined' &&
+          window.location.pathname !== '/pricing' && (
+            <Box
+              sx={{
+                flexGrow: 0,
+                marginRight: { xs: '10px', md: '1rem' },
+                marginTop: '4px'
+              }}
+            >
+              {themeMode === 'dark' && (
+                <Image
+                  src={darkMode}
+                  alt="dark mode"
+                  width="100px"
+                  height="45px"
+                  onClick={() => handleSwitchChange()}
+                  style={{ cursor: 'pointer' }}
+                />
+              )}
+              {themeMode === 'light' && (
+                <Image
+                  src={lightMode}
+                  alt="light mode"
+                  width="100px"
+                  height="45px"
+                  onClick={() => handleSwitchChange()}
+                  style={{ cursor: 'pointer' }}
+                />
+              )}
+            </Box>
           )}
-          {themeMode === 'light' && (
-            <Image
-              src={lightMode}
-              alt="light mode"
-              width="100px"
-              height="45px"
-              onClick={() => handleSwitchChange()}
-              style={{ cursor: 'pointer' }}
-            />
-          )}
-        </Box>
         {user && <AuthBadge user={user} />}
       </div>
     </div>
