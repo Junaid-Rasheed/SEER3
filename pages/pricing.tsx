@@ -24,6 +24,8 @@ const Pricing: NextPageWithLayout<{ plans: Array<IPlan> }> = ({ plans }) => {
   const [loading, setLoading] = useState(false);
 
   async function handleBuying(productId: string) {
+    console.log(productId, 'productId');
+
     if (!user) {
       await router.push('/signup');
       return;
@@ -45,8 +47,11 @@ const Pricing: NextPageWithLayout<{ plans: Array<IPlan> }> = ({ plans }) => {
         error: { message: string };
         url: string;
       };
+
       if (error) {
         toast.error(error.message);
+        console.log(error.message, 'error');
+
         setLoading(false);
         return;
       }

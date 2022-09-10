@@ -3,29 +3,193 @@
 @tailwind utilities;
 
 @layer base {
-    html, body {
-        @apply w-full h-full;
-    }
-    #__next{
-        @apply h-full;
-    }
-    @font-face {
-        font-family: 'HelveticaLTStd';
-        src: url('/fonts/HelveticaLTStd-BlkCond.woff2') format('woff2');
-    }
-    ::placeholder { /* Recent browsers */
-        text-transform: uppercase;
-    }
+  html,
+  body {
+    @apply w-full h-full;
+  }
+  #__next {
+    @apply h-full;
+  }
+  @font-face {
+    font-family: 'HelveticaLTStd';
+    src: url('/fonts/HelveticaLTStd-BlkCond.woff2') format('woff2');
+  }
+  ::placeholder {
+    /* Recent browsers */
+    text-transform: uppercase;
+  }
 }
 
 @layer components {
-    .heading {
-        @apply font-helvetica text-3xl mt-3;
-    }
-    .btn{
-        @apply bg-decode3 py-3 px-3 uppercase hover:bg-lime-500 transition duration-300 relative disabled:bg-lime-700
-    }
-    .input{
-        @apply mt-2 py-3 px-3 focus:ring-2 focus:outline-none focus:ring-decode3 rounded-none block w-full sm:text-sm
-    }
+  .heading {
+    @apply font-helvetica text-3xl mt-3;
+  }
+  .btn {
+    @apply bg-decode3 py-3 px-3 uppercase hover:bg-lime-500 transition duration-300 relative disabled:bg-lime-700;
+  }
+  .input {
+    @apply mt-2 py-3 px-3 focus:ring-2 focus:outline-none focus:ring-decode3 rounded-none block w-full sm:text-sm;
+  }
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #4b4b4b transparent;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #4b4b4b;
+  border-radius: 20px;
+}
+*::-webkit-scrollbar-button {
+  height: 12px;
+}
+*::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0);
+}
+
+* {
+  font-family: 'Space Mono', sans-serif;
+}
+
+/* FONTS */
+
+@font-face {
+  font-family: 'Helvetica LT Std EC';
+  src: local('Helvetica LT Std Extra Compressed'),
+    local('HelveticaLTStd-ExtraComp'),
+    url('../assets/fonts/HelveticaLTStd-ExtraComp.woff2') format('woff2'),
+    url('../assets/fonts/HelveticaLTStd-ExtraComp.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica LT Std';
+  src: local('Helvetica LT Std Bold'), local('HelveticaLTStd-Bold'),
+    url('../assets/fonts/HelveticaLTStd-Bold.woff2') format('woff2'),
+    url('../assets/fonts/HelveticaLTStd-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica LT Std UC';
+  src: local('Helvetica LT Std Ultra Compressed'),
+    local('HelveticaLTStd-UltraComp'),
+    url('../assets/fonts/HelveticaLTStd-UltraComp.woff2') format('woff2'),
+    url('../assets/fonts/HelveticaLTStd-UltraComp.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica LT Std';
+  src: local('Helvetica LT Std Light'), local('HelveticaLTStd-Light'),
+    url('../assets/fonts/HelveticaLTStd-Light.woff2') format('woff2'),
+    url('../assets/fonts/HelveticaLTStd-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica LT Std C';
+  src: local('Helvetica LT Std Compressed'), local('HelveticaLTStd-Comp'),
+    url('../assets/fonts/HelveticaLTStd-Comp.woff2') format('woff2'),
+    url('../assets/fonts/HelveticaLTStd-Comp.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica LT Std';
+  src: local('Helvetica LT Std Black Condensed'),
+    local('HelveticaLTStd-BlkCond'),
+    url('../assets/fonts/HelveticaLTStd-BlkCond.woff2') format('woff2'),
+    url('../assets/fonts/HelveticaLTStd-BlkCond.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  src: local('Space Mono Bold Italic'), local('SpaceMono-BoldItalic'),
+    url('../assets/fonts/SpaceMono-BoldItalic.woff2') format('woff2'),
+    url('../assets/fonts/SpaceMono-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  src: local('Space Mono Bold'), local('SpaceMono-Bold'),
+    url('../assets/fonts/SpaceMono-Bold.woff2') format('woff2'),
+    url('../assets/fonts/SpaceMono-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  src: local('Space Mono Italic'), local('SpaceMono-Italic'),
+    url('../assets/fonts/SpaceMono-Italic.woff2') format('woff2'),
+    url('../assets/fonts/SpaceMono-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  src: local('Space Mono'), local('SpaceMono-Regular'),
+    url('../assets/fonts/SpaceMono-Regular.woff2') format('woff2'),
+    url('../assets/fonts/SpaceMono-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
 }
