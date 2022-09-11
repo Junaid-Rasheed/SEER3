@@ -7,16 +7,23 @@ export default function Investment() {
       <div className="relative z-10 px-5 md:px-[115px] text-white w-full md:max-w-[920px]">
         <h1 className="mt-10 md:mt-20 heading uppercase text-3xl md:text-7xl leading-tight ">
           Indispensable data & insights,
-          <span className="text-decode3"> at scale </span>
+          <span className="text-decode3 text-3xl md:text-7xl heading">
+            {' '}
+            at scale{' '}
+          </span>
         </h1>
         <div className="flex items-center">
           <h1 className="heading text-6xl md:text-9xl my-8">$</h1>
-          <DataCounting value={71} className="heading text-7xl md:text-9xl my-8" />
+          <DataCounting
+            value={71}
+            className="heading text-7xl md:text-9xl my-8"
+          />
           <h1 className="heading text-6xl md:text-9xl my-8 text-center">B+</h1>
         </div>
         <p className="uppercase max-w-[564px] my-5 md:my-8">
-          invested in web3 start-ups. There is ample investment flowing into the crypto industry but it’s not always
-          easy to find the right funding sources for web3 start-ups.
+          invested in web3 start-ups. There is ample investment flowing into the
+          crypto industry but it’s not always easy to find the right funding
+          sources for web3 start-ups.
         </p>
         <GetStartedButton className="text-black w-full md:w-[362px] h-[67px] mt-8 justify-center items-center" />
       </div>
@@ -24,7 +31,7 @@ export default function Investment() {
         <SvgBackground />
       </div>
     </section>
-  )
+  );
 }
 
 const SvgBackground = () => (
@@ -35,7 +42,7 @@ const SvgBackground = () => (
   >
     <g
       style={{
-        isolation: 'isolate',
+        isolation: 'isolate'
       }}
     >
       <path
@@ -44,7 +51,7 @@ const SvgBackground = () => (
         style={{
           fill: 'none',
           stroke: '#d0f224',
-          strokeWidth: 3,
+          strokeWidth: 3
         }}
       />
       <path
@@ -55,7 +62,7 @@ const SvgBackground = () => (
           stroke: '#d0f224',
           strokeWidth: 3,
           opacity: 0.1599999964237213,
-          isolation: 'isolate',
+          isolation: 'isolate'
         }}
       />
       <path
@@ -66,7 +73,7 @@ const SvgBackground = () => (
           stroke: '#d0f224',
           strokeWidth: 3,
           opacity: 0.07999999821186066,
-          isolation: 'isolate',
+          isolation: 'isolate'
         }}
       />
       <path
@@ -77,7 +84,7 @@ const SvgBackground = () => (
           stroke: '#d0f224',
           strokeWidth: 3,
           opacity: 0.03999999910593033,
-          isolation: 'isolate',
+          isolation: 'isolate'
         }}
       />
       <circle
@@ -87,9 +94,9 @@ const SvgBackground = () => (
         cy={279.12}
         r={11.5}
         style={{
-          fill: '#d0f224',
+          fill: '#d0f224'
         }}
       />
     </g>
   </svg>
-)
+);
