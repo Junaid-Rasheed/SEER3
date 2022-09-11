@@ -84,21 +84,22 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <AuthProvider>
       <DefaultSeo {...SEO} />
-      <ColorModeContext.Provider value={colorMode}>
-        <CssBaseline />
-        <GlobalStyles />
-        <ThemeProvider theme={theme}>
-          {getLayout(
-            protectedRoutes.includes(router.pathname) ? (
+
+      {getLayout(
+        protectedRoutes.includes(router.pathname) ? (
+          <ColorModeContext.Provider value={colorMode}>
+            <CssBaseline />
+            <GlobalStyles />
+            <ThemeProvider theme={theme}>
               <ProtectedRoute>
                 <Component {...pageProps} />
               </ProtectedRoute>
-            ) : (
-              <Component {...pageProps} />
-            )
-          )}
-        </ThemeProvider>
-      </ColorModeContext.Provider>
+            </ThemeProvider>
+          </ColorModeContext.Provider>
+        ) : (
+          <Component {...pageProps} />
+        )
+      )}
     </AuthProvider>
   );
 }
