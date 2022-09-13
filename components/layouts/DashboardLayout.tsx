@@ -64,7 +64,8 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
       <GlobalStyles />
       <ThemeProvider theme={theme}>
         {' '}
-        <TopBar />
+        {typeof window !== 'undefined' &&
+          window.location.pathname !== '/dashboard' && <TopBar />}
         <div className="text-white">{children}</div>
       </ThemeProvider>
     </ColorModeContext.Provider>

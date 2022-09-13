@@ -10,7 +10,12 @@ import { ColorModeContext } from '../../service/colormode.service';
 import darkMode from '../../public/assets/desktop/darkmode.png';
 import lightMode from '../../public/assets/desktop/lightmode.png';
 
-const TopBar = () => {
+interface MenuProps {
+  setShowPaymentDetails?: any;
+  showPaymentDetails?: boolean;
+}
+
+const TopBar = ({ setShowPaymentDetails, showPaymentDetails }: MenuProps) => {
   const { user } = useAuth();
   const colorMode = useContext(ColorModeContext);
   const [themeMode, setThemeMode] = useState('');
@@ -63,7 +68,13 @@ const TopBar = () => {
               )}
             </Box>
           )}
-        {user && <AuthBadge user={user} />}
+        {user && (
+          <AuthBadge
+            user={user}
+            setShowPaymentDetails={setShowPaymentDetails}
+            showPaymentDetails={showPaymentDetails}
+          />
+        )}
       </div>
     </div>
   );

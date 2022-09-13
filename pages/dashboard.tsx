@@ -6,6 +6,7 @@ import Spinner from '../components/Spinner';
 import Link from 'next/link';
 import DashboardData from '../components/DashboardData';
 import { Background } from '../styles/Layout.styled';
+import TopBar from '../components/dashboard/TopBar';
 
 interface Props {
   title: string;
@@ -42,64 +43,53 @@ const Dashboard = () => {
     }).format((subscription?.price?.unit_amount || 0) / 100);
 
   return (
-    <Background>
-      <div className="px-10">
-        <div className="">
-          <div className="flex justify-end">
-            {showPaymentDetails ? (
-              <button
-                onClick={() => setShowPaymentDetails(false)}
-                className="bg-[#B1EF07] py-2 px-2 rounded my-2"
-              >
-                Hide Payment Details
-              </button>
-            ) : (
-              <button
-                onClick={() => setShowPaymentDetails(true)}
-                className="bg-[#B1EF07] py-2 px-2 rounded my-2"
-              >
-                Show Payment Details
-              </button>
+    <>
+      <TopBar
+        setShowPaymentDetails={setShowPaymentDetails}
+        showPaymentDetails={showPaymentDetails}
+      />
+      <Background>
+        <div className="px-10">
+          <div className="">
+            {showPaymentDetails && (
+              <div className="p-4">
+                <Card
+                  title="Your Plan"
+                  description={
+                    subscription
+                      ? `You are currently on the ${subscription?.price?.interval} plan.`
+                      : ''
+                  }
+                  footer={
+                    <div className="flex items-start justify-between flex-col sm:flex-row sm:items-center">
+                      <p className="pb-4 sm:pb-0">
+                        Manage your subscription on Stripe.
+                      </p>
+                      <StripePortalButton className="px-4 text-black font-medium" />
+                    </div>
+                  }
+                >
+                  <div className="text-xl mt-8 mb-4 font-semibold">
+                    {isLoading ? (
+                      <div className="h-12 mb-6">
+                        <Spinner className="text-decode3" />
+                      </div>
+                    ) : subscription ? (
+                      `${subscriptionPrice}/${subscription?.price?.interval}`
+                    ) : (
+                      <Link href="/">
+                        <a>Choose your plan</a>
+                      </Link>
+                    )}
+                  </div>
+                </Card>
+              </div>
             )}
           </div>
-          {showPaymentDetails && (
-            <div className="p-4">
-              <Card
-                title="Your Plan"
-                description={
-                  subscription
-                    ? `You are currently on the ${subscription?.price?.interval} plan.`
-                    : ''
-                }
-                footer={
-                  <div className="flex items-start justify-between flex-col sm:flex-row sm:items-center">
-                    <p className="pb-4 sm:pb-0">
-                      Manage your subscription on Stripe.
-                    </p>
-                    <StripePortalButton className="px-4 text-black font-medium" />
-                  </div>
-                }
-              >
-                <div className="text-xl mt-8 mb-4 font-semibold">
-                  {isLoading ? (
-                    <div className="h-12 mb-6">
-                      <Spinner className="text-decode3" />
-                    </div>
-                  ) : subscription ? (
-                    `${subscriptionPrice}/${subscription?.price?.interval}`
-                  ) : (
-                    <Link href="/">
-                      <a>Choose your plan</a>
-                    </Link>
-                  )}
-                </div>
-              </Card>
-            </div>
-          )}
+          <DashboardData />
         </div>
-        <DashboardData />
-      </div>
-    </Background>
+      </Background>
+    </>
   );
 };
 

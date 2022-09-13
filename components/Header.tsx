@@ -30,7 +30,7 @@ export default function Header() {
         ) : (
           <AuthButton className="text-sm" />
         )}
-        <GetStartedButton className="text-sm" />
+        {!user && <GetStartedButton className="text-sm" />}
       </div>
     </nav>
   );

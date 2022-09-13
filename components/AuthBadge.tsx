@@ -15,10 +15,14 @@ function getInitialName(fullName?: string | null) {
 
 export default function AuthBadge({
   className,
-  user
+  user,
+  showPaymentDetails,
+  setShowPaymentDetails
 }: {
   className?: string;
   user?: IUser;
+  setShowPaymentDetails?: any;
+  showPaymentDetails?: boolean;
 }) {
   return (
     <div className={className}>
@@ -51,10 +55,33 @@ export default function AuthBadge({
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute top-14 -right-5 min-w-40">
+            <Popover.Panel
+              className={`absolute top-14 -right-5 min-w-40 ${
+                typeof window !== 'undefined' &&
+                window.location.pathname === '/dashboard' &&
+                'w-80'
+              }`}
+            >
               <div className="relative bg-decode3 flex flex-col gap-4 p-4">
                 <p className="uppercase font-bold">{user?.displayName}</p>
                 <p>{user?.email}</p>
+                {typeof window !== 'undefined' &&
+                window.location.pathname === '/dashboard' &&
+                showPaymentDetails ? (
+                  <button
+                    onClick={() => setShowPaymentDetails(false)}
+                    className="bg-black text-[#B1EF07] hover:opacity-80 hover:text-white  py-2 px-2 rounded my-2"
+                  >
+                    Hide Payment Details
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => setShowPaymentDetails(true)}
+                    className="bg-black text-[#B1EF07] hover:opacity-80 hover:text-white py-2 px-2 rounded my-2"
+                  >
+                    Show Payment Details
+                  </button>
+                )}
                 <AuthButton className="bg-black" />
               </div>
             </Popover.Panel>
