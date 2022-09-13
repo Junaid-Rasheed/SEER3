@@ -30,10 +30,10 @@ const TopBar = ({ setShowPaymentDetails, showPaymentDetails }: MenuProps) => {
     colorMode.toggleColorMode();
   };
   return (
-    <div className="flex items-center justify-between px-8 sticky bg-black top-0 h-14 border-b border-[#4B4B4B] z-20">
+    <div className="flex items-center justify-between px-2 sm:px-8 sticky bg-black top-0 h-14 border-b border-[#4B4B4B] z-20">
       <Link href="/dashboard">
-        <a>
-          <HeaderLogo className="h-10" />
+        <a className="w-[100px] sm:w-[150px] h-[30px] md:w-[180px] md:h-[40px] relative ml-2 ">
+          <HeaderLogo className="w-full h-full" />
         </a>
       </Link>
       <div className="flex items-center gap-x-5">
@@ -47,23 +47,19 @@ const TopBar = ({ setShowPaymentDetails, showPaymentDetails }: MenuProps) => {
               }}
             >
               {themeMode === 'dark' && (
-                <Image
-                  src={darkMode}
+                <img
+                  src={darkMode.src}
                   alt="dark mode"
-                  width="100px"
-                  height="45px"
                   onClick={() => handleSwitchChange()}
-                  style={{ cursor: 'pointer' }}
+                  className="pointer w-[80px] h-[35px] sm:w-[100px] sm:h-[45px]"
                 />
               )}
               {themeMode === 'light' && (
-                <Image
-                  src={lightMode}
+                <img
+                  src={lightMode.src}
                   alt="light mode"
-                  width="100px"
-                  height="45px"
                   onClick={() => handleSwitchChange()}
-                  style={{ cursor: 'pointer' }}
+                  className="pointer w-[80px] h-[35px] sm:w-[100px] sm:h-[45px]"
                 />
               )}
             </Box>

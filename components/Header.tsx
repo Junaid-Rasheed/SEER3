@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <nav className="flex justify-between items-center pr-2 lg:grid lg:grid-cols-3 py-2 bg-black border-b border-b-neutral-600 relative">
       <Link href="/">
-        <a className="w-[150px] h-[30px] md:w-[180px] md:h-[40px] relative ml-2 md:ml-8">
+        <a className="w-[100px] sm:w-[150px] h-[30px] md:w-[180px] md:h-[40px] relative ml-2 md:ml-8">
           <HeaderLogo className="w-full h-full" />
         </a>
       </Link>
