@@ -78,13 +78,13 @@ export const PopperItem = ({ data, fieldName, fields, onClick }: IProps) => {
                 flexDirection: 'column',
                 flex: 1,
                 textAlign: 'start',
-                color: '#ffffff',
+                color: '#ffffff'
               }}
             >
               <Typography
                 noWrap
                 sx={{ marginRight: '10px' }}
-                variant='subtitle2'
+                variant="subtitle2"
               >
                 {sf.name === 'Crypto Companies' ? 'Web3 Companies' : sf.name}
               </Typography>
@@ -96,14 +96,14 @@ export const PopperItem = ({ data, fieldName, fields, onClick }: IProps) => {
                   maxWidth: '140px',
                   height: '34px',
                   padding: '10px 5px',
-                  textAlign: 'center',
+                  textAlign: 'center'
                 }}
               >
                 <Typography
                   noWrap
                   sx={{
                     fontFamily: 'Space Mono',
-                    fontSize: '10px',
+                    fontSize: '10px'
                   }}
                 >
                   {getDataLabel(sf)}
@@ -126,7 +126,7 @@ export const PopperItem = ({ data, fieldName, fields, onClick }: IProps) => {
         minHeight: '100px',
 
         cursor: 'pointer',
-        borderRadius: '6px',
+        borderRadius: '6px'
       }}
       onClick={() => onClick()}
     >
@@ -136,13 +136,13 @@ export const PopperItem = ({ data, fieldName, fields, onClick }: IProps) => {
           flexDirection: 'column',
           alignItems: 'flex-start',
           width: '100%',
-          cursor: 'pointer',
+          cursor: 'pointer'
         }}
       >
         <Box
           sx={{
             p: 1,
-            color: '#ffffff',
+            color: '#ffffff'
           }}
         >
           {getPrimaryFieldText()}
@@ -152,7 +152,7 @@ export const PopperItem = ({ data, fieldName, fields, onClick }: IProps) => {
             p: 1,
             display: 'flex',
             alignItems: 'center',
-            width: '100%',
+            width: '100%'
           }}
         >
           {getSecondaryFields()}
@@ -164,7 +164,7 @@ export const PopperItem = ({ data, fieldName, fields, onClick }: IProps) => {
           height: '112px',
           paddingLeft: '1px',
           borderTopRightRadius: '5px',
-          borderBottomRightRadius: '5px',
+          borderBottomRightRadius: '5px'
         }}
       >
         {fieldName === 'Angel Investors' ? (
@@ -174,7 +174,7 @@ export const PopperItem = ({ data, fieldName, fields, onClick }: IProps) => {
           typeof data?.Logo[0]?.url === 'string' ? (
           <img
             src={data?.Logo[0]?.url}
-            alt='company Logo'
+            alt="company Logo"
             style={{
               objectFit: 'cover',
               width: '100%',
@@ -182,7 +182,7 @@ export const PopperItem = ({ data, fieldName, fields, onClick }: IProps) => {
               position: 'relative',
               borderTopRightRadius: '5px',
               borderBottomRightRadius: '5px',
-              zIndex: 1,
+              zIndex: 1
             }}
           />
         ) : (

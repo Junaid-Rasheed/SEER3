@@ -4,6 +4,7 @@ import { Popover, Transition } from '@headlessui/react';
 import { UserIcon } from '@heroicons/react/outline';
 import AuthButton from './AuthButton';
 import { IUser } from '../model/auth';
+import { useRouter } from 'next/router';
 
 function getInitialName(fullName?: string | null) {
   if (!fullName) return '';
@@ -24,6 +25,7 @@ export default function AuthBadge({
   setShowPaymentDetails?: any;
   showPaymentDetails?: boolean;
 }) {
+  const router = useRouter();
   return (
     <div className={className}>
       <Popover className="relative">
@@ -66,22 +68,31 @@ export default function AuthBadge({
                 <p className="uppercase font-bold">{user?.displayName}</p>
                 <p>{user?.email}</p>
                 {typeof window !== 'undefined' &&
-                window.location.pathname === '/dashboard' &&
-                showPaymentDetails ? (
-                  <button
-                    onClick={() => setShowPaymentDetails(false)}
-                    className="bg-black text-[#B1EF07] hover:opacity-80 hover:text-white  py-2 px-2 rounded my-2"
-                  >
-                    Hide Payment Details
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => setShowPaymentDetails(true)}
-                    className="bg-black text-[#B1EF07] hover:opacity-80 hover:text-white py-2 px-2 rounded my-2"
-                  >
-                    Show Payment Details
-                  </button>
-                )}
+                  window.location.pathname !== '/dashboard' && (
+                    <button
+                      onClick={() => router.push('/dashboard')}
+                      className="bg-black text-[#B1EF07] hover:opacity-80 hover:text-white  py-2 px-2 rounded my-2 uppercase"
+                    >
+                      Dashboard
+                    </button>
+                  )}
+                {typeof window !== 'undefined' &&
+                  window.location.pathname === '/dashboard' &&
+                  (showPaymentDetails ? (
+                    <button
+                      onClick={() => setShowPaymentDetails(false)}
+                      className="bg-black text-[#B1EF07] hover:opacity-80 hover:text-white  py-2 px-2 rounded my-2 uppercase"
+                    >
+                      Hide Payment Details
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => setShowPaymentDetails(true)}
+                      className="bg-black text-[#B1EF07] hover:opacity-80 hover:text-white py-2 px-2 rounded my-2 uppercase"
+                    >
+                      Show Payment Details
+                    </button>
+                  ))}
                 <AuthButton className="bg-black" />
               </div>
             </Popover.Panel>

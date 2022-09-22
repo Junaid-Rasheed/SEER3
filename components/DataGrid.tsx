@@ -183,7 +183,8 @@ export const DataGridComponent = ({
             field.id === 567233 ||
             field.id === 567252 ||
             field.id === 567253 ||
-            field.id === 567105
+            field.id === 567105 ||
+            field.id === 567245
           ) {
             return;
           }

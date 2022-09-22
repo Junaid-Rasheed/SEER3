@@ -4,7 +4,7 @@ import { useDetectClickOutside } from '../common/useDetectClickOutside';
 import {
   getRowsFromTable,
   getSingleRecord,
-  IField,
+  IField
 } from '../../service/baserow.service';
 import { CellPopper } from './cellPopup';
 import { PopperItem } from './popperItem';
@@ -199,7 +199,7 @@ const ExpandableChipsCell = memo(function GridCellExpand(
                 background: backgroundColor,
                 color: '#000000',
                 padding: '3px 10px 2px 10px',
-                zIndex: '111',
+                zIndex: '111'
               }}
               // onClick={() => handleSingleSelection(v)}
             >
@@ -207,7 +207,7 @@ const ExpandableChipsCell = memo(function GridCellExpand(
                 noWrap
                 sx={{
                   fontFamily: 'Space Mono',
-                  fontSize: '13px',
+                  fontSize: '13px'
                 }}
               >
                 {' '}
@@ -221,7 +221,7 @@ const ExpandableChipsCell = memo(function GridCellExpand(
                 fontFamily: 'Space Mono',
                 fontSize: '13px',
                 textAlign: 'start',
-                color: '#0E5FED',
+                color: '#0E5FED'
               }}
             >
               {v.value}
@@ -230,8 +230,8 @@ const ExpandableChipsCell = memo(function GridCellExpand(
             <Chip
               label={v.value}
               sx={{ height: '28px' }}
-              color='primary'
-              variant='outlined'
+              color="primary"
+              variant="outlined"
               key={i}
               // onClick={() => handleSingleSelection(v)}
             />
@@ -285,7 +285,7 @@ const ExpandableChipsCell = memo(function GridCellExpand(
           width: '100%',
           height: '100%',
           position: 'relative',
-          display: 'flex',
+          display: 'flex'
         }}
       >
         <Box
@@ -296,7 +296,7 @@ const ExpandableChipsCell = memo(function GridCellExpand(
             display: 'block',
             position: 'absolute',
             top: 0,
-            mx: '-10px',
+            mx: '-10px'
           }}
         />
         <Box
@@ -304,7 +304,7 @@ const ExpandableChipsCell = memo(function GridCellExpand(
           sx={{
             whiteSpace: 'nowrap',
             overflow: 'hidden',
-            textOverflow: 'ellipsis',
+            textOverflow: 'ellipsis'
           }}
         >
           <Box sx={{ display: 'flex', flexWrap: 'nowrap', gap: '10px' }}>
@@ -324,6 +324,13 @@ const ExpandableChipsCell = memo(function GridCellExpand(
                 {getPopperItems()}
                 {params!?.data?.length > 20 && (
                   <button
+                    style={{
+                      background: 'transparent',
+                      color: 'black',
+                      border: '1px solid',
+                      padding: '4px 0',
+                      opacity: page! === 1 ? '0.5' : '1'
+                    }}
                     onClick={() => {
                       setPage(page! - 1);
                       handlePrevious(page! - 1);
@@ -335,6 +342,13 @@ const ExpandableChipsCell = memo(function GridCellExpand(
                 )}
                 {params!?.data?.length > 20 && (
                   <button
+                    style={{
+                      background: 'transparent',
+                      color: 'black',
+                      border: '1px solid',
+                      padding: '4px 0',
+                      opacity: page! * 20 >= params!?.data?.length ? '0.5' : '1'
+                    }}
                     onClick={() => {
                       setPage(page! + 1);
                       handleNext(page! + 1);

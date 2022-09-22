@@ -214,7 +214,7 @@ const DashboardData = () => {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            maxWidth: '90%',
+            maxWidth: '95%',
             flex: 1,
             maxHeight: '100%'
           }}

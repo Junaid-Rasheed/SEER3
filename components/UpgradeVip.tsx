@@ -6,7 +6,7 @@ const UpgradeVip = () => {
   const router = useRouter();
   return (
     <div
-      className="h-full w-full flex items-end"
+      className="h-[750px] w-full flex items-end"
       style={{
         backgroundImage: 'url(/assets/desktop/non-vip-bg.png)',
         backgroundPosition: 'top',

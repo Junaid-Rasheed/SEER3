@@ -49,7 +49,7 @@ const Dashboard = () => {
         showPaymentDetails={showPaymentDetails}
       />
       <Background>
-        <div className="px-10">
+        <div>
           <div className="">
             {showPaymentDetails && (
               <div className="p-4">

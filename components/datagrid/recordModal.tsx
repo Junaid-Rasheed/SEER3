@@ -19,7 +19,7 @@ export const RecordModal = ({
   recordData,
   recordTableFields,
   handleClose,
-  fieldName,
+  fieldName
 }: IProps) => {
   const [data, setData] = useState(recordData);
   const [linkedData, setLinkedData] = useState<any[]>([]);
@@ -49,7 +49,7 @@ export const RecordModal = ({
         if (f.type === 'link_row') {
           linkedRecords.push({
             tableID: f.link_row_table,
-            rowIDs: data[f.name].map((d: any) => d.id),
+            rowIDs: data[f.name].map((d: any) => d.id)
           });
         }
       });
@@ -101,7 +101,7 @@ export const RecordModal = ({
       } else if (f.name === 'Portfolio Companies') {
         background = '#FF4772';
       } else if (f.name === 'Fundraising Rounds') {
-        background = '#ec3b3b';
+        background = '#3557c7';
       } else {
         background = 'transparent';
       }
@@ -121,7 +121,7 @@ export const RecordModal = ({
                   display: 'flex',
                   flexDirection: 'column',
                   pl: '12px',
-                  border: '1px solid rgba(0,0,0,0.12)',
+                  border: '1px solid rgba(0,0,0,0.12)'
                 }}
               >
                 {' '}
@@ -132,7 +132,7 @@ export const RecordModal = ({
                       minHeight: '40px',
                       paddingTop: '8px',
                       fontFamily: 'Space Mono',
-                      marginBottom: '1rem',
+                      marginBottom: '1rem'
                     }}
                   >
                     <span
@@ -140,7 +140,7 @@ export const RecordModal = ({
                       style={{
                         background: background,
                         padding: '4px 10px',
-                        marginRight: '10px',
+                        marginRight: '10px'
                       }}
                     >
                       {dataValue.value}
@@ -173,7 +173,7 @@ export const RecordModal = ({
                       flex: 3,
                       display: 'flex',
                       flexDirection: 'column',
-                      padding: '4px 0',
+                      padding: '4px 0'
                     }}
                   >
                     <PopperItem
@@ -196,19 +196,19 @@ export const RecordModal = ({
               style={{
                 alignItems: 'center',
                 lineHeight: '24px',
-                display: 'flex',
+                display: 'flex'
               }}
             >
               {data[f.name][0] && (
                 <Image
                   src={data[f.name][0].url}
-                  width='200px'
-                  height='200px'
+                  width="200px"
+                  height="200px"
                   style={{
                     position: 'relative',
-                    zIndex: 1,
+                    zIndex: 1
                   }}
-                  alt='logo'
+                  alt="logo"
                 />
               )}
             </div>
@@ -222,7 +222,7 @@ export const RecordModal = ({
                 display: 'flex',
                 flexDirection: 'column',
                 pl: '12px',
-                border: '1px solid rgba(0,0,0,0.12)',
+                border: '1px solid rgba(0,0,0,0.12)'
               }}
             >
               {' '}
@@ -230,7 +230,7 @@ export const RecordModal = ({
                 sx={{
                   minHeight: '40px',
                   paddingTop: '8px',
-                  fontFamily: 'Space Mono',
+                  fontFamily: 'Space Mono'
                 }}
               >
                 {typeof data[f.name] === 'object'
@@ -239,7 +239,7 @@ export const RecordModal = ({
                         style={{
                           background: background,
                           padding: '4px 10px',
-                          marginRight: '10px',
+                          marginRight: '10px'
                         }}
                       >
                         {f.name === 'Funding  Lookup' &&
@@ -278,7 +278,7 @@ export const RecordModal = ({
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  mt: 1,
+                  mt: 1
                 }}
               >
                 <Typography
@@ -287,7 +287,7 @@ export const RecordModal = ({
                     margin: '15px 0',
                     color: '#000000',
                     fontFamily: 'Space Mono',
-                    textTransform: 'uppercase',
+                    textTransform: 'uppercase'
                   }}
                 >
                   {f.name}
@@ -316,7 +316,7 @@ export const RecordModal = ({
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  mt: 1,
+                  mt: 1
                 }}
               >
                 <Typography
@@ -325,7 +325,7 @@ export const RecordModal = ({
                     margin: '15px 0',
                     color: '#000000',
                     fontFamily: 'Space Mono',
-                    textTransform: 'uppercase',
+                    textTransform: 'uppercase'
                   }}
                 >
                   {f.name}
@@ -359,14 +359,14 @@ export const RecordModal = ({
               567179, 567180, 567273, 567258, 567259, 567260, 567261, 567262,
               567270, 567271, 567272, 567230, 567231, 567232, 567233, 567143,
               567144, 567145, 567146, 567227, 567252, 567253, 567149, 567193,
-              567214,
+              567214
             ].includes(f.id) && (
               <Box
                 key={i}
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  mt: 1,
+                  mt: 1
                 }}
               >
                 <Typography
@@ -375,7 +375,7 @@ export const RecordModal = ({
                     margin: '15px 0',
                     color: '#000000',
                     fontFamily: 'Space Mono',
-                    textTransform: 'uppercase',
+                    textTransform: 'uppercase'
                   }}
                 >
                   {f.name}
@@ -395,18 +395,18 @@ export const RecordModal = ({
     <>
       <StyledModal
         open={!!recordID}
-        aria-labelledby='modal-modal-title'
-        aria-describedby='modal-modal-description'
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
         onClose={() => handleClose()}
         sx={{
-          inset: '106px 12px 12px',
+          inset: '106px 12px 12px'
         }}
       >
         <Box
           sx={{
             m: '0px auto',
             maxWidth: '800px',
-            height: '100%',
+            height: '100%'
           }}
         >
           <Box
@@ -416,7 +416,7 @@ export const RecordModal = ({
               p: '32px 40px 40px',
               overflow: 'auto',
               color: '#000000',
-              borderRadius: '5px',
+              borderRadius: '5px'
             }}
           >
             <Typography
@@ -424,7 +424,7 @@ export const RecordModal = ({
                 fontWeight: '700',
                 fontSize: '35px',
                 textTransform: 'uppercase',
-                marginBottom: '12px',
+                marginBottom: '12px'
               }}
             >
               {getPrimaryFieldValue()}
